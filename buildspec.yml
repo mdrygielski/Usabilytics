@@ -9,6 +9,8 @@ phases:
     commands:
       - npm install
       - npm install -g @angular/cli
+      - npm install --save @angular/material @angular/cdk @angular/animations
+      - npm install --save hammerjs
   build:
     commands:
       - ng build --env=${BUILD_ENV}
