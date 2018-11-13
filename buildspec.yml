@@ -11,6 +11,7 @@ phases:
       - npm install -g @angular/cli
       - npm install --save @angular/material @angular/cdk @angular/animations
       - npm install --save hammerjs
+      - npm install @ngx-translate/core @ngx-translate/http-loader rxjs --save
   build:
     commands:
       - ng build
