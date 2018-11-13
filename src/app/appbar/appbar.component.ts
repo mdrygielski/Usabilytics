@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-appbar',
@@ -6,15 +6,17 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./appbar.component.css']
 })
 export class AppbarComponent implements OnInit {
-  selected = 'option2';
+  @Input() lang: string;
+
+  @Output() updateLanguage: EventEmitter<string> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  changeLang(newLang) {
-    console.log(this.selected + ' -> change language to :' + newLang);
-    localStorage.setItem('Language', newLang);
-    // location.reload(true);
+  languageChanged() {
+    console.log('change language to :' + this.lang);
+    this.updateLanguage.emit(this.lang);
   }
 }

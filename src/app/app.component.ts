@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Usabilytics';
+  currentLanguage = 'en';
+
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang('en');
+  }
+
+  languageChangedHandler(lang: string) {
+    console.log('languageChangedHandler: ' + lang);
+    this.translate.use(lang);
+  }
+
 }

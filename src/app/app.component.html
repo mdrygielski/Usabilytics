@@ -1,5 +1,5 @@
 
-<app-appbar></app-appbar>
+<app-appbar [lang]=currentLanguage (updateLanguage)="languageChangedHandler($event)"></app-appbar>
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
