@@ -1,23 +1,17 @@
 <div>
   <mat-toolbar color="primary">
-    <!--<mat-toolbar-row>-->
     <span translate>title</span>
 
     <span class="example-spacer"></span>
     <mat-form-field>
       <mat-label translate>language</mat-label>
-      <mat-select [(value)]="lang" (valueChange)="languageChanged()">
-        <mat-option value="pl">
-          <div translate> polish</div>
-        </mat-option>
-        <mat-option value="en">
-          <div translate>english</div>
-        </mat-option>
+      <mat-select [(value)]="lang" (valueChange)="changeLanguage()">
+        <mat-option value="pl" translate>polish</mat-option>
+        <mat-option value="en" translate>english</mat-option>
       </mat-select>
     </mat-form-field>
-    <!--</mat-toolbar-row>-->
   </mat-toolbar>
-
-
-  <p>You selected: {{selected}}</p>
+  <br/>
+  <br/>
+  <br/>
 </div>

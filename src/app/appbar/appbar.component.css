@@ -6,3 +6,7 @@
 .mat-form-field {
   padding-top: 20px;
 }
+.mat-toolbar {
+  position: fixed;
+  top: 0;
+}

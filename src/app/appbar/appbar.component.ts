@@ -15,7 +15,7 @@ export class AppbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  languageChanged() {
+  changeLanguage() {
     console.log('change language to :' + this.lang);
     this.updateLanguage.emit(this.lang);
   }
