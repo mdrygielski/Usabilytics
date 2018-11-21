@@ -91,5 +91,5 @@ interface UserResponse {
   country_code: string;
   continent_name: string;
   flag: string;
-  languages: object[];
+  languages: any;
 }
