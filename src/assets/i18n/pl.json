@@ -1,6 +1,8 @@
 {
-  "title": "Testowa aplikacja",
+  "title": "Badanie użyteczności",
   "language": "język",
   "english": "angielski",
-  "polish": "polski"
+  "polish": "polski",
+  "welcome": "Witaj",
+  "introduction": "Badanie polega na wprowadzeniu wcześniej podanych danych za pomocą wybranych elementów."
 }

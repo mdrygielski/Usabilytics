@@ -1,6 +1,8 @@
 {
-  "title": "Test app name",
+  "title": "Usability testing",
   "language": "language",
   "english": "english",
-  "polish": "polish"
+  "polish": "polish",
+  "welcome":"Welcome",
+  "introduction": "test"
 }

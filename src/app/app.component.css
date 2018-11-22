@@ -1,0 +1,24 @@
+.mat-drop-container {
+  background: white;
+  /*border: 1px solid #555;*/
+  z-index: 1;
+  margin-top: 65px;
+  height: 100%;
+}
+
+.mat-drop-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.mat-drop-sidenav {
+  padding: 20px;
+  height: 100%;
+}
+
+.title {
+  text-align: center;
+}

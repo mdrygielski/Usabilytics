@@ -19,13 +19,15 @@ export class AppComponent implements OnInit {
     location: {
       latitude: 0,
       longitude: 0,
+      preciseLocation: false,
       geolocationError: '',
       isEu: '',
       countryName: '',
       countryCode: '',
       continentName: '',
       flagUrl: '',
-    }
+    },
+    mobileVersion: false
   };
 
   constructor(private translate: TranslateService,
@@ -33,6 +35,7 @@ export class AppComponent implements OnInit {
 
     this.getIPData();
     this.getLocation();
+    this.detectMobile();
 
     translate.setDefaultLang(this.user.language);
   }
@@ -42,6 +45,7 @@ export class AppComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.user.location.latitude = position.coords.latitude;
         this.user.location.longitude = position.coords.longitude;
+        this.user.location.preciseLocation = true;
       }, (error) => {
         this.user.location.geolocationError = error.message;
       });
@@ -49,8 +53,6 @@ export class AppComponent implements OnInit {
       console.log('Geolocation is not supported by this browser.');
     }
   }
-
-
   ngOnInit() {
   }
 
@@ -78,6 +80,16 @@ export class AppComponent implements OnInit {
       this.user.location.continentName = data.continent_name;
       this.user.location.flagUrl = data.flag;
     });
+  }
+
+  private detectMobile() {
+    this.user.mobileVersion = !!(navigator.userAgent.match(/Android/i)
+      || navigator.userAgent.match(/webOS/i)
+      || navigator.userAgent.match(/iPhone/i)
+      || navigator.userAgent.match(/iPad/i)
+      || navigator.userAgent.match(/iPod/i)
+      || navigator.userAgent.match(/BlackBerry/i)
+      || navigator.userAgent.match(/Windows Phone/i));
   }
 
 }

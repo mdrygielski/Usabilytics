@@ -14,7 +14,7 @@ phases:
       - npm install @ngx-translate/core @ngx-translate/http-loader rxjs --save
   build:
     commands:
-      - ng build
+      - ng build --prod
   post_build:
     commands:
       - aws s3 cp dist s3://${S3_BUCKET}/ --recursive

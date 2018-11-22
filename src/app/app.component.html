@@ -1,36 +1,32 @@
-<app-appbar [lang]=user.language (updateLanguage)="languageChangedHandler($event)"></app-appbar>
 
-<div>
-  <div><span translate>language</span>: {{user.language}}<br/></div>
-  <div><span translate>IP address</span>: {{user.ipAddress}}<br/></div>
-  <div><span translate>latitude</span>: {{user.location.latitude}}<br/></div>
-  <div><span translate>longtide</span>: {{user.location.longitude}}<br/></div>
-  <div><span translate>is eu?</span>: {{user.location.isEu}}<br/></div>
-  <div><span translate>country</span>: {{user.location.countryName}}<br/></div>
-  <div><span translate>country code</span>: {{user.location.countryCode}}<br/></div>
-  <div><span translate>continent</span>: {{user.location.continentName}}<br/></div>
-  <div><span translate>flag</span>: <img src="{{user.location.flagUrl}}" /><br/></div>
-</div>
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="250" alt="Angular Logo"
-       src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<div>Hello, It's me</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a>
-    </h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+
+
+<app-appbar [lang]=user.language (updateLanguage)="languageChangedHandler($event)"></app-appbar>
+<mat-drawer-container class="mat-drop-container">
+  <mat-drawer opened #drawer mode="side" class="mat-drop-sidenav-content" >
+    <div><span translate>language</span>: {{user.language}}<br/></div>
+    <div><span translate>IP address</span>: {{user.ipAddress}}<br/></div>
+    <div><span translate>latitude</span>: {{user.location.latitude}}<br/></div>
+    <div><span translate>longtide</span>: {{user.location.longitude}}<br/></div>
+    <div><span translate>precise location</span>: {{user.location.preciseLocation}}<br/></div>
+    <div><span translate>is eu?</span>: {{user.location.isEu}}<br/></div>
+    <div><span translate>country</span>: {{user.location.countryName}}<br/></div>
+    <div><span translate>country code</span>: {{user.location.countryCode}}<br/></div>
+    <div><span translate>continent</span>: {{user.location.continentName}}<br/></div>
+    <div><span translate>flag</span>: <img src="{{user.location.flagUrl}}"/><br/></div>
+    <div><span translate>mobile version</span>: {{user.mobileVersion}}<br/></div>
+  </mat-drawer>
+  <mat-drawer-content class="mat-drop-sidenav">
+    <button mat-button (click)="drawer.toggle()">Dane</button>
+
+    <div>
+      <h1 class="title">
+        <span translate>welcome</span>!
+      </h1>
+    <span translate>introduction</span>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+
 
 
