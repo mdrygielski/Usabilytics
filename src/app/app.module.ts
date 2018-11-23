@@ -9,10 +9,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDrawer} from '@angular/material';
-import {MatDrawerContent} from '@angular/material';
-import {MatDrawerContainer} from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 // import ngx-translate and the http loader
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -22,10 +20,8 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-    AppbarComponent,
-    MatDrawer,
-    MatDrawerContent,
-    MatDrawerContainer
+    AppbarComponent
+
   ],
   imports: [
     BrowserModule,
@@ -34,6 +30,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
+    MatSidenavModule,
 
     HttpClientModule,
     TranslateModule.forRoot({
