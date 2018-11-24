@@ -94,13 +94,13 @@ export class AppComponent implements OnInit {
       || navigator.userAgent.match(/Windows Phone/i));
   }
 
+  sendEmailConfirmation() {
+    console.log("sending an email");
+    sendMessage();
+    console.log("email sent");
+  }
 }
 
-function sendEmailConfirmation() {
-  console.log("sending an email");
-  sendMessage();
-  console.log("email sent");
-}
 
 interface UserResponse {
   ip: string;
