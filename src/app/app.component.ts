@@ -95,9 +95,9 @@ export class AppComponent implements OnInit {
   }
 
   sendEmailConfirmation() {
-    console.log("sending an email");
+    console.log('sending an email');
     sendMessage();
-    console.log("email sent");
+    console.log('email sent');
   }
 }
 
