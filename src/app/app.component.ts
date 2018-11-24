@@ -93,12 +93,13 @@ export class AppComponent implements OnInit {
       || navigator.userAgent.match(/BlackBerry/i)
       || navigator.userAgent.match(/Windows Phone/i));
   }
-  private sendEmailConfirmation() {
-    console.log("sending an email");
-    sendMessage();
-    console.log("email sent");
-  }
 
+}
+
+function sendEmailConfirmation() {
+  console.log("sending an email");
+  sendMessage();
+  console.log("email sent");
 }
 
 interface UserResponse {
