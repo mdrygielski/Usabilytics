@@ -12,6 +12,7 @@ phases:
       - npm install --save @angular/material @angular/cdk @angular/animations
       - npm install --save hammerjs
       - npm install @ngx-translate/core @ngx-translate/http-loader rxjs --save
+      - npm install async --save
   build:
     commands:
       - ng build --prod
