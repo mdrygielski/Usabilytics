@@ -3,12 +3,6 @@
     <span translate>title</span>
 
     <span class="example-spacer"></span>
-    <mat-form-field>
-      <mat-label translate>language</mat-label>
-      <mat-select [(value)]="lang" (valueChange)="changeLanguage()">
-        <mat-option value="pl" translate>polish</mat-option>
-        <mat-option value="en" translate>english</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <button mat-icon-button (click)="changeLanguage()"><img src='assets/img/langIcon/{{alternativeLang}}.png'/></button>
   </mat-toolbar>
 </div>

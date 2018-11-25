@@ -3,7 +3,6 @@ import {TranslateService} from '@ngx-translate/core';
 import {UserInfo} from './userInfo';
 import {HttpClient} from '@angular/common/http';
 
-declare function sendMessage(): any;
 
 @Component({
   selector: 'app-root',
@@ -12,7 +11,6 @@ declare function sendMessage(): any;
 })
 
 export class AppComponent implements OnInit {
-  title = 'Usabilytics';
   ipDataURL = 'https://api.ipdata.co?api-key=8c206a3f41fe19087eeaa52f781259c5d441f1a8e911797ecf1f7a51';
 
   user: UserInfo = {
@@ -92,12 +90,6 @@ export class AppComponent implements OnInit {
       || navigator.userAgent.match(/iPod/i)
       || navigator.userAgent.match(/BlackBerry/i)
       || navigator.userAgent.match(/Windows Phone/i));
-  }
-
-  sendEmailConfirmation() {
-    console.log('sending an email');
-    sendMessage();
-    console.log('email sent');
   }
 }
 

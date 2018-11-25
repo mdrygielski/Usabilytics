@@ -4,7 +4,6 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {AppbarComponent} from './appbar/appbar.component';
-
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
@@ -17,11 +16,18 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 
+// Routing
+import {AppRoutingModule} from './app-routing.module';
+import {MainComponent} from './main/main.component';
+import {UsabilityComponent} from './usability/usability.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    AppbarComponent
-
+    AppbarComponent,
+    MainComponent,
+    UsabilityComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +38,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     MatButtonModule,
     MatSidenavModule,
 
+    AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -39,7 +46,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

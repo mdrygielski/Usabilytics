@@ -1,22 +1,36 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 
 @Component({
   selector: 'app-appbar',
   templateUrl: './appbar.component.html',
   styleUrls: ['./appbar.component.css']
 })
-export class AppbarComponent implements OnInit {
+export class AppbarComponent implements OnInit, OnChanges {
   @Input() lang: string;
 
   @Output() updateLanguage: EventEmitter<string> = new EventEmitter();
 
+  alternativeLang: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.setAlternativeLang();
+  }
+
+  ngOnChanges(changes: any) {
+    this.setAlternativeLang();
   }
 
   changeLanguage() {
-    console.log('change language to :' + this.lang);
-    this.updateLanguage.emit(this.lang);
+    this.updateLanguage.emit(this.alternativeLang);
+  }
+
+  private setAlternativeLang() {
+    if (this.lang === 'pl') {
+      this.alternativeLang = 'en';
+    } else {
+      this.alternativeLang = 'pl';
+    }
   }
 }

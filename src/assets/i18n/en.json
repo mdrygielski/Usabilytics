@@ -4,5 +4,6 @@
   "english": "english",
   "polish": "polish",
   "welcome":"Welcome",
-  "introduction": "test"
+  "introduction": "The test consists in entering the given data using selected elements",
+  "start": "Start"
 }
