@@ -5,7 +5,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {AppbarComponent} from './appbar/appbar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material';
+import {MatIconModule, MatToolbarModule} from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
@@ -37,6 +37,7 @@ import {UsabilityComponent} from './usability/usability.component';
     MatSelectModule,
     MatButtonModule,
     MatSidenavModule,
+    MatIconModule,
 
     AppRoutingModule,
     HttpClientModule,

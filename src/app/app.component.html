@@ -1,7 +1,7 @@
 
 
 
-<app-appbar [lang]=user.language (updateLanguage)="languageChangedHandler($event)"></app-appbar>
+<app-appbar [lang]="user.language" (updateLanguage)="languageChangedHandler($event)" (toggleInfo)="drawer.toggle()"></app-appbar>
 <mat-drawer-container class="mat-drop-container">
   <mat-drawer #drawer mode="side" class="mat-drop-sidenav-content" >
     <div><span translate>language</span>: {{user.language}}<br/></div>
@@ -17,11 +17,6 @@
     <div><span translate>mobile version</span>: {{user.mobileVersion}}<br/></div>
   </mat-drawer>
   <mat-drawer-content class="mat-drop-sidenav">
-    <button mat-button (click)="drawer.toggle()">Dane</button>
-    <nav>
-      <a routerLink="/main" translate>main</a>
-      <a routerLink="/usability" translate>start</a>
-    </nav>
     <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>

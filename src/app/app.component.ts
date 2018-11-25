@@ -57,11 +57,9 @@ export class AppComponent implements OnInit {
   }
 
   languageChangedHandler(lang: string) {
-    console.log('languageChangedHandler: ' + lang);
     this.user.language = lang;
     this.translate.use(lang);
   }
-
 
   private getIPData() {
     this.http.get<UserResponse>(this.ipDataURL).subscribe(data => {

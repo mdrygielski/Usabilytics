@@ -9,6 +9,7 @@ export class AppbarComponent implements OnInit, OnChanges {
   @Input() lang: string;
 
   @Output() updateLanguage: EventEmitter<string> = new EventEmitter();
+  @Output() toggleInfo: EventEmitter<string> = new EventEmitter();
 
   alternativeLang: string;
 
@@ -24,6 +25,9 @@ export class AppbarComponent implements OnInit, OnChanges {
 
   changeLanguage() {
     this.updateLanguage.emit(this.alternativeLang);
+  }
+  toggleSideBar() {
+    this.toggleInfo.emit();
   }
 
   private setAlternativeLang() {
