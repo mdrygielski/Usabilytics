@@ -1,0 +1,25 @@
+<div fxLayout="row wrap" fxFlex="100">
+  <mat-card class="instruction">
+    <h2><span translate>scenario</span> 1</h2>
+    <span translate>test1.description</span>
+    <br/>
+    <br/>
+    <b><span translate>data</span>:</b>
+    <br/>
+    <b><span translate>receiptDate</span>: </b>
+    <span class="usability-data" translate>test1.data1</span>
+    <br/>
+    <b><span translate>birthDate</span>: </b>
+    <span class="usability-data" translate>test1.data2</span>
+  </mat-card>
+  <mat-card class="usability-content">
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="{{'receiptDate' | translate}}" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div>
+      <button mat-button matStepperNext><span translate>next</span></button>
+    </div>
+  </mat-card>
+</div>

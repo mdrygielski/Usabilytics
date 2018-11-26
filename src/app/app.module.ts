@@ -30,6 +30,7 @@ import {MainComponent} from './main/main.component';
 import {UsabilityComponent} from './usability/usability.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { Scenario1Component } from './usability/scenario1/scenario1.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     AppComponent,
     AppbarComponent,
     MainComponent,
-    UsabilityComponent
+    UsabilityComponent,
+    Scenario1Component
   ],
   imports: [
     BrowserModule,
