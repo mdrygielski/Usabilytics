@@ -1,12 +1,51 @@
-<div fxLayout="row wrap" fxLayoutAlign="space-around center">
-  <div>
-    <mat-card class="instruction">
-      test
-    </mat-card>
-  </div>
-  <div>
-    <mat-card class="instruction">
-      content
-    </mat-card>
-  </div>
-</div>
+<mat-horizontal-stepper #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel><span translate>dateInput</span></ng-template>
+      <!--<div fxFlex="100">-->
+
+        <div fxLayout="row wrap" fxFlex="100">
+          <mat-card class="instruction">
+            <h2><span translate>scenario</span> 1</h2>
+            <span translate>test1.description</span>
+            <br/>
+            <br/>
+            <b><span translate>data</span>:</b>
+            <br/>
+            <b><span translate>receiptDate</span>: </b>
+            <span class="usability-data" translate>test1.data1</span>
+            <br/>
+            <b><span translate>birthDate</span>: </b>
+            <span class="usability-data" translate>test1.data2</span>
+          </mat-card>
+          <mat-card class="usability-content">
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="{{'receiptDate' | translate}}" required >
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext><span translate>next</span></button>
+            </div>
+          </mat-card>
+        </div>
+      <!--</div>-->
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+</mat-horizontal-stepper>
+
+

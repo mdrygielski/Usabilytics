@@ -5,7 +5,15 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {AppbarComponent} from './appbar/appbar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatCardModule, MatIconModule, MatToolbarModule} from '@angular/material';
+import {
+  MatCardModule,
+  MatDatepickerModule,
+  MatIconModule,
+  MatInputModule,
+  MatNativeDateModule,
+  MatStepperModule,
+  MatToolbarModule
+} from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
@@ -21,6 +29,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {MainComponent} from './main/main.component';
 import {UsabilityComponent} from './usability/usability.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -41,6 +50,12 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatIconModule,
     MatCardModule,
     FlexLayoutModule,
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
 
     AppRoutingModule,
     HttpClientModule,

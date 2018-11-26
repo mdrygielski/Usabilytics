@@ -4,3 +4,8 @@
 body, html, app-root {
   height: 90%;
 }
+
+
+span {
+  white-space: pre-wrap;
+}

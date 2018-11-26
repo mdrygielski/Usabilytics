@@ -4,6 +4,19 @@
   "english": "english",
   "polish": "polish",
   "welcome":"Welcome",
+  "next": "Next",
   "introduction": "The test consists in entering the given data using selected elements",
-  "start": "Start"
+  "start": "Start",
+  "chooseDate": "Choose a date",
+  "dateInput": "Date input",
+  "scenario": "Scenario",
+  "data": "DATA",
+  "receiptDate": "Date of receipt",
+  "birthDate": "Date of birth",
+  "test1": {
+    "title": "title",
+    "description": "Proszę wprowadzić datę odbioru zamówienia",
+    "data1": "18 January 2019",
+    "data2": "6 June 1989"
+  }
 }

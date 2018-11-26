@@ -4,6 +4,19 @@
   "english": "angielski",
   "polish": "polski",
   "welcome": "Witaj",
-  "introduction": "Badanie polega na wprowadzeniu podanych danych za pomocą wybranych elementów",
-  "start": "Rozpocznij"
+  "next": "Dalej",
+  "introduction": "Badanie polega na wprowadzeniu podanych danych za pomocą wybranych elementów. \nAby wykonać test należy wprowadzić dane zgodnie z instrukcją znajdującą się po lewej stronie ekranu lub na górze.\nPo wykonaniu testy należy ocenić, która z metod wprowadzania była dla Ciebie najlepsza.",
+  "start": "Rozpocznij",
+  "chooseDate": "Wybierz datę",
+  "dateInput": "Wprowadzanie daty",
+  "scenario": "Scenariusz",
+  "data": "DANE",
+  "receiptDate": "Data odbioru zamówienia",
+  "birthDate": "Data urodzenia",
+  "test1": {
+    "title": "title",
+    "description": "Właśnie zamówiłeś nową książkę. \nProszę podać proferowaną datę odbioru zamówienia oraz datę urodzenia w celu weryfikacji.",
+    "data1": "18 styczeń 2019",
+    "data2": "6 czerwiec 1989"
+  }
 }
