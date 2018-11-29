@@ -10,13 +10,19 @@
   "chooseDate": "Wybierz datę",
   "dateInput": "Wprowadzanie daty",
   "scenario": "Scenariusz",
+  "intro": "Wprowadzenie",
   "data": "DANE",
   "receiptDate": "Data odbioru zamówienia",
   "birthDate": "Data urodzenia",
+  "summary": "Podsumowanie",
+  "warning": "Uwaga",
+  "goBackWarning": "Po zatwierdzeniu przyciskiem 'Dalej' nie można powrócić do poprzedniego etapu.",
   "test1": {
     "title": "title",
-    "description": "Właśnie zamówiłeś nową książkę. \nProszę podać proferowaną datę odbioru zamówienia oraz datę urodzenia w celu weryfikacji.",
+    "description": "Właśnie zamówiłeś nową książkę. \nProszę podać preferowaną datę odbioru zamówienia oraz datę urodzenia w celu weryfikacji.",
     "data1": "18 styczeń 2019",
-    "data2": "6 czerwiec 1989"
-  }
+    "data2": "6 czerwiec 1989",
+    "intro": "W każdym kroku proszę wprowadzić datę zgodnie z nazwą. Kolejno:\nEtap 1: Datę należy wybrać za pomocą kalendarza.\nEtap 2: Proszę wpisać datę za pomocą klawiatury."
+  },
+  "textInput": "Wprowadzanie tekstu"
 }

@@ -12,7 +12,7 @@ import {
   MatInputModule,
   MatNativeDateModule,
   MatStepperModule,
-  MatToolbarModule
+  MatToolbarModule, NativeDateModule
 } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -31,6 +31,8 @@ import {UsabilityComponent} from './usability/usability.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { Scenario1Component } from './usability/scenario1/scenario1.component';
+import {MAT_STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
+import { Scenario2Component } from './usability/scenario2/scenario2.component';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { Scenario1Component } from './usability/scenario1/scenario1.component';
     AppbarComponent,
     MainComponent,
     UsabilityComponent,
-    Scenario1Component
+    Scenario1Component,
+    Scenario2Component
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { Scenario1Component } from './usability/scenario1/scenario1.component';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    NativeDateModule,
 
     AppRoutingModule,
     HttpClientModule,
@@ -69,7 +73,12 @@ import { Scenario1Component } from './usability/scenario1/scenario1.component';
       }
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MAT_STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false }
+    }
+    ],
   bootstrap: [AppComponent]
 })
 

@@ -8,12 +8,29 @@
 
 .usability-content {
   padding-top: 20px;
-  min-width: 200px;
-  max-width: 400px;
+  min-width: 240px;
+  max-width: 100pc;
   flex-grow: 1;
   margin-bottom: 10px;
 }
 
 .usability-data {
   white-space:nowrap;
+}
+
+.next-button {
+  margin-left: 140px;
+}
+
+.warning-message {
+  color: coral;
+}
+
+.next-step-button {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+mat-vertical-stepper {
+  margin-left: -20px;
 }

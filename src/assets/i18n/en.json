@@ -10,13 +10,19 @@
   "chooseDate": "Choose a date",
   "dateInput": "Date input",
   "scenario": "Scenario",
+  "intro": "Introduction",
   "data": "DATA",
   "receiptDate": "Date of receipt",
   "birthDate": "Date of birth",
+  "summary": "Summary",
+  "warning": "Warning",
+  "goBackWarning": "Po zatwierdzeniu przyciskiem 'Dalej' nie można powrócić do poprzedniego etapu.",
   "test1": {
     "title": "title",
+    "intro": "W każdym etapie proszę wprowadzić datę zgodnie z nazwą etapu.\n W etapie 2. i 3. datę należy wybrać za pomocą kalendarza.\n W etapie 5. oraz 6. proszę wpisać datę za pomocą klawiatury.",
     "description": "Proszę wprowadzić datę odbioru zamówienia",
     "data1": "18 January 2019",
     "data2": "6 June 1989"
-  }
+  },
+  "textInput": "Text input"
 }

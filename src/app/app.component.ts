@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {UserInfo} from './userInfo';
 import {HttpClient} from '@angular/common/http';
+import {DateAdapter} from '@angular/material';
 
 
 @Component({
@@ -31,7 +32,8 @@ export class AppComponent implements OnInit {
   };
 
   constructor(private translate: TranslateService,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private adapter: DateAdapter<any>) {
 
     this.getIPData();
     this.getLocation();
@@ -59,6 +61,12 @@ export class AppComponent implements OnInit {
   languageChangedHandler(lang: string) {
     this.user.language = lang;
     this.translate.use(lang);
+    // set locale
+    if (lang === 'pl') {
+      this.adapter.setLocale('pl');
+    } else {
+      this.adapter.setLocale('en');
+    }
   }
 
   private getIPData() {

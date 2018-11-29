@@ -13,11 +13,7 @@
     <span class="usability-data" translate>test1.data2</span>
     <br/>
     <br/>
-    <div class="warning-message">
-      <span translate>warning</span>:
-      <br/>
-      <span translate>goBackWarning</span>
-    </div>
+    <span translate class="warning-message">goBackWarning</span>
   </mat-card>
   <mat-card class="usability-content">
 
@@ -34,11 +30,11 @@
 
       <ng-template matStepperIcon="number" let-index="index">{{Math.ceil(index/2)}}</ng-template>
 
-      <mat-step [stepControl]="firstFormGroupScenario1" [editable]="false" label="{{'receiptDate' | translate}}">
-        <form [formGroup]="firstFormGroupScenario1">
+      <mat-step [stepControl]="firstFormGroupScenario2" [editable]="false" label="{{'receiptDate' | translate}}">
+        <form [formGroup]="firstFormGroupScenario2">
           <mat-form-field>
             <input matInput [matDatepicker]="firstPicker" placeholder="{{'chooseDate' | translate}}"
-                   formControlName="firstCtrlScenario1" required>
+                   formControlName="firstCtrlScenario2" required>
             <mat-datepicker-toggle matSuffix [for]="firstPicker"></mat-datepicker-toggle>
             <mat-datepicker #firstPicker></mat-datepicker>
           </mat-form-field>
@@ -48,11 +44,11 @@
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="secondFormGroupScenario1" [editable]="false" label="{{'birthDate' | translate}}">
-        <form [formGroup]="secondFormGroupScenario1">
+      <mat-step [stepControl]="secondFormGroupScenario2" [editable]="false" label="{{'birthDate' | translate}}">
+        <form [formGroup]="secondFormGroupScenario2">
           <mat-form-field>
             <input matInput [matDatepicker]="secondPicker" placeholder="{{'chooseDate' | translate}}"
-                   formControlName="secondCtrlScenario1" required>
+                   formControlName="secondCtrlScenario2" required>
             <mat-datepicker-toggle matSuffix [for]="secondPicker"></mat-datepicker-toggle>
             <mat-datepicker #secondPicker></mat-datepicker>
           </mat-form-field>
@@ -64,10 +60,10 @@
       </mat-step>
 
 
-      <mat-step [stepControl]="thirdFormGroupScenario1" [editable]="false" label="{{'receiptDate' | translate}}">
-        <form [formGroup]="thirdFormGroupScenario1">
+      <mat-step [stepControl]="thirdFormGroupScenario2" [editable]="false" label="{{'receiptDate' | translate}}">
+        <form [formGroup]="thirdFormGroupScenario2">
           <mat-form-field>
-            <input id="thirdInputScenario1" matInput type="date" max="{{'2100-12-31'}}" formControlName="thirdCtrlScenario1" required>
+            <input matInput type="date" max="{{'2100-12-31'}}" formControlName="thirdCtrlScenario2" required>
           </mat-form-field>
           <div>
             <button mat-raised-button color="primary" matStepperNext (click)="thirdConfirmation()"
@@ -76,10 +72,10 @@
         </form>
       </mat-step>
 
-      <mat-step [stepControl]="fourthFormGroupScenario1" [editable]="false" label="{{'birthDate' | translate}}">
-        <form [formGroup]="fourthFormGroupScenario1">
+      <mat-step [stepControl]="fourthFormGroupScenario2" [editable]="false" label="{{'birthDate' | translate}}">
+        <form [formGroup]="fourthFormGroupScenario2">
           <mat-form-field>
-            <input matInput type="date" max="{{'2100-12-31'}}" formControlName="fourthCtrlScenario1" required>
+            <input matInput type="date" max="{{'2100-12-31'}}" formControlName="fourthCtrlScenario2" required>
           </mat-form-field>
           <div>
             <button mat-raised-button color="primary" matStepperNext (click)="fourthConfirmation()"
@@ -88,9 +84,9 @@
         </form>
       </mat-step>
 
-      <mat-step [stepControl]="summaryFormGroupScenario1" [editable]="false" label="{{'summary' | translate}}"
+      <mat-step [stepControl]="summaryFormGroupScenario2" [editable]="false" label="{{'summary' | translate}}"
                 state="<mat-icon>insert_comment</mat-icon>">
-        <form [formGroup]="summaryFormGroupScenario1">
+        <form [formGroup]="summaryFormGroupScenario2">
           todo: summary survey for dates
         </form>
         <div>
@@ -101,8 +97,4 @@
 
     </mat-vertical-stepper>
   </mat-card>
-  <div>
-    <button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button"><span
-      translate>next</span></button>
-  </div>
 </div>

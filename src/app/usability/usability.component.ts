@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatStepper} from '@angular/material';
 
 @Component({
   selector: 'app-usability',
@@ -7,7 +8,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./usability.component.css']
 })
 export class UsabilityComponent implements OnInit {
-
+  @ViewChild('mainStepper') stepper: MatStepper;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
@@ -22,4 +23,14 @@ export class UsabilityComponent implements OnInit {
     });
   }
 
+  scenario1Done() {
+    console.log('scenario 1 finished!');
+    this.stepper.next();
+  }
+
+
+  scenario2Done() {
+    console.log('scenario 1 finished!');
+    this.stepper.next();
+  }
 }

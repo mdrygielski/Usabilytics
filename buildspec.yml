@@ -9,7 +9,7 @@ phases:
     commands:
       - npm install
       - npm install -g @angular/cli
-      - npm install --save @angular/material @angular/cdk @angular/animations @angular/flex-layout
+      - npm install --save @angular/material @angular/cdk @angular/animations @angular/flex-layout @angular/material-moment-adapter
       - npm install --save hammerjs
       - npm install @ngx-translate/core @ngx-translate/http-loader rxjs --save
       - npm install async --save
