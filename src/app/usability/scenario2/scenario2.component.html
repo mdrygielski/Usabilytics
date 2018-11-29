@@ -18,7 +18,7 @@
   <mat-card class="usability-content">
 
     <mat-vertical-stepper [linear]="true" #stepper>
-      <mat-step [editable]="false" label="{{'intro' | translate}}" state="<mat-icon>info</mat-icon>">
+      <mat-step [editable]="false" label="{{'intro' | translate}}" state="infoIcon">
         <form>
           <span translate>test1.intro</span>
           <div>
@@ -85,7 +85,7 @@
       </mat-step>
 
       <mat-step [stepControl]="summaryFormGroupScenario2" [editable]="false" label="{{'summary' | translate}}"
-                state="<mat-icon>insert_comment</mat-icon>">
+                state="summaryIcon">
         <form [formGroup]="summaryFormGroupScenario2">
           todo: summary survey for dates
         </form>
@@ -95,6 +95,12 @@
         </div>
       </mat-step>
 
+      <ng-template matStepperIcon="infoIcon">
+        <mat-icon>info</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="summaryIcon">
+        <mat-icon>insert_comment</mat-icon>
+      </ng-template>
     </mat-vertical-stepper>
   </mat-card>
 </div>

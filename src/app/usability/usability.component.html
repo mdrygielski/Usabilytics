@@ -2,14 +2,14 @@
   <mat-step [stepControl]="firstFormGroup" [editable]="false">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel><span translate>dateInput</span></ng-template>
-      <app-scenario1 (finished)="scenario1Done($event)"></app-scenario1>
+      <app-scenario1 (finished)="scenario1Done()"></app-scenario1>
     </form>
   </mat-step>
 
   <mat-step [stepControl]="secondFormGroup" [editable]="false">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel><span translate>textInput</span></ng-template>
-      <app-scenario2 (finished)="scenario2Done($event)"></app-scenario2>
+      <app-scenario2 (finished)="scenario2Done()"></app-scenario2>
     </form>
   </mat-step>
 

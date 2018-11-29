@@ -7,7 +7,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./scenario2.component.css']
 })
 export class Scenario2Component implements OnInit {
-  @Output() finished = new EventEmitter<boolean>();
+  @Output() finished = new EventEmitter<void>();
   Math: any;
 
   firstFormGroupScenario2: FormGroup;
@@ -59,7 +59,7 @@ export class Scenario2Component implements OnInit {
   }
 
   summaryConfirmation() {
-    this.finished.emit(true);
+    this.finished.emit();
     console.log('step 4 - done');
   }
 

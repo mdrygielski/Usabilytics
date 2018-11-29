@@ -22,7 +22,7 @@
   <mat-card class="usability-content">
 
     <mat-vertical-stepper [linear]="true" #stepper>
-      <mat-step [editable]="false" label="{{'intro' | translate}}" state="<mat-icon>info</mat-icon>">
+      <mat-step [editable]="false" label="{{'intro' | translate}}" state="infoIcon">
         <form>
           <span translate>test1.intro</span>
           <div>
@@ -67,6 +67,7 @@
       <mat-step [stepControl]="thirdFormGroupScenario1" [editable]="false" label="{{'receiptDate' | translate}}">
         <form [formGroup]="thirdFormGroupScenario1">
           <mat-form-field>
+            <label for="thirdInputScenario1">{{'receiptDate' | translate}}</label>
             <input id="thirdInputScenario1" matInput type="date" max="{{'2100-12-31'}}" formControlName="thirdCtrlScenario1" required>
           </mat-form-field>
           <div>
@@ -89,7 +90,7 @@
       </mat-step>
 
       <mat-step [stepControl]="summaryFormGroupScenario1" [editable]="false" label="{{'summary' | translate}}"
-                state="<mat-icon>insert_comment</mat-icon>">
+                state="summaryIcon">
         <form [formGroup]="summaryFormGroupScenario1">
           todo: summary survey for dates
         </form>
@@ -99,6 +100,12 @@
         </div>
       </mat-step>
 
+      <ng-template matStepperIcon="infoIcon">
+        <mat-icon>info</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="summaryIcon">
+        <mat-icon>insert_comment</mat-icon>
+      </ng-template>
     </mat-vertical-stepper>
   </mat-card>
   <div>
