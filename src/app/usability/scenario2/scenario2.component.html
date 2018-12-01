@@ -1,16 +1,16 @@
 <div fxLayout="row wrap" fxFlex="100">
   <mat-card class="instruction">
-    <h2><span translate>scenario</span> 1</h2>
-    <span translate>test1.description</span>
+    <h2><span translate>scenario</span> 2</h2>
+    <span translate>test2.description</span>
     <br/>
     <br/>
     <b><span translate>data</span>:</b>
     <br/>
-    <b><span translate>receiptDate</span>: </b>
-    <span class="usability-data" translate>test1.data1</span>
+    <b><span translate>entertainment</span>: </b>
+    370 <span class="usability-data" translate>currency</span>
     <br/>
-    <b><span translate>birthDate</span>: </b>
-    <span class="usability-data" translate>test1.data2</span>
+    <b><span translate>currentExpenses</span>: </b>
+    2150 <span class="usability-data" translate>currency</span>
     <br/>
     <br/>
     <span translate class="warning-message">goBackWarning</span>
@@ -20,7 +20,7 @@
     <mat-vertical-stepper [linear]="true" #stepper>
       <mat-step [editable]="false" label="{{'intro' | translate}}" state="infoIcon">
         <form>
-          <span translate>test1.intro</span>
+          <span translate>test2.intro</span>
           <div>
             <button mat-raised-button color="primary" matStepperNext (click)="introConfirmation()"
                     class="next-step-button"><span translate>next</span></button>
@@ -30,13 +30,12 @@
 
       <ng-template matStepperIcon="number" let-index="index">{{Math.ceil(index/2)}}</ng-template>
 
-      <mat-step [stepControl]="firstFormGroupScenario2" [editable]="false" label="{{'receiptDate' | translate}}">
+      <mat-step [stepControl]="firstFormGroupScenario2" [editable]="false" label="{{'entertainment' | translate}}">
         <form [formGroup]="firstFormGroupScenario2">
           <mat-form-field>
-            <input matInput [matDatepicker]="firstPicker" placeholder="{{'chooseDate' | translate}}"
-                   formControlName="firstCtrlScenario2" required>
-            <mat-datepicker-toggle matSuffix [for]="firstPicker"></mat-datepicker-toggle>
-            <mat-datepicker #firstPicker></mat-datepicker>
+            <input matInput type="number" formControlName="firstCtrlScenario2" placeholder="{{'amount' | translate}}"
+                   required>
+            <span matSuffix translate>currency</span>
           </mat-form-field>
           <div>
             <button mat-raised-button color="primary" matStepperNext (click)="firstConfirmation()"
@@ -44,13 +43,12 @@
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="secondFormGroupScenario2" [editable]="false" label="{{'birthDate' | translate}}">
+      <mat-step [stepControl]="secondFormGroupScenario2" [editable]="false" label="{{'currentExpenses' | translate}}">
         <form [formGroup]="secondFormGroupScenario2">
           <mat-form-field>
-            <input matInput [matDatepicker]="secondPicker" placeholder="{{'chooseDate' | translate}}"
-                   formControlName="secondCtrlScenario2" required>
-            <mat-datepicker-toggle matSuffix [for]="secondPicker"></mat-datepicker-toggle>
-            <mat-datepicker #secondPicker></mat-datepicker>
+            <input matInput type="number" formControlName="secondCtrlScenario2" placeholder="{{'amount' | translate}}"
+                   required>
+            <span matSuffix translate>currency</span>
           </mat-form-field>
           <div>
             <button mat-raised-button color="primary" matStepperNext (click)="secondConfirmation()"
@@ -60,27 +58,25 @@
       </mat-step>
 
 
-      <mat-step [stepControl]="thirdFormGroupScenario2" [editable]="false" label="{{'receiptDate' | translate}}">
-        <form [formGroup]="thirdFormGroupScenario2">
-          <mat-form-field>
-            <input matInput type="date" max="{{'2100-12-31'}}" formControlName="thirdCtrlScenario2" required>
-          </mat-form-field>
-          <div>
-            <button mat-raised-button color="primary" matStepperNext (click)="thirdConfirmation()"
-                    class="next-step-button"><span translate>next</span></button>
-          </div>
+      <mat-step [editable]="false" label="{{'entertainment' | translate}}">
+        <mat-slider thumbLabel [(ngModel)]="slider1"
+                    step="10"
+                    min="0"
+                    max="1000"></mat-slider>
+        <form>
+          <button mat-raised-button color="primary" matStepperNext (click)="thirdConfirmation()"
+                  class="next-step-button"><span translate>next</span></button>
         </form>
       </mat-step>
 
-      <mat-step [stepControl]="fourthFormGroupScenario2" [editable]="false" label="{{'birthDate' | translate}}">
-        <form [formGroup]="fourthFormGroupScenario2">
-          <mat-form-field>
-            <input matInput type="date" max="{{'2100-12-31'}}" formControlName="fourthCtrlScenario2" required>
-          </mat-form-field>
-          <div>
-            <button mat-raised-button color="primary" matStepperNext (click)="fourthConfirmation()"
-                    class="next-step-button"><span translate>next</span></button>
-          </div>
+      <mat-step [editable]="false" label="{{'currentExpenses' | translate}}">
+        <mat-slider thumbLabel [(ngModel)]="slider1"
+                    step="50"
+                    min="0"
+                    max="10000"></mat-slider>
+        <form>
+          <button mat-raised-button color="primary" matStepperNext (click)="fourthConfirmation()"
+                  class="next-step-button"><span translate>next</span></button>
         </form>
       </mat-step>
 

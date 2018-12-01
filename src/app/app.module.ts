@@ -10,7 +10,7 @@ import {
   MatDatepickerModule,
   MatIconModule,
   MatInputModule,
-  MatNativeDateModule,
+  MatNativeDateModule, MatSliderModule,
   MatStepperModule,
   MatToolbarModule, NativeDateModule
 } from '@angular/material';
@@ -33,6 +33,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { Scenario1Component } from './usability/scenario1/scenario1.component';
 import {MAT_STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { Scenario2Component } from './usability/scenario2/scenario2.component';
+import { Scenario3Component } from './usability/scenario3/scenario3.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { Scenario2Component } from './usability/scenario2/scenario2.component';
     MainComponent,
     UsabilityComponent,
     Scenario1Component,
-    Scenario2Component
+    Scenario2Component,
+    Scenario3Component
   ],
   imports: [
     BrowserModule,
@@ -62,6 +64,7 @@ import { Scenario2Component } from './usability/scenario2/scenario2.component';
     MatDatepickerModule,
     MatNativeDateModule,
     NativeDateModule,
+    MatSliderModule,
 
     AppRoutingModule,
     HttpClientModule,

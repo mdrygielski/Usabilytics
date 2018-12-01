@@ -11,6 +11,7 @@ export class UsabilityComponent implements OnInit {
   @ViewChild('mainStepper') stepper: MatStepper;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -21,6 +22,9 @@ export class UsabilityComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required]
+    });
   }
 
   scenario1Done() {
@@ -28,9 +32,13 @@ export class UsabilityComponent implements OnInit {
     this.stepper.next();
   }
 
-
   scenario2Done() {
-    console.log('scenario 1 finished!');
+    console.log('scenario 2 finished!');
+    this.stepper.next();
+  }
+
+  scenario3Done() {
+    console.log('scenario 3 finished!');
     this.stepper.next();
   }
 }

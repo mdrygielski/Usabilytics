@@ -12,9 +12,8 @@ export class Scenario2Component implements OnInit {
 
   firstFormGroupScenario2: FormGroup;
   secondFormGroupScenario2: FormGroup;
-  thirdFormGroupScenario2: FormGroup;
-  fourthFormGroupScenario2: FormGroup;
   summaryFormGroupScenario2: FormGroup;
+  slider1 = 0;
 
   constructor(private _formBuilder: FormBuilder) {
     this.Math = Math;
@@ -26,12 +25,6 @@ export class Scenario2Component implements OnInit {
     });
     this.secondFormGroupScenario2 = this._formBuilder.group({
       secondCtrlScenario2: ['', Validators.required]
-    });
-    this.thirdFormGroupScenario2 = this._formBuilder.group({
-      thirdCtrlScenario2: ['', Validators.required]
-    });
-    this.fourthFormGroupScenario2 = this._formBuilder.group({
-      fourthCtrlScenario2: ['', Validators.required]
     });
     this.summaryFormGroupScenario2 = this._formBuilder.group({
       summaryCtrlScenario2: ['', Validators.required]
@@ -51,7 +44,7 @@ export class Scenario2Component implements OnInit {
   }
 
   thirdConfirmation() {
-    console.log('step 3 - next');
+    console.log(this.slider1 + ' step 3 - next');
   }
 
   fourthConfirmation() {

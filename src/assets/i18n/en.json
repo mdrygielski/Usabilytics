@@ -14,15 +14,37 @@
   "data": "DATA",
   "receiptDate": "Date of receipt",
   "birthDate": "Date of birth",
+  "entertainment": "Entertainment",
+  "currentExpenses": "Current expenses",
+  "currency": "£",
+  "message": "Wiadomość",
   "summary": "Summary",
+  "amount": "Amount",
+  "typing": "Typing",
+  "speechRecognition": "Speech recognition",
   "warning": "Warning",
   "goBackWarning": "Po zatwierdzeniu przyciskiem 'Dalej' nie można powrócić do poprzedniego etapu.",
   "test1": {
     "title": "title",
-    "intro": "W każdym etapie proszę wprowadzić datę zgodnie z nazwą etapu.\n W etapie 2. i 3. datę należy wybrać za pomocą kalendarza.\n W etapie 5. oraz 6. proszę wpisać datę za pomocą klawiatury.",
     "description": "Proszę wprowadzić datę odbioru zamówienia",
+    "intro": "W każdym etapie proszę wprowadzić datę zgodnie z nazwą etapu.\n W etapie 2. i 3. datę należy wybrać za pomocą kalendarza.\n W etapie 5. oraz 6. proszę wpisać datę za pomocą klawiatury.",
     "data1": "18 January 2019",
     "data2": "6 June 1989"
   },
-  "textInput": "Text input"
+  "numericInput": "Numeric input",
+  "test2": {
+    "title": "title",
+    "description": "Planujesz budżet na najbliższy miesiąc. \nProszę podać kwotę jaką zamierzasz przeznaczyć na rozrywkę oraz bieżące wydatki.",
+    "intro": "W każdym kroku proszę wprowadzić kwoty zgodnie z nazwą. Kolejno:\nEtap 1: Kwotę należy wpisać .\nEtap 2: Kwotę należy wybrać za pomocą suwaka.",
+    "data1": "370",
+    "data2": "2150"
+  },
+  "textInput": "Text input",
+  "test3": {
+    "title": "title",
+    "description": "Po odbiorze zamówionych książek zauważasz brak jednej książki. \nProszę napisać informację do sklepu o pomyłce.",
+    "intro": "W każdym kroku proszę wprowadzić teskt zgodnie z nazwą. Kolejno:\nEtap 1: Tekst należy wpisać .\nEtap 2: Tekst należy wprowadzić przy głosowo.",
+    "data1": "Witam!\nWłaśnie odebrałem paczkę, niestety brakuje jednej książki - pozycji numer 123456.\nJest to 'Lśnienie' Stephena Kinga.\nLiczę na jak najszybsze dosłanie brakującej pozycji\nPozdrawiam",
+    "data2": "2150"
+  }
 }
