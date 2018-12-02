@@ -3,21 +3,22 @@ import { SpeechRecognizerService } from './shared/services/speech-recognizer.ser
 
 import { SpeechNotification } from './shared/model/speech-notification';
 import { SpeechError } from './shared/model/speech-error';
-import { ActionContext } from './shared/model/strategy/action-context';
 
 @Component({
   selector: 'app-web-speech',
   templateUrl: './web-speech.component.html',
   styleUrls: ['./web-speech.component.css']
 })
+
+
 export class WebSpeechComponent implements OnInit {
 
   finalTranscript = '';
+  test = '';
   recognizing = false;
   notification: string;
   languages: string[] =  ['en-US', 'es-ES', 'pl-PL'];
   currentLanguage: string;
-  actionContext: ActionContext = new ActionContext();
 
   constructor(private changeDetector: ChangeDetectorRef,
               private speechRecognizer: SpeechRecognizerService) { }
@@ -63,10 +64,9 @@ export class WebSpeechComponent implements OnInit {
         const message = data.content.trim();
         if (data.info === 'final_transcript' && message.length > 0) {
           this.finalTranscript = `${this.finalTranscript}\n${message}`;
-          this.actionContext.processMessage(message, this.currentLanguage);
           this.detectChanges();
-          this.actionContext.runAction(message, this.currentLanguage);
         }
+        console.log(this.test);
       });
 
     this.speechRecognizer.onError()
