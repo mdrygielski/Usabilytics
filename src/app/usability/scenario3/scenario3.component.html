@@ -8,7 +8,7 @@
     <br/>
     <b><span translate>message</span>: </b>
     <br/>
-    <span class="usability-data" translate>test3.data1</span>
+    <span translate>test3.data1</span>
     <br/>
     <br/>
     <span translate class="warning-message">goBackWarning</span>
@@ -31,7 +31,7 @@
       <mat-step [stepControl]="firstFormGroupScenario3" [editable]="false" label="{{'typing' | translate}}">
         <form [formGroup]="firstFormGroupScenario3">
           <mat-form-field class="full-width">
-            <textarea matInput class="text-area" placeholder="{{'message' | translate }}" formControlName="firstCtrlScenario3" required></textarea>
+            <textarea matInput class="text-area" placeholder="{{'message' | translate }}" formControlName="firstCtrlScenario3" rows="6" required></textarea>
           </mat-form-field>
           <div>
             <button mat-raised-button color="primary" matStepperNext (click)="firstConfirmation()"
@@ -41,9 +41,7 @@
       </mat-step>
       <mat-step [stepControl]="secondFormGroupScenario3" [editable]="false" label="{{'speechRecognition' | translate}}">
         <form [formGroup]="secondFormGroupScenario3">
-          <mat-form-field>
-            <textarea matInput placeholder="{{'message' | translate }}" formControlName="secondCtrlScenario3" required></textarea>
-          </mat-form-field>
+          <app-web-speech></app-web-speech>
           <div>
             <button mat-raised-button color="primary" matStepperNext (click)="secondConfirmation()"
                     class="next-step-button"><span translate>next</span></button>

@@ -3,17 +3,11 @@
   padding-left: 20px;
   padding-right: 20px;
 }
-
-.center {
-  padding: 10px;
-  text-align: center;
+.loading-animation {
+  display: inline;
+  padding-left: 50px;
 }
 
-.mat-input-element:disabled {
-  color: rgba(0,0,0,.9);
-}
-
-.notification {
-  margin-left: 20px;
-  margin-right: 20px;
+.speech-recognition-button {
+  display: inline;
 }

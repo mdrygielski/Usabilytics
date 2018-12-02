@@ -22,8 +22,6 @@ export class SpeechRecognizerService {
     this.recognition.continuous = true;
     this.recognition.interimResults = true;
     this.recognition.lang = language;
-    this.recognition.continuous = true;
-    this.recognition.interimResults = true;
   }
 
   setLanguage(language: string) {

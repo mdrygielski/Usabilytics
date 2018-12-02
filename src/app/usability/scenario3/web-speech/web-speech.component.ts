@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { SpeechRecognizerService } from './shared/services/speech-recognizer.service';
 
 import { SpeechNotification } from './shared/model/speech-notification';
 import { SpeechError } from './shared/model/speech-error';
+import {UserService} from '../../../user.service';
 
 @Component({
   selector: 'app-web-speech',
@@ -14,34 +15,32 @@ import { SpeechError } from './shared/model/speech-error';
 export class WebSpeechComponent implements OnInit {
 
   finalTranscript = '';
-  test = '';
+  interimTranscript = '';
   recognizing = false;
   notification: string;
-  languages: string[] =  ['en-US', 'es-ES', 'pl-PL'];
   currentLanguage: string;
 
   constructor(private changeDetector: ChangeDetectorRef,
-              private speechRecognizer: SpeechRecognizerService) { }
+              private speechRecognizer: SpeechRecognizerService,
+              private userService: UserService) { }
 
   ngOnInit() {
-    this.currentLanguage = this.languages[0];
+    this.currentLanguage = this.userService.language;
     this.speechRecognizer.initialize(this.currentLanguage);
     this.initRecognition();
     this.notification = null;
   }
 
   startButton(event) {
+    if (this.currentLanguage !== this.userService.language) {
+      this.currentLanguage = this.userService.language;
+      this.speechRecognizer.setLanguage(this.currentLanguage);
+    }
     if (this.recognizing) {
       this.speechRecognizer.stop();
       return;
     }
-
     this.speechRecognizer.start(event.timeStamp);
-  }
-
-  onSelectLanguage(language: string) {
-    this.currentLanguage = language;
-    this.speechRecognizer.setLanguage(this.currentLanguage);
   }
 
   private initRecognition() {
@@ -63,10 +62,20 @@ export class WebSpeechComponent implements OnInit {
       .subscribe((data: SpeechNotification) => {
         const message = data.content.trim();
         if (data.info === 'final_transcript' && message.length > 0) {
-          this.finalTranscript = `${this.finalTranscript}\n${message}`;
+          this.interimTranscript = '';
+          if (this.finalTranscript === '') {
+            this.finalTranscript = message;
+          } else if (this.finalTranscript.endsWith('\n')) {
+            this.finalTranscript = `${this.finalTranscript}${message}`;
+          } else {
+            this.finalTranscript = `${this.finalTranscript} ${message}`;
+          }
           this.detectChanges();
         }
-        console.log(this.test);
+        if (data.info === 'interim_transcript' && message.length > 0) {
+          this.interimTranscript = message;
+          this.detectChanges();
+        }
       });
 
     this.speechRecognizer.onError()
@@ -95,5 +104,11 @@ export class WebSpeechComponent implements OnInit {
 
   detectChanges() {
     this.changeDetector.detectChanges();
+  }
+
+  updateFinalTranscript(value: string) {
+    if (this.interimTranscript === '') {
+      this.finalTranscript = value;
+    }
   }
 }

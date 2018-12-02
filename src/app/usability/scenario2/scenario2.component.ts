@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 @Component({
   selector: 'app-scenario2',
   templateUrl: './scenario2.component.html',
-  styleUrls: ['./scenario2.component.css']
+  styleUrls: ['./scenario2.component.css', '../usability.component.css']
 })
 export class Scenario2Component implements OnInit {
   @Output() finished = new EventEmitter<void>();

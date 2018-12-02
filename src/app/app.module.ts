@@ -37,6 +37,7 @@ import { Scenario3Component } from './usability/scenario3/scenario3.component';
 import { WebSpeechComponent } from './usability/scenario3/web-speech/web-speech.component';
 import {CommonModule} from '@angular/common';
 import {SpeechRecognizerService} from './usability/scenario3/web-speech/shared/services/speech-recognizer.service';
+import {UserService} from './user.service';
 
 
 @NgModule({
@@ -72,7 +73,6 @@ import {SpeechRecognizerService} from './usability/scenario3/web-speech/shared/s
     MatSliderModule,
     MatListModule,
 
-
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -85,6 +85,7 @@ import {SpeechRecognizerService} from './usability/scenario3/web-speech/shared/s
   ],
   providers: [
     SpeechRecognizerService,
+    UserService,
     {
       provide: MAT_STEPPER_GLOBAL_OPTIONS,
       useValue: { displayDefaultIndicatorType: false }
