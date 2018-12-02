@@ -9,7 +9,7 @@ import {
   MatCardModule,
   MatDatepickerModule,
   MatIconModule,
-  MatInputModule,
+  MatInputModule, MatListModule,
   MatNativeDateModule, MatSliderModule,
   MatStepperModule,
   MatToolbarModule, NativeDateModule
@@ -34,6 +34,9 @@ import { Scenario1Component } from './usability/scenario1/scenario1.component';
 import {MAT_STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { Scenario2Component } from './usability/scenario2/scenario2.component';
 import { Scenario3Component } from './usability/scenario3/scenario3.component';
+import { WebSpeechComponent } from './usability/scenario3/web-speech/web-speech.component';
+import {CommonModule} from '@angular/common';
+import {SpeechRecognizerService} from './usability/scenario3/web-speech/shared/services/speech-recognizer.service';
 
 
 @NgModule({
@@ -44,11 +47,13 @@ import { Scenario3Component } from './usability/scenario3/scenario3.component';
     UsabilityComponent,
     Scenario1Component,
     Scenario2Component,
-    Scenario3Component
+    Scenario3Component,
+    WebSpeechComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    CommonModule,
     MatToolbarModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -65,6 +70,8 @@ import { Scenario3Component } from './usability/scenario3/scenario3.component';
     MatNativeDateModule,
     NativeDateModule,
     MatSliderModule,
+    MatListModule,
+
 
     AppRoutingModule,
     HttpClientModule,
@@ -77,6 +84,7 @@ import { Scenario3Component } from './usability/scenario3/scenario3.component';
     }),
   ],
   providers: [
+    SpeechRecognizerService,
     {
       provide: MAT_STEPPER_GLOBAL_OPTIONS,
       useValue: { displayDefaultIndicatorType: false }
