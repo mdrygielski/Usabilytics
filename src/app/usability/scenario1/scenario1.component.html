@@ -34,16 +34,17 @@
 
       <ng-template matStepperIcon="number" let-index="index">{{Math.ceil(index/2)}}</ng-template>
 
-      <mat-step [stepControl]="firstFormGroupScenario1" [editable]="false" label="{{'receiptDate' | translate}}">
-        <form [formGroup]="firstFormGroupScenario1">
+      <mat-step [editable]="false" label="{{'receiptDate' | translate}}">
+        <form >
           <mat-form-field>
-            <input matInput [matDatepicker]="firstPicker" placeholder="{{'chooseDate' | translate}}"
-                   formControlName="firstCtrlScenario1" required>
+            <input matInput #firstDate [matDatepicker]="firstPicker" (focus)="firstPicker.open()" placeholder="{{'chooseDate' | translate}}"
+                   (dateChange)="addEvent('firstDateChanged', $event.target)" [formControl]="firstDate1" required>
             <mat-datepicker-toggle matSuffix [for]="firstPicker"></mat-datepicker-toggle>
-            <mat-datepicker #firstPicker></mat-datepicker>
+            <mat-datepicker #firstPicker (closed)="firstDate.blur()"></mat-datepicker>
           </mat-form-field>
+          <div *ngIf="firstDate1.getError('incorrectDate')">Niepoprawna data</div>
           <div>
-            <button mat-raised-button color="primary" matStepperNext (click)="firstConfirmation()"
+            <button mat-raised-button color="primary" (click)="firstConfirmation()"
                     class="next-step-button"><span translate>next</span></button>
           </div>
         </form>
@@ -51,10 +52,10 @@
       <mat-step [stepControl]="secondFormGroupScenario1" [editable]="false" label="{{'birthDate' | translate}}">
         <form [formGroup]="secondFormGroupScenario1">
           <mat-form-field>
-            <input matInput [matDatepicker]="secondPicker" placeholder="{{'chooseDate' | translate}}"
+            <input matInput #secondDate [matDatepicker]="secondPicker" (focus)="secondPicker.open()" placeholder="{{'chooseDate' | translate}}"
                    formControlName="secondCtrlScenario1" required>
             <mat-datepicker-toggle matSuffix [for]="secondPicker"></mat-datepicker-toggle>
-            <mat-datepicker #secondPicker></mat-datepicker>
+            <mat-datepicker #secondPicker (closed)="secondDate.blur()"></mat-datepicker>
           </mat-form-field>
           <div>
             <button mat-raised-button color="primary" matStepperNext (click)="secondConfirmation()"

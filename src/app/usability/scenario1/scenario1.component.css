@@ -6,3 +6,8 @@ input[type="date"]::-webkit-input-placeholder{
   visibility: hidden !important;
 }
 
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-outer-spin-button{
+  visibility: hidden !important;
+}
+

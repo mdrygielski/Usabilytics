@@ -1,5 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {DateAdapter, MatDatepickerInputEvent, MatStepper} from '@angular/material';
 
 
 @Component({
@@ -11,34 +12,51 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 export class Scenario1Component implements OnInit {
   @Output() finished = new EventEmitter<void>();
+  @ViewChild('stepper') stepper: MatStepper;
   Math: any;
+  firstDate1 = new FormControl();
 
-  firstFormGroupScenario1: FormGroup;
+
   secondFormGroupScenario1: FormGroup;
   thirdFormGroupScenario1: FormGroup;
   fourthFormGroupScenario1: FormGroup;
   summaryFormGroupScenario1: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private adapter: DateAdapter<any>) {
     this.Math = Math;
   }
 
   ngOnInit() {
-    this.firstFormGroupScenario1 = this._formBuilder.group({
-      firstCtrlScenario1: ['', Validators.required]
-    });
-    this.secondFormGroupScenario1 = this._formBuilder.group({
+    this.secondFormGroupScenario1 = this.formBuilder.group({
       secondCtrlScenario1: ['', Validators.required]
     });
-    this.thirdFormGroupScenario1 = this._formBuilder.group({
+    this.thirdFormGroupScenario1 = this.formBuilder.group({
       thirdCtrlScenario1: ['', Validators.required]
     });
-    this.fourthFormGroupScenario1 = this._formBuilder.group({
+    this.fourthFormGroupScenario1 = this.formBuilder.group({
       fourthCtrlScenario1: ['', Validators.required]
     });
-    this.summaryFormGroupScenario1 = this._formBuilder.group({
+    this.summaryFormGroupScenario1 = this.formBuilder.group({
       summaryCtrlScenario1: ['', Validators.required]
     });
+  }
+
+  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    if (type === 'firstDateChanged') {
+      console.log('firstDateChanged ' + event.value);
+      if (this.adapter.getYear(this.firstDate1.value) === 2019
+          && this.adapter.getMonth(this.firstDate1.value) === 0
+          && this.adapter.getDate(this.firstDate1.value) === 18) {
+        this.firstDate1.setErrors(null);
+      } else {
+        this.firstDate1.setErrors({'incorrectDate': true});
+      }
+    }
+
+    if (type === 'secondDateChanged') {
+      console.log('secondDateChanged ' + event.value);
+    }
   }
 
   introConfirmation() {
@@ -46,7 +64,13 @@ export class Scenario1Component implements OnInit {
   }
 
   firstConfirmation() {
-    console.log('step 1 - next');
+    console.log('step 1 - next.' + this.firstDate1.getError('incorrectDate'));
+    if (this.firstDate1.getError('incorrectDate') === null || this.firstDate1.getError('incorrectDate') === false) {
+      console.log('correct date');
+      this.stepper.next();
+    } else {
+      console.log('incorrect date');
+    }
   }
 
   secondConfirmation() {
@@ -66,4 +90,20 @@ export class Scenario1Component implements OnInit {
     console.log('step 4 - done');
   }
 
+  firstDateUpdated() {
+    console.log('first date updated!');
+  }
+
+  // private validateFirstForm(control: FormControl) {
+  //   if (this.adapter.getYear(control.value) === 2019
+  //     && this.adapter.getMonth(control.value) === 0
+  //     && this.adapter.getDate(control.value) === 18) {
+  //     console.log('correct date');
+  //     this.firstDate1.setErrors(null);
+  //     this.firstDate1.updateValueAndValidity({onlySelf: true});
+  //   } else {
+  //     console.log('incorrect date');
+  //     this.firstDate1.setErrors({'incorrectDate': true});
+  //   }
+  // }
 }
