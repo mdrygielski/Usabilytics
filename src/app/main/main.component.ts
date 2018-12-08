@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LoggingService} from '../logging.service';
 
 declare function sendMessage(): any;
 
@@ -9,15 +10,19 @@ declare function sendMessage(): any;
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loggingService: LoggingService) { }
 
   ngOnInit() {
   }
 
-  sendEmailConfirmation() {
-      console.log('sending an email');
-      sendMessage();
-      console.log('email sent');
+  // sendEmailConfirmation() {
+  //     console.log('sending an email');
+  //     sendMessage();
+  //     console.log('email sent');
+  // }
+
+  StartTest() {
+    this.loggingService.SendTestData().subscribe();
   }
 }
 

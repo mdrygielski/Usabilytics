@@ -38,6 +38,7 @@ import { WebSpeechComponent } from './usability/scenario3/web-speech/web-speech.
 import {CommonModule} from '@angular/common';
 import {SpeechRecognizerService} from './usability/scenario3/web-speech/shared/services/speech-recognizer.service';
 import {UserService} from './user.service';
+import {LoggingService} from './logging.service';
 
 
 @NgModule({
@@ -86,6 +87,7 @@ import {UserService} from './user.service';
   providers: [
     SpeechRecognizerService,
     UserService,
+    LoggingService,
     {
       provide: MAT_STEPPER_GLOBAL_OPTIONS,
       useValue: { displayDefaultIndicatorType: false }
