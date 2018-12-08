@@ -1,0 +1,10 @@
+<div>
+  <mat-form-field>
+  <input matInput #datePicker [matDatepicker]="datePickedComponent" (focus)="firstPicker.open()"
+         placeholder="{{'chooseDate' | translate}}"
+         (dateChange)="addEvent('firstDateChanged', $event.target)" [formControl]="datePickerFormControl" required>
+  <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+  <mat-datepicker #firstPicker (closed)="datePicker.blur()"></mat-datepicker>
+  </mat-form-field>
+  <div *ngIf="datePickerFormControl.getError('incorrectDate')">Niepoprawna data</div>
+</div>

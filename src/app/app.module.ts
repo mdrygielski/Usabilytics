@@ -39,6 +39,7 @@ import {CommonModule} from '@angular/common';
 import {SpeechRecognizerService} from './usability/scenario3/web-speech/shared/services/speech-recognizer.service';
 import {UserService} from './user.service';
 import {LoggingService} from './logging.service';
+import {DatePickerComponent} from './input-components/date-picker/date-picker.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import {LoggingService} from './logging.service';
     Scenario1Component,
     Scenario2Component,
     Scenario3Component,
-    WebSpeechComponent
+    WebSpeechComponent,
+    DatePickerComponent
   ],
   imports: [
     BrowserModule,
