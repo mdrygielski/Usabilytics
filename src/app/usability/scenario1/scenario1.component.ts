@@ -59,6 +59,7 @@ export class Scenario1Component implements OnInit {
     }
   }
 
+
   introConfirmation() {
     console.log('intro done. Starting first step');
   }

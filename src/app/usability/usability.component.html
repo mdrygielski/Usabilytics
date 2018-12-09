@@ -1,4 +1,4 @@
-<app-date-picker></app-date-picker>
+<app-date-picker [requiredYear]="2018" [requiredMonth]="12" [requiredDay]="10" ></app-date-picker>
 <mat-horizontal-stepper id="horizontalStepper" #mainStepper>
   <mat-step [stepControl]="firstFormGroup" [editable]="false">
     <form [formGroup]="firstFormGroup">

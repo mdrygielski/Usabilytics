@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoggingService} from '../logging.service';
+import {UserService} from '../user.service';
 
-declare function sendMessage(): any;
+declare function StartTest(): any;
 
 @Component({
   selector: 'app-main',
@@ -9,8 +10,11 @@ declare function sendMessage(): any;
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  private data: any;
 
-  constructor(private loggingService: LoggingService) { }
+  constructor(private loggingService: LoggingService,
+              private userService: UserService) {
+  }
 
   ngOnInit() {
   }
@@ -22,7 +26,9 @@ export class MainComponent implements OnInit {
   // }
 
   StartTest() {
-    this.loggingService.SendTestData().subscribe();
+    this.userService.testID = Date.now();
+    this.userService.testStartTimestamp = Date();
+    this.loggingService.SendAvailableData().subscribe();
   }
 }
 

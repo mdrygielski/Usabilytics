@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {UserInfo} from './userInfo';
 import {HttpClient} from '@angular/common/http';
 import {DateAdapter} from '@angular/material';
 import {UserService} from './user.service';
@@ -15,23 +14,6 @@ import {UserService} from './user.service';
 export class AppComponent implements OnInit {
   ipDataURL = 'https://api.ipdata.co?api-key=8c206a3f41fe19087eeaa52f781259c5d441f1a8e911797ecf1f7a51';
 
-  user: UserInfo = {
-    language: 'en',
-    ipAddress: 'unknown',
-    location: {
-      latitude: 0,
-      longitude: 0,
-      preciseLocation: false,
-      geolocationError: '',
-      isEu: '',
-      countryName: '',
-      countryCode: '',
-      continentName: '',
-      flagUrl: '',
-    },
-    mobileVersion: false
-  };
-
   constructor(private translate: TranslateService,
               private http: HttpClient,
               private adapter: DateAdapter<any>,
@@ -41,17 +23,17 @@ export class AppComponent implements OnInit {
     this.getLocation();
     this.detectMobile();
 
-    translate.setDefaultLang(this.user.language);
+    translate.setDefaultLang('en');
   }
 
   private getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        this.user.location.latitude = position.coords.latitude;
-        this.user.location.longitude = position.coords.longitude;
-        this.user.location.preciseLocation = true;
+        this.userService.latitude = position.coords.latitude;
+        this.userService.longitude = position.coords.longitude;
+        this.userService.preciseLocation = true;
       }, (error) => {
-        this.user.location.geolocationError = error.message;
+        this.userService.geolocationError = error.message;
       });
     } else {
       console.log('Geolocation is not supported by this browser.');
@@ -61,7 +43,6 @@ export class AppComponent implements OnInit {
   }
 
   languageChangedHandler(lang: string) {
-    this.user.language = lang;
     this.userService.language = lang;
     this.translate.use(lang);
     // set locale
@@ -74,25 +55,24 @@ export class AppComponent implements OnInit {
 
   private getIPData() {
     this.http.get<UserResponse>(this.ipDataURL).subscribe(data => {
-      this.user.ipAddress = data.ip;
+      this.userService.ipAddress = data.ip;
       if (data.languages[0].name === 'Polish') {
-        this.user.language = 'pl';
+        this.userService.language = 'pl';
       } else {
-        this.user.language = 'en';
+        this.userService.language = 'en';
       }
-      this.languageChangedHandler(this.user.language);
-      this.user.location.latitude = data.latitude;
-      this.user.location.longitude = data.longitude;
-      this.user.location.isEu = data.is_eu;
-      this.user.location.countryName = data.country_name;
-      this.user.location.countryCode = data.country_code;
-      this.user.location.continentName = data.continent_name;
-      this.user.location.flagUrl = data.flag;
+      this.languageChangedHandler(this.userService.language);
+      this.userService.latitude = data.latitude;
+      this.userService.longitude = data.longitude;
+      this.userService.isEu = data.is_eu;
+      this.userService.countryName = data.country_name;
+      this.userService.countryCode = data.country_code;
+      this.userService.continentName = data.continent_name;
     });
   }
 
   private detectMobile() {
-    this.user.mobileVersion = !!(navigator.userAgent.match(/Android/i)
+    this.userService.mobileVersion = !!(navigator.userAgent.match(/Android/i)
       || navigator.userAgent.match(/webOS/i)
       || navigator.userAgent.match(/iPhone/i)
       || navigator.userAgent.match(/iPad/i)

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {DateAdapter, MatDatepickerInputEvent} from '@angular/material';
+import {UserService} from '../../user.service';
 
 @Component({
   selector: 'app-date-picker',
@@ -8,27 +9,47 @@ import {DateAdapter, MatDatepickerInputEvent} from '@angular/material';
   styleUrls: ['./date-picker.component.css']
 })
 export class DatePickerComponent implements OnInit {
+  @Input() requiredYear: number;
+  @Input() requiredMonth: number;
+  @Input() requiredDay: number;
+
   datePickerFormControl = new FormControl();
 
-  constructor(private adapter: DateAdapter<any>) { }
+  private startTimestamp: number;
+  private endTimestamp: number;
+  private incorrectCounter: number;
+  private finished: boolean;
+
+
+  constructor(private adapter: DateAdapter<any>,
+              private userService: UserService) { }
 
   ngOnInit() {
+    this.startTimestamp = Date.now();
+    this.finished = false;
+    this.incorrectCounter = 0;
   }
 
-  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    if (type === 'firstDateChanged') {
-      console.log('firstDateChanged ' + event.value);
-      if (this.adapter.getYear(this.datePickerFormControl.value) === 2019
-        && this.adapter.getMonth(this.datePickerFormControl.value) === 0
-        && this.adapter.getDate(this.datePickerFormControl.value) === 18) {
+  showPicker(datePickerComponent) {
+    if (!this.finished) {
+      datePickerComponent.open();
+    }
+  }
+
+  addEvent(event: MatDatepickerInputEvent<Date>) {
+      console.log('firstDateChanged ' + this.requiredYear + + event.value);
+      if (this.adapter.getYear(this.datePickerFormControl.value) === this.requiredYear
+         && this.adapter.getMonth(this.datePickerFormControl.value) === (this.requiredMonth - 1)
+         && this.adapter.getDate(this.datePickerFormControl.value) === this.requiredDay) {
         this.datePickerFormControl.setErrors(null);
+        this.finished = true;
+        this.endTimestamp = Date.now();
+        this.userService.datePickerDuration = this.endTimestamp - this.startTimestamp;
+        this.userService.datePickerIncorrectCounter = this.incorrectCounter;
       } else {
         this.datePickerFormControl.setErrors({'incorrectDate': true});
+        this.incorrectCounter++;
       }
-    }
 
-    if (type === 'secondDateChanged') {
-      console.log('secondDateChanged ' + event.value);
-    }
   }
 }
