@@ -36,17 +36,15 @@
 
       <mat-step [editable]="false" label="{{'receiptDate' | translate}}">
         <form >
-          <mat-form-field>
-            <input matInput #firstDate [matDatepicker]="firstPicker" (focus)="firstPicker.open()" placeholder="{{'chooseDate' | translate}}"
-                   (dateChange)="addEvent('firstDateChanged', $event.target)" [formControl]="firstDate1" required>
-            <mat-datepicker-toggle matSuffix [for]="firstPicker"></mat-datepicker-toggle>
-            <mat-datepicker #firstPicker (closed)="firstDate.blur()"></mat-datepicker>
-          </mat-form-field>
-          <div *ngIf="firstDate1.getError('incorrectDate')">Niepoprawna data</div>
-          <div>
-            <button mat-raised-button color="primary" (click)="firstConfirmation()"
-                    class="next-step-button"><span translate>next</span></button>
-          </div>
+          <app-date-picker [requiredYear]="2018"
+                           [requiredMonth]="12"
+                           [requiredDay]="10"
+                           [title]="'Data odbioru zamówienia'"
+                           (finish)="datePickerConfirm()"></app-date-picker>
+          <!--<div>-->
+            <!--<button mat-raised-button color="primary" (click)="firstConfirmation()"-->
+                    <!--class="next-step-button"><span translate>next</span></button>-->
+          <!--</div>-->
         </form>
       </mat-step>
       <mat-step [stepControl]="secondFormGroupScenario1" [editable]="false" label="{{'birthDate' | translate}}">

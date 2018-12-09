@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     this.getLocation();
     this.detectMobile();
 
-    translate.setDefaultLang('en');
+    translate.setDefaultLang('pl');
   }
 
   private getLocation() {

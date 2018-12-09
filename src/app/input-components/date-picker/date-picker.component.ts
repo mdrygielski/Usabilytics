@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {DateAdapter, MatDatepickerInputEvent} from '@angular/material';
+import {DateAdapter, ErrorStateMatcher, MatDatepickerInputEvent} from '@angular/material';
 import {UserService} from '../../user.service';
+import {LoggingService} from '../../logging.service';
 
 @Component({
   selector: 'app-date-picker',
@@ -9,9 +10,11 @@ import {UserService} from '../../user.service';
   styleUrls: ['./date-picker.component.css']
 })
 export class DatePickerComponent implements OnInit {
+  @Output() finish = new EventEmitter<void>();
   @Input() requiredYear: number;
   @Input() requiredMonth: number;
   @Input() requiredDay: number;
+  @Input() title: string;
 
   datePickerFormControl = new FormControl();
 
@@ -21,8 +24,15 @@ export class DatePickerComponent implements OnInit {
   public finished: boolean;
 
 
+  customErrorStateMatcher: ErrorStateMatcher = {
+    isErrorState: () => {
+      return this.datePickerFormControl.getError('incorrectDate');
+    }
+  };
+
   constructor(private adapter: DateAdapter<any>,
-              private userService: UserService) { }
+              private userService: UserService,
+              private loggingService: LoggingService) { }
 
   ngOnInit() {
     this.startTimestamp = Date.now();
@@ -44,12 +54,21 @@ export class DatePickerComponent implements OnInit {
         this.datePickerFormControl.setErrors(null);
         this.finished = true;
         this.endTimestamp = Date.now();
+        this.userService.datePickerTitle = this.title;
         this.userService.datePickerDuration = this.endTimestamp - this.startTimestamp;
         this.userService.datePickerIncorrectCounter = this.incorrectCounter;
       } else {
         this.datePickerFormControl.setErrors({'incorrectDate': true});
         this.incorrectCounter++;
       }
-
   }
+
+
+  submitTest(obj) {
+    this.userService.datePickerSEQRate = obj.rate;
+    this.userService.datePickerComment = obj.comment;
+    this.loggingService.SendAvailableData().subscribe();
+    this.finish.emit();
+  }
+
 }

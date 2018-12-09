@@ -10,7 +10,7 @@ import {
   MatDatepickerModule,
   MatIconModule,
   MatInputModule, MatListModule,
-  MatNativeDateModule, MatSliderModule,
+  MatNativeDateModule, MatRadioButton, MatRadioModule, MatSliderModule,
   MatStepperModule,
   MatToolbarModule, NativeDateModule
 } from '@angular/material';
@@ -40,6 +40,7 @@ import {SpeechRecognizerService} from './usability/scenario3/web-speech/shared/s
 import {UserService} from './user.service';
 import {LoggingService} from './logging.service';
 import {DatePickerComponent} from './input-components/date-picker/date-picker.component';
+import { SeqComponent } from './input-components/seq/seq.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import {DatePickerComponent} from './input-components/date-picker/date-picker.co
     Scenario2Component,
     Scenario3Component,
     WebSpeechComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    SeqComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +77,7 @@ import {DatePickerComponent} from './input-components/date-picker/date-picker.co
     NativeDateModule,
     MatSliderModule,
     MatListModule,
+    MatRadioModule,
 
     AppRoutingModule,
     HttpClientModule,

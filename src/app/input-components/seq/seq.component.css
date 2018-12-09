@@ -1,0 +1,30 @@
+:host /deep/ .mat-radio-label {
+  flex-direction: column-reverse;
+  display: flex;
+}
+
+
+:host /deep/ .mat-radio-label-content {
+  padding-left: 0px;
+}
+
+.easy-description {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.hard-description {
+  display: inline-block;
+  float: right;
+}
+
+.seq-radio {
+  width: 300px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.seq-comment {
+  padding-top: 20px;
+  width: 100%;
+}

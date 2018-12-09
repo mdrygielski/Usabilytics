@@ -48,6 +48,7 @@ export class LoggingService {
 
   SendAvailableData(): Observable<{}> {
     console.log('sending: ' + JSON.stringify(this.userService));
+    this.userService.lastUpdate = Date();
     return this.http.post(this.loggingUrl, this.userService, this.httpOptions).pipe(
       catchError(this.handleError)
     );

@@ -1,0 +1,24 @@
+<div *ngIf="displayControl">
+  <div class="seq-radio">
+    <p>
+      <b>To zadanie było?</b>
+    </p>
+    <div class="easy-description">Bardzo<br/>Łatwe</div>
+    <div class="hard-description">Bardzo<br/>Trudne</div>
+    <mat-radio-group [(ngModel)]="rate" [labelPosition]="before">
+      <div fxLayout="row" fxLayoutAlign="space-around center">
+        <mat-radio-button [value]="1">1</mat-radio-button>
+        <mat-radio-button [value]="2">2</mat-radio-button>
+        <mat-radio-button [value]="3">3</mat-radio-button>
+        <mat-radio-button [value]="4">4</mat-radio-button>
+        <mat-radio-button [value]="5">5</mat-radio-button>
+        <mat-radio-button [value]="6">6</mat-radio-button>
+        <mat-radio-button [value]="7">7</mat-radio-button>
+      </div>
+    </mat-radio-group>
+    <mat-form-field class="seq-comment">
+      <textarea matInput [(ngModel)]="comment" placeholder="Komentarz (opcjonalny)"></textarea>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" (click)="submitSEQ()" [disabled]="rate == null">Dalej</button>
+</div>

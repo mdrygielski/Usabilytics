@@ -64,14 +64,8 @@ export class Scenario1Component implements OnInit {
     console.log('intro done. Starting first step');
   }
 
-  firstConfirmation() {
-    console.log('step 1 - next.' + this.firstDate1.getError('incorrectDate'));
-    if (this.firstDate1.getError('incorrectDate') === null || this.firstDate1.getError('incorrectDate') === false) {
-      console.log('correct date');
+  datePickerConfirm() {
       this.stepper.next();
-    } else {
-      console.log('incorrect date');
-    }
   }
 
   secondConfirmation() {

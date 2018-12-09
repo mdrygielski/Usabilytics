@@ -2,26 +2,30 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UserService {
-  public language: string;
-  public testID: number;
-  public testStartTimestamp: string;
-  public testEndTimestamp: string;
+  language: string;
+  testID: number;
+  testStartTimestamp: string;
+  testEndTimestamp: string;
 
 
-  public ipAddress: string;
-  public latitude: number;
-  public longitude: number;
-  public preciseLocation: boolean;
-  public geolocationError: string;
-  public isEu: string;
-  public countryName: string;
-  public countryCode: string;
-  public continentName: string;
-  public mobileVersion: boolean;
+  ipAddress: string;
+  latitude: number;
+  longitude: number;
+  preciseLocation: boolean;
+  geolocationError: string;
+  isEu: string;
+  countryName: string;
+  countryCode: string;
+  continentName: string;
+  mobileVersion: boolean;
 
 
-  public datePickerDuration: number;
-  public datePickerIncorrectCounter: number;
+  datePickerDuration: number;
+  datePickerIncorrectCounter: number;
+  datePickerSEQRate: any;
+  datePickerTitle: string;
+  lastUpdate: string;
+  datePickerComment: string;
 
   constructor() { }
 
