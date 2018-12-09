@@ -18,7 +18,7 @@ export class DatePickerComponent implements OnInit {
   private startTimestamp: number;
   private endTimestamp: number;
   private incorrectCounter: number;
-  private finished: boolean;
+  public finished: boolean;
 
 
   constructor(private adapter: DateAdapter<any>,
