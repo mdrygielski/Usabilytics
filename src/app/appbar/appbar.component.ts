@@ -1,4 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-appbar',
@@ -6,14 +7,13 @@ import {Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angula
   styleUrls: ['./appbar.component.css']
 })
 export class AppbarComponent implements OnInit, OnChanges {
-  @Input() lang: string;
 
   @Output() updateLanguage: EventEmitter<string> = new EventEmitter();
   @Output() toggleInfo: EventEmitter<string> = new EventEmitter();
 
   alternativeLang: string;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.setAlternativeLang();
@@ -31,7 +31,7 @@ export class AppbarComponent implements OnInit, OnChanges {
   }
 
   private setAlternativeLang() {
-    if (this.lang === 'pl') {
+    if (this.userService.language === 'pl') {
       this.alternativeLang = 'en';
     } else {
       this.alternativeLang = 'pl';

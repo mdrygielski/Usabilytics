@@ -1,7 +1,7 @@
 
 
 
-<app-appbar [lang]="userService.lang" (updateLanguage)="languageChangedHandler($event)" (toggleInfo)="drawer.toggle()"></app-appbar>
+<app-appbar (updateLanguage)="languageChangedHandler($event)" (toggleInfo)="drawer.toggle()"></app-appbar>
 <mat-drawer-container class="mat-drop-container">
   <mat-drawer #drawer mode="side" class="mat-drop-sidenav-content" >
     <!--<div><span translate>language</span>: {{user.language}}<br/></div>-->
