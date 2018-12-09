@@ -4,7 +4,7 @@
            placeholder="{{'chooseDate' | translate}}"
            (dateChange)="addEvent($event.target)"
            [formControl]="datePickerFormControl"
-           [errorStateMatcher]="datePickerMatcher"
+           [errorStateMatcher]="matcher"
            (focus)="showPicker(datePickerComponent)"
            [disabled]="finished"
            required>
