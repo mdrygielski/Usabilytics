@@ -1,0 +1,12 @@
+<div>
+  <mat-form-field>
+    <input matInput #dateSpinner type="date"
+           (dateChange)="addEvent($event.target)"
+           [formControl]="dateSpinnerFormControl"
+           [errorStateMatcher]="customErrorStateMatcher"
+           [disabled]="finished">
+    <mat-hint>{{title}}</mat-hint>
+    <!--<mat-error *ngIf="datePickerFormControl.getError('incorrectDate')">Niepoprawna data</mat-error>-->
+  </mat-form-field>
+  <app-seq [displayControl]="finished" [componentType]="'dateSpinner'" (finish)="submitTest($event)"></app-seq>
+</div>

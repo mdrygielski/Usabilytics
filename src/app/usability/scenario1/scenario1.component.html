@@ -25,6 +25,12 @@
       <mat-step [editable]="false" label="{{'intro' | translate}}" state="infoIcon">
         <form>
           <span translate>test1.intro</span>
+          <app-date-spinner [dataType]="'soon'"
+                            [requiredYear]="2018"
+                            [requiredMonth]="12"
+                            [requiredDay]="10"
+                            [title]="'Data odbioru zamówienia'"
+                            (finish)="dateConfirm()"></app-date-spinner>
           <div>
             <button mat-raised-button color="primary" matStepperNext (click)="introConfirmation()"
                     class="next-step-button"><span translate>next</span></button>
@@ -35,30 +41,23 @@
       <ng-template matStepperIcon="number" let-index="index">{{Math.ceil(index/2)}}</ng-template>
 
       <mat-step [editable]="false" label="{{'receiptDate' | translate}}">
-        <form >
-          <app-date-picker [requiredYear]="2018"
+        <form>
+          <app-date-picker [type]="'soon'"
+                           [requiredYear]="2018"
                            [requiredMonth]="12"
                            [requiredDay]="10"
                            [title]="'Data odbioru zamówienia'"
-                           (finish)="datePickerConfirm()"></app-date-picker>
-          <!--<div>-->
-            <!--<button mat-raised-button color="primary" (click)="firstConfirmation()"-->
-                    <!--class="next-step-button"><span translate>next</span></button>-->
-          <!--</div>-->
+                           (finish)="dateConfirm()"></app-date-picker>
         </form>
       </mat-step>
-      <mat-step [stepControl]="secondFormGroupScenario1" [editable]="false" label="{{'birthDate' | translate}}">
-        <form [formGroup]="secondFormGroupScenario1">
-          <mat-form-field>
-            <input matInput #secondDate [matDatepicker]="secondPicker" (focus)="secondPicker.open()" placeholder="{{'chooseDate' | translate}}"
-                   formControlName="secondCtrlScenario1" required>
-            <mat-datepicker-toggle matSuffix [for]="secondPicker"></mat-datepicker-toggle>
-            <mat-datepicker #secondPicker (closed)="secondDate.blur()"></mat-datepicker>
-          </mat-form-field>
-          <div>
-            <button mat-raised-button color="primary" matStepperNext (click)="secondConfirmation()"
-                    class="next-step-button"><span translate>next</span></button>
-          </div>
+      <mat-step [editable]="false" label="{{'birthDate' | translate}}">
+        <form>
+            <app-date-picker [type]="'distant'"
+                             [requiredYear]="2018"
+                             [requiredMonth]="12"
+                             [requiredDay]="12"
+                             [title]="'Data Urodzenia'"
+                             (finish)="dateConfirm()"></app-date-picker>
         </form>
       </mat-step>
 

@@ -20,12 +20,20 @@ export class UserService {
   mobileVersion: boolean;
 
 
-  datePickerDuration: number;
-  datePickerIncorrectCounter: number;
-  datePickerSEQRate: any;
-  datePickerTitle: string;
+  datePickerSoonDuration: number;
+  datePickerSoonIncorrectCounter: number;
+  datePickerSoonSEQRate: any;
+  datePickerSoonTitle: string;
+  datePickerSoonComment: string;
+
+  datePickerDistantDuration: number;
+  datePickerDistantIncorrectCounter: number;
+  datePickerDistantSEQRate: any;
+  datePickerDistantTitle: string;
+  datePickerDistantComment: string;
+
+
   lastUpdate: string;
-  datePickerComment: string;
 
   constructor() { }
 

@@ -4,6 +4,7 @@ import {throwError} from 'rxjs/internal/observable/throwError';
 import {catchError} from 'rxjs/operators';
 import {Observable} from 'rxjs/internal/Observable';
 import {UserService} from './user.service';
+import {__assign} from 'tslib/tslib';
 
 @Injectable({
   providedIn: 'root'
@@ -13,32 +14,19 @@ export class LoggingService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
+      // 'Access-Control-Allow-Origin': '*'
     })
   };
-
-  private testData: { testID: number; comment: string; timestamp: string };
 
   constructor(private http: HttpClient,
               private userService: UserService) {
   }
 
-
-  // SendTestData(): Observable<{}> {
-  //   const testID = Date.now();
-  //   const currentTimestamp = Date();
-  //   this.testData = {
-  //     testID: testID,
-  //     comment: 'start',
-  //     timestamp: currentTimestamp};
-  //   return this.http.post(this.loggingUrl, this.testData, this.httpOptions).pipe(
-  //     catchError(this.handleError)
-  //   );
-  // }
-
   SendData(data): Observable<{}> {
-    data.testID = this.userService.testID;
-    data.lastUpdate = Date();
+    const testID = this.userService.testID === null ? 1 : this.userService.testID;
+    const testData = {'testID': testID,
+                      'lastUpdate': Date()};
+    data = Object.assign(testData, data);
     console.log('sending: ' + JSON.stringify(data));
     return this.http.post(this.loggingUrl, data, this.httpOptions).pipe(
       catchError(this.handleError)

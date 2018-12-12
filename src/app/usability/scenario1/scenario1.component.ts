@@ -64,7 +64,7 @@ export class Scenario1Component implements OnInit {
     console.log('intro done. Starting first step');
   }
 
-  datePickerConfirm() {
+  dateConfirm() {
       this.stepper.next();
   }
 

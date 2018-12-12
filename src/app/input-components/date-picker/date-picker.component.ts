@@ -11,6 +11,7 @@ import {LoggingService} from '../../logging.service';
 })
 export class DatePickerComponent implements OnInit {
   @Output() finish = new EventEmitter<void>();
+  @Input() type: string;
   @Input() requiredYear: number;
   @Input() requiredMonth: number;
   @Input() requiredDay: number;
@@ -20,6 +21,7 @@ export class DatePickerComponent implements OnInit {
 
   private startTimestamp: number;
   private endTimestamp: number;
+  private duration: number;
   private incorrectCounter: number;
   public finished: boolean;
 
@@ -47,16 +49,13 @@ export class DatePickerComponent implements OnInit {
   }
 
   addEvent(event: MatDatepickerInputEvent<Date>) {
-      console.log('firstDateChanged ' + this.requiredYear + + event.value);
       if (this.adapter.getYear(this.datePickerFormControl.value) === this.requiredYear
          && this.adapter.getMonth(this.datePickerFormControl.value) === (this.requiredMonth - 1)
          && this.adapter.getDate(this.datePickerFormControl.value) === this.requiredDay) {
         this.datePickerFormControl.setErrors(null);
         this.finished = true;
         this.endTimestamp = Date.now();
-        this.userService.datePickerTitle = this.title;
-        this.userService.datePickerDuration = this.endTimestamp - this.startTimestamp;
-        this.userService.datePickerIncorrectCounter = this.incorrectCounter;
+        this.duration = this.endTimestamp - this.startTimestamp;
       } else {
         this.datePickerFormControl.setErrors({'incorrectDate': true});
         this.incorrectCounter++;
@@ -65,9 +64,26 @@ export class DatePickerComponent implements OnInit {
 
 
   submitTest(obj) {
-    this.userService.datePickerSEQRate = obj.rate;
-    this.userService.datePickerComment = obj.comment;
-    this.loggingService.SendAvailableData().subscribe();
+    if (this.type === 'soon') {
+        const soonData = {
+          'datePickerSoonTitle': this.title,
+          'datePickerSoonDuration': this.duration,
+          'datePickerSoonIncorrectCounter': this.incorrectCounter,
+          'datePickerSoonSEQRate': obj.rate,
+          'datePickerSoonComment': obj.comment
+        };
+      this.loggingService.SendData(soonData).subscribe();
+    }
+    if (this.type === 'distant') {
+      const distantData = {
+        'datePickerDistantTitle': this.title,
+        'datePickerDistantDuration': this.duration,
+        'datePickerDistantIncorrectCounter': this.incorrectCounter,
+        'datePickerDistantSEQRate': obj.rate,
+        'datePickerDistantComment': obj.comment
+      };
+      this.loggingService.SendData(distantData).subscribe();
+    }
     this.finish.emit();
   }
 
