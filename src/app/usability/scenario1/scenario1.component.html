@@ -25,66 +25,55 @@
       <mat-step [editable]="false" label="{{'intro' | translate}}" state="infoIcon">
         <form>
           <span translate>test1.intro</span>
-          <app-date-spinner [dataType]="'soon'"
-                            [requiredYear]="2018"
-                            [requiredMonth]="12"
-                            [requiredDay]="10"
-                            [title]="'Data odbioru zamówienia'"
-                            (finish)="dateConfirm()"></app-date-spinner>
           <div>
             <button mat-raised-button color="primary" matStepperNext (click)="introConfirmation()"
                     class="next-step-button"><span translate>next</span></button>
           </div>
+          <app-date-masked [dataType]="'soon'"
+                           [requiredYear]="2018"
+                           [requiredMonth]="12"
+                           [requiredDay]="12"
+                           [title]="'Data odbioru zamówienia'"
+                           (finish)="dateConfirm()"></app-date-masked>
         </form>
       </mat-step>
 
       <ng-template matStepperIcon="number" let-index="index">{{Math.ceil(index/2)}}</ng-template>
 
-      <mat-step [editable]="false" label="{{'receiptDate' | translate}}">
-        <form>
-          <app-date-picker [type]="'soon'"
+      <mat-step [editable]="false" label="Data odbioru zamówienia">
+          <app-date-picker [dataType]="'soon'"
                            [requiredYear]="2018"
                            [requiredMonth]="12"
                            [requiredDay]="10"
                            [title]="'Data odbioru zamówienia'"
                            (finish)="dateConfirm()"></app-date-picker>
-        </form>
       </mat-step>
-      <mat-step [editable]="false" label="{{'birthDate' | translate}}">
-        <form>
-            <app-date-picker [type]="'distant'"
+      <mat-step [editable]="false" label="Data Urodzenia">
+            <app-date-picker [dataType]="'distant'"
                              [requiredYear]="2018"
                              [requiredMonth]="12"
                              [requiredDay]="12"
                              [title]="'Data Urodzenia'"
                              (finish)="dateConfirm()"></app-date-picker>
-        </form>
       </mat-step>
 
 
-      <mat-step [stepControl]="thirdFormGroupScenario1" [editable]="false" label="{{'receiptDate' | translate}}">
-        <form [formGroup]="thirdFormGroupScenario1">
-          <mat-form-field>
-            <label for="thirdInputScenario1">{{'receiptDate' | translate}}</label>
-            <input id="thirdInputScenario1" matInput type="date" max="{{'2100-12-31'}}" formControlName="thirdCtrlScenario1" required>
-          </mat-form-field>
-          <div>
-            <button mat-raised-button color="primary" matStepperNext (click)="thirdConfirmation()"
-                    class="next-step-button"><span translate>next</span></button>
-          </div>
-        </form>
+      <mat-step [editable]="false" label="Data odbioru zamówienia">
+          <app-date-spinner [dataType]="'soon'"
+                            [requiredYear]="2018"
+                            [requiredMonth]="12"
+                            [requiredDay]="12"
+                            [title]="'Data odbioru zamówienia'"
+                            (finish)="dateConfirm()"></app-date-spinner>
       </mat-step>
 
-      <mat-step [stepControl]="fourthFormGroupScenario1" [editable]="false" label="{{'birthDate' | translate}}">
-        <form [formGroup]="fourthFormGroupScenario1">
-          <mat-form-field>
-            <input matInput type="date" max="{{'2100-12-31'}}" formControlName="fourthCtrlScenario1" required>
-          </mat-form-field>
-          <div>
-            <button mat-raised-button color="primary" matStepperNext (click)="fourthConfirmation()"
-                    class="next-step-button"><span translate>next</span></button>
-          </div>
-        </form>
+      <mat-step [editable]="false" label="Data Urodzenia">
+          <app-date-spinner [dataType]="'distant'"
+                            [requiredYear]="2018"
+                            [requiredMonth]="12"
+                            [requiredDay]="10"
+                            [title]="'Data Urodzenia'"
+                            (finish)="dateConfirm()"></app-date-spinner>
       </mat-step>
 
       <mat-step [stepControl]="summaryFormGroupScenario1" [editable]="false" label="{{'summary' | translate}}"

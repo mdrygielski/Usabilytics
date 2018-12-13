@@ -68,9 +68,6 @@ export class Scenario1Component implements OnInit {
       this.stepper.next();
   }
 
-  secondConfirmation() {
-    console.log('step 2 - next');
-  }
 
   thirdConfirmation() {
     console.log('step 3 - next');

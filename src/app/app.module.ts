@@ -42,6 +42,7 @@ import {LoggingService} from './logging.service';
 import {DatePickerComponent} from './input-components/date-picker/date-picker.component';
 import { SeqComponent } from './input-components/seq/seq.component';
 import { DateSpinnerComponent } from './input-components/date-spinner/date-spinner.component';
+import { DateMaskedComponent } from './input-components/date-masked/date-masked.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { DateSpinnerComponent } from './input-components/date-spinner/date-spinn
     WebSpeechComponent,
     DatePickerComponent,
     SeqComponent,
-    DateSpinnerComponent
+    DateSpinnerComponent,
+    DateMaskedComponent
   ],
   imports: [
     BrowserModule,

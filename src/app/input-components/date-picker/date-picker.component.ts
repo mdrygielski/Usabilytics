@@ -11,7 +11,7 @@ import {LoggingService} from '../../logging.service';
 })
 export class DatePickerComponent implements OnInit {
   @Output() finish = new EventEmitter<void>();
-  @Input() type: string;
+  @Input() dataType: string;
   @Input() requiredYear: number;
   @Input() requiredMonth: number;
   @Input() requiredDay: number;
@@ -48,7 +48,7 @@ export class DatePickerComponent implements OnInit {
     }
   }
 
-  addEvent(event: MatDatepickerInputEvent<Date>) {
+  addEvent() {
       if (this.adapter.getYear(this.datePickerFormControl.value) === this.requiredYear
          && this.adapter.getMonth(this.datePickerFormControl.value) === (this.requiredMonth - 1)
          && this.adapter.getDate(this.datePickerFormControl.value) === this.requiredDay) {
@@ -64,7 +64,7 @@ export class DatePickerComponent implements OnInit {
 
 
   submitTest(obj) {
-    if (this.type === 'soon') {
+    if (this.dataType === 'soon') {
         const soonData = {
           'datePickerSoonTitle': this.title,
           'datePickerSoonDuration': this.duration,
@@ -74,7 +74,7 @@ export class DatePickerComponent implements OnInit {
         };
       this.loggingService.SendData(soonData).subscribe();
     }
-    if (this.type === 'distant') {
+    if (this.dataType === 'distant') {
       const distantData = {
         'datePickerDistantTitle': this.title,
         'datePickerDistantDuration': this.duration,
