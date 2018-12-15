@@ -1,12 +1,18 @@
 <div>
   <mat-form-field>
     <input matInput #dateMasked type="date"
-           (change)="addEvent($event.target)"
            [formControl]="dateMaskedFormControl"
            [errorStateMatcher]="matcher"
-           max="2999-12-31">
+           max="2999-12-31"
+           (keydown)="NumberOnly($event)"
+           required>
     <mat-hint>{{title}}</mat-hint>
-    <mat-error *ngIf="dateMaskedFormControl.getError('incorrectDate')">Niepoprawna data</mat-error>
+    <mat-error *ngIf="dateMaskedFormControl.hasError('required')">Wprowadź datę</mat-error>
+    <mat-error *ngIf="dateMaskedFormControl.hasError('incorrectDate')">Niepoprawna data</mat-error>
   </mat-form-field>
+  <div *ngIf="!finished">
+    <button mat-raised-button color="primary" (click)="validateDate()" class="confirm-button">Potwierdź</button>
+  </div>
   <app-seq [displayControl]="finished" [componentType]="'dateMasked'" (finish)="submitTest($event)"></app-seq>
 </div>
+

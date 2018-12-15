@@ -1,0 +1,52 @@
+<div>
+  <ng-form>
+    <mat-form-field class="input-day">
+      <mat-select [formControl]="dateFullSelectorDayFormControl"
+                  [placeholder]="'Dzień'"
+                  (valueChange)="clearError($event)">
+        <mat-option *ngFor="let day of days" [value]="day">{{day}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="dateFullSelectorDayFormControl.hasError('incorrectDate')"></mat-error>
+    </mat-form-field>
+    <mat-form-field class="input-month">
+
+      <mat-select #month
+                  [formControl]="dateFullSelectorMonthFormControl"
+                  [placeholder]="'Miesiąc'"
+                  (valueChange)="clearError($event)">
+        <mat-option value="1">Styczeń</mat-option>
+        <mat-option value="2">Luty</mat-option>
+        <mat-option value="3">Marzec</mat-option>
+        <mat-option value="4">Kwiecień</mat-option>
+        <mat-option value="5">Maj</mat-option>
+        <mat-option value="6">Czerwiec</mat-option>
+        <mat-option value="7">Lipiec</mat-option>
+        <mat-option value="8">Sierpień</mat-option>
+        <mat-option value="9">Wrzesień</mat-option>
+        <mat-option value="10">Październik</mat-option>
+        <mat-option value="11">Listopad</mat-option>
+        <mat-option value="12">Grudzień</mat-option>
+      </mat-select>
+      <mat-error *ngIf="dateFullSelectorMonthFormControl.hasError('incorrectDate')"></mat-error>
+    </mat-form-field>
+    <mat-form-field class="input-year">
+
+      <mat-select [formControl]="dateFullSelectorYearFormControl"
+                  [placeholder]="'Rok'"
+                  (valueChange)="clearError($event)">
+        <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
+      </mat-select>
+
+      <mat-error *ngIf="dateFullSelectorYearFormControl.hasError('incorrectDate')"></mat-error>
+    </mat-form-field>
+    <div class="date-footer">
+      <mat-error *ngIf="incorrectDate">Niepoprawna data</mat-error>
+      <mat-hint *ngIf="!incorrectDate">{{title}}</mat-hint>
+    </div>
+  </ng-form>
+  <div *ngIf="!finished">
+    <button mat-raised-button color="primary" (click)="validateDate()" class="confirm-button">Potwierdź</button>
+  </div>
+  <app-seq [displayControl]="finished" [componentType]="'dateMasked'" (finish)="submitTest($event)"></app-seq>
+</div>
+

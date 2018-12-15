@@ -1,8 +1,15 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {UserService} from '../../user.service';
 import {LoggingService} from '../../logging.service';
+import {ErrorStateMatcher} from '@angular/material';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-date-spinner',
@@ -17,14 +24,17 @@ export class DateSpinnerComponent implements OnInit {
   @Input() requiredDay: number;
   @Input() title: string;
 
-  dateSpinnerFormControl = new FormControl();
-
   private startTimestamp: number;
   private endTimestamp: number;
   private duration: number;
   private incorrectCounter: number;
   public finished: boolean;
-  public incorrectData: boolean;
+
+  dateSpinnerFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  matcher = new MyErrorStateMatcher();
 
   constructor(private userService: UserService,
               private loggingService: LoggingService) { }
@@ -35,20 +45,18 @@ export class DateSpinnerComponent implements OnInit {
     this.incorrectCounter = 0;
   }
 
-  addEvent() {
+  validateDate() {
     if (this.dateSpinnerFormControl.value === this.requiredYear + '-' + this.requiredMonth + '-' + this.requiredDay) {
       console.log('Correct date');
       this.dateSpinnerFormControl.setErrors(null);
       this.dateSpinnerFormControl.disable();
       this.finished = true;
-      this.incorrectData = false;
       this.endTimestamp = Date.now();
       this.duration = this.endTimestamp - this.startTimestamp;
     } else {
       console.log('Correct date');
       this.dateSpinnerFormControl.setErrors({'incorrectDate': true});
       this.incorrectCounter++;
-      this.incorrectData = true;
     }
   }
 

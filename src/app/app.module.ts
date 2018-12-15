@@ -43,6 +43,8 @@ import {DatePickerComponent} from './input-components/date-picker/date-picker.co
 import { SeqComponent } from './input-components/seq/seq.component';
 import { DateSpinnerComponent } from './input-components/date-spinner/date-spinner.component';
 import { DateMaskedComponent } from './input-components/date-masked/date-masked.component';
+import { DateMonthSelectorComponent } from './input-components/date-month-selector/date-month-selector.component';
+import { DateFullSelectorComponent } from './input-components/date-full-selector/date-full-selector.component';
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { DateMaskedComponent } from './input-components/date-masked/date-masked.
     DatePickerComponent,
     SeqComponent,
     DateSpinnerComponent,
-    DateMaskedComponent
+    DateMaskedComponent,
+    DateMonthSelectorComponent,
+    DateFullSelectorComponent
   ],
   imports: [
     BrowserModule,

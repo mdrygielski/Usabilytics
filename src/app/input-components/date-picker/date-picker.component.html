@@ -1,16 +1,20 @@
 <div>
   <mat-form-field>
-    <input matInput #datePicker [matDatepicker]="datePickerComponent"
+    <input matInput #datePicker
+           [matDatepicker]="datePickerComponent"
            placeholder="{{'chooseDate' | translate}}"
-           (dateChange)="addEvent($event.target)"
            [formControl]="datePickerFormControl"
-           [errorStateMatcher]="customErrorStateMatcher"
+           [errorStateMatcher]="matcher"
            (focus)="showPicker(datePickerComponent)"
-           [disabled]="finished">
+           required>
     <mat-hint>{{title}}</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="datePickerComponent"></mat-datepicker-toggle>
     <mat-datepicker #datePickerComponent (closed)="datePicker.blur()"></mat-datepicker>
-    <mat-error *ngIf="datePickerFormControl.getError('incorrectDate')">Niepoprawna data</mat-error>
+    <mat-error *ngIf="datePickerFormControl.hasError('required')">Wprowadź datę</mat-error>
+    <mat-error *ngIf="datePickerFormControl.hasError('incorrectDate')">Niepoprawna data</mat-error>
   </mat-form-field>
-    <app-seq [displayControl]="finished" [componentType]="'datePicker'" (finish)="submitTest($event)"></app-seq>
+  <div *ngIf="!finished">
+    <button mat-raised-button color="primary" (click)="validateDate()" class="confirm-button">Potwierdź</button>
+  </div>
+  <app-seq [displayControl]="finished" [componentType]="'datePicker'" (finish)="submitTest($event)"></app-seq>
 </div>

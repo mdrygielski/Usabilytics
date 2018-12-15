@@ -22,4 +22,7 @@ export class SeqComponent implements OnInit {
     this.finish.emit( {rate: this.rate, comment: this.comment} );
   }
 
+  focusOnComment() {
+
+  }
 }

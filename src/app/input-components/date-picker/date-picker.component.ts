@@ -1,13 +1,20 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {DateAdapter, ErrorStateMatcher, MatDatepickerInputEvent} from '@angular/material';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {DateAdapter, ErrorStateMatcher} from '@angular/material';
 import {UserService} from '../../user.service';
 import {LoggingService} from '../../logging.service';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-date-picker',
   templateUrl: './date-picker.component.html',
-  styleUrls: ['./date-picker.component.css']
+  styleUrls: ['./date-picker.component.css', '../../usability/usability.component.css']
 })
 export class DatePickerComponent implements OnInit {
   @Output() finish = new EventEmitter<void>();
@@ -17,20 +24,17 @@ export class DatePickerComponent implements OnInit {
   @Input() requiredDay: number;
   @Input() title: string;
 
-  datePickerFormControl = new FormControl();
+  datePickerFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  matcher = new MyErrorStateMatcher();
 
   private startTimestamp: number;
   private endTimestamp: number;
   private duration: number;
   private incorrectCounter: number;
   public finished: boolean;
-
-
-  customErrorStateMatcher: ErrorStateMatcher = {
-    isErrorState: () => {
-      return this.datePickerFormControl.getError('incorrectDate');
-    }
-  };
 
   constructor(private adapter: DateAdapter<any>,
               private userService: UserService,
@@ -48,13 +52,13 @@ export class DatePickerComponent implements OnInit {
     }
   }
 
-  addEvent() {
+  validateDate() {
       if (this.adapter.getYear(this.datePickerFormControl.value) === this.requiredYear
          && this.adapter.getMonth(this.datePickerFormControl.value) === (this.requiredMonth - 1)
          && this.adapter.getDate(this.datePickerFormControl.value) === this.requiredDay) {
-        this.datePickerFormControl.setErrors(null);
-        this.finished = true;
         this.endTimestamp = Date.now();
+        this.finished = true;
+        this.datePickerFormControl.setErrors(null);
         this.duration = this.endTimestamp - this.startTimestamp;
       } else {
         this.datePickerFormControl.setErrors({'incorrectDate': true});

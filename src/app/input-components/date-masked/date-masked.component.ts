@@ -1,13 +1,20 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {UserService} from '../../user.service';
 import {LoggingService} from '../../logging.service';
+import {ErrorStateMatcher} from '@angular/material';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-date-masked',
   templateUrl: './date-masked.component.html',
-  styleUrls: ['./date-masked.component.css']
+  styleUrls: ['./date-masked.component.css', '../../usability/usability.component.css']
 })
 export class DateMaskedComponent implements OnInit {
   @Output() finish = new EventEmitter<void>();
@@ -17,17 +24,21 @@ export class DateMaskedComponent implements OnInit {
   @Input() requiredDay: number;
   @Input() title: string;
 
-  dateMaskedFormControl = new FormControl();
-
   private startTimestamp: number;
   private endTimestamp: number;
   private duration: number;
   private incorrectCounter: number;
   public finished: boolean;
 
+  dateMaskedFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  matcher = new MyErrorStateMatcher();
 
   constructor(private userService: UserService,
-              private loggingService: LoggingService) { }
+              private loggingService: LoggingService) {
+  }
 
   ngOnInit() {
     this.startTimestamp = Date.now();
@@ -35,12 +46,12 @@ export class DateMaskedComponent implements OnInit {
     this.incorrectCounter = 0;
   }
 
-  addEvent() {
+  validateDate() {
     if (this.dateMaskedFormControl.value === this.requiredYear + '-' + this.requiredMonth + '-' + this.requiredDay) {
+      this.endTimestamp = Date.now();
+      this.finished = true;
       this.dateMaskedFormControl.setErrors(null);
       this.dateMaskedFormControl.disable();
-      this.finished = true;
-      this.endTimestamp = Date.now();
       this.duration = this.endTimestamp - this.startTimestamp;
     } else {
       this.dateMaskedFormControl.setErrors({'incorrectDate': true});
@@ -49,7 +60,6 @@ export class DateMaskedComponent implements OnInit {
   }
 
   submitTest(obj) {
-    console.log('test submited!');
     if (this.dataType === 'soon') {
       const soonData = {
         'dateMaskedSoonTitle': this.title,
@@ -73,4 +83,12 @@ export class DateMaskedComponent implements OnInit {
     this.finish.emit();
   }
 
+  NumberOnly(event: any): boolean {
+    const charCode = event.which;
+    if (charCode !== 46 && charCode > 31
+      && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
 }
