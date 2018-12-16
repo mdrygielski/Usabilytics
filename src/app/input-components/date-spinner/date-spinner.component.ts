@@ -14,7 +14,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-date-spinner',
   templateUrl: './date-spinner.component.html',
-  styleUrls: ['./date-spinner.component.css']
+  styleUrls: ['./date-spinner.component.css', '../../usability/usability.component.css']
 })
 export class DateSpinnerComponent implements OnInit {
   @Output() finish = new EventEmitter<void>();
@@ -23,16 +23,15 @@ export class DateSpinnerComponent implements OnInit {
   @Input() requiredMonth: number;
   @Input() requiredDay: number;
   @Input() title: string;
+  @Input() startTime: number;
 
-  private startTimestamp: number;
-  private endTimestamp: number;
+  private endTime: number;
   private duration: number;
   private incorrectCounter: number;
+  private arrowKeyCounter: number;
   public finished: boolean;
 
-  dateSpinnerFormControl = new FormControl('', [
-    Validators.required
-  ]);
+  dateSpinnerFormControl = new FormControl('', [ ]);
 
   matcher = new MyErrorStateMatcher();
 
@@ -40,34 +39,37 @@ export class DateSpinnerComponent implements OnInit {
               private loggingService: LoggingService) { }
 
   ngOnInit() {
-    this.startTimestamp = Date.now();
     this.finished = false;
     this.incorrectCounter = 0;
+    this.arrowKeyCounter = 0;
   }
 
   validateDate() {
-    if (this.dateSpinnerFormControl.value === this.requiredYear + '-' + this.requiredMonth + '-' + this.requiredDay) {
-      console.log('Correct date');
+    if (this.dateSpinnerFormControl.value === this.requiredYear + '-' + this.pad(this.requiredMonth, 2) + '-' + this.requiredDay) {
+      this.endTime = Date.now();
+      this.finished = true;
       this.dateSpinnerFormControl.setErrors(null);
       this.dateSpinnerFormControl.disable();
-      this.finished = true;
-      this.endTimestamp = Date.now();
-      this.duration = this.endTimestamp - this.startTimestamp;
+      this.duration = this.endTime - this.startTime;
     } else {
-      console.log('Correct date');
       this.dateSpinnerFormControl.setErrors({'incorrectDate': true});
       this.incorrectCounter++;
     }
   }
 
+  pad(num: number, size: number): string {
+    let s = num + '';
+    while (s.length < size) { s = '0' + s; }
+    return s;
+  }
 
   submitTest(obj) {
-    console.log('test submited!');
     if (this.dataType === 'soon') {
       const soonData = {
         'dateSpinnerSoonTitle': this.title,
         'dateSpinnerSoonDuration': this.duration,
         'dateSpinnerSoonIncorrectCounter': this.incorrectCounter,
+        'dateSpinnerSoonArrowKeyCounter': this.arrowKeyCounter,
         'dateSpinnerSoonSEQRate': obj.rate,
         'dateSpinnerSoonComment': obj.comment
       };
@@ -78,6 +80,7 @@ export class DateSpinnerComponent implements OnInit {
         'dateSpinnerDistantTitle': this.title,
         'dateSpinnerDistantDuration': this.duration,
         'dateSpinnerDistantIncorrectCounter': this.incorrectCounter,
+        'dateSpinnerDistantArrowKeyCounter': this.arrowKeyCounter,
         'dateSpinnerDistantSEQRate': obj.rate,
         'dateSpinnerDistantComment': obj.comment
       };
@@ -86,4 +89,10 @@ export class DateSpinnerComponent implements OnInit {
     this.finish.emit();
   }
 
+  keyCounter(event: any) {
+    const charCode = event.which;
+    if (charCode === 38 || charCode === 40) {
+      this.arrowKeyCounter++;
+    }
+  }
 }

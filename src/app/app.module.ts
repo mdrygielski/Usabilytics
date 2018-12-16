@@ -6,13 +6,15 @@ import {AppComponent} from './app.component';
 import {AppbarComponent} from './appbar/appbar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
+  DateAdapter, MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
   MatCardModule,
   MatDatepickerModule,
   MatIconModule,
   MatInputModule, MatListModule,
   MatNativeDateModule, MatRadioButton, MatRadioModule, MatSliderModule,
   MatStepperModule,
-  MatToolbarModule, NativeDateModule
+  MatToolbarModule, MatTooltipModule, NativeDateModule
 } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -45,6 +47,9 @@ import { DateSpinnerComponent } from './input-components/date-spinner/date-spinn
 import { DateMaskedComponent } from './input-components/date-masked/date-masked.component';
 import { DateMonthSelectorComponent } from './input-components/date-month-selector/date-month-selector.component';
 import { DateFullSelectorComponent } from './input-components/date-full-selector/date-full-selector.component';
+import { NumberInputComponent } from './input-components/number-input/number-input.component';
+import { DateEditablePickerComponent } from './input-components/date-editable-picker/date-editable-picker.component';
+import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 
 
 @NgModule({
@@ -62,7 +67,9 @@ import { DateFullSelectorComponent } from './input-components/date-full-selector
     DateSpinnerComponent,
     DateMaskedComponent,
     DateMonthSelectorComponent,
-    DateFullSelectorComponent
+    DateFullSelectorComponent,
+    NumberInputComponent,
+    DateEditablePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -86,6 +93,7 @@ import { DateFullSelectorComponent } from './input-components/date-full-selector
     MatSliderModule,
     MatListModule,
     MatRadioModule,
+    MatTooltipModule,
 
     AppRoutingModule,
     HttpClientModule,
@@ -104,7 +112,9 @@ import { DateFullSelectorComponent } from './input-components/date-full-selector
     {
       provide: MAT_STEPPER_GLOBAL_OPTIONS,
       useValue: { displayDefaultIndicatorType: false }
-    }
+    },
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS}
     ],
   bootstrap: [AppComponent]
 })

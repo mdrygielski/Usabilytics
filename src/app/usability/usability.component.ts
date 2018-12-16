@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatStepper} from '@angular/material';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-usability',
@@ -13,7 +14,8 @@ export class UsabilityComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder,
+              private userService: UserService) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({

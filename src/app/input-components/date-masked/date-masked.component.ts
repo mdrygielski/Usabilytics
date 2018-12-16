@@ -23,16 +23,14 @@ export class DateMaskedComponent implements OnInit {
   @Input() requiredMonth: number;
   @Input() requiredDay: number;
   @Input() title: string;
+  @Input() startTime: number;
 
-  private startTimestamp: number;
-  private endTimestamp: number;
+  private endTime: number;
   private duration: number;
   private incorrectCounter: number;
   public finished: boolean;
 
-  dateMaskedFormControl = new FormControl('', [
-    Validators.required
-  ]);
+  dateMaskedFormControl = new FormControl('', [ ]);
 
   matcher = new MyErrorStateMatcher();
 
@@ -41,22 +39,27 @@ export class DateMaskedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.startTimestamp = Date.now();
     this.finished = false;
     this.incorrectCounter = 0;
   }
 
   validateDate() {
-    if (this.dateMaskedFormControl.value === this.requiredYear + '-' + this.requiredMonth + '-' + this.requiredDay) {
-      this.endTimestamp = Date.now();
+    if (this.dateMaskedFormControl.value === this.requiredYear + '-' + this.pad(this.requiredMonth, 2)  + '-' + this.requiredDay) {
+      this.endTime = Date.now();
       this.finished = true;
       this.dateMaskedFormControl.setErrors(null);
       this.dateMaskedFormControl.disable();
-      this.duration = this.endTimestamp - this.startTimestamp;
+      this.duration = this.endTime - this.startTime;
     } else {
       this.dateMaskedFormControl.setErrors({'incorrectDate': true});
       this.incorrectCounter++;
     }
+  }
+
+  pad(num: number, size: number): string {
+    let s = num + '';
+    while (s.length < size) { s = '0' + s; }
+    return s;
   }
 
   submitTest(obj) {
@@ -85,10 +88,12 @@ export class DateMaskedComponent implements OnInit {
 
   NumberOnly(event: any): boolean {
     const charCode = event.which;
-    if (charCode !== 46 && charCode > 31
-      && (charCode < 48 || charCode > 57)) {
-      return false;
+    if (charCode >= 48 && charCode <= 57) {
+      return true;
     }
-    return true;
+    if (charCode >= 96 && charCode <= 105) {
+      return true;
+    }
+    return false;
   }
 }

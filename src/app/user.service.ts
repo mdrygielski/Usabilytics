@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 export class UserService {
   language: string;
   testID: number;
+  variant: number;
   testStartTimestamp: string;
   testEndTimestamp: string;
 
@@ -19,22 +20,11 @@ export class UserService {
   continentName: string;
   mobileVersion: boolean;
 
-
-  datePickerSoonDuration: number;
-  datePickerSoonIncorrectCounter: number;
-  datePickerSoonSEQRate: any;
-  datePickerSoonTitle: string;
-  datePickerSoonComment: string;
-
-  datePickerDistantDuration: number;
-  datePickerDistantIncorrectCounter: number;
-  datePickerDistantSEQRate: any;
-  datePickerDistantTitle: string;
-  datePickerDistantComment: string;
-
-
   lastUpdate: string;
 
-  constructor() { }
+  constructor() {
+    this.testID = 0;
+    this.variant = 0;
+  }
 
 }

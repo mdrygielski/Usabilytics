@@ -52,6 +52,6 @@
   <div *ngIf="!finished">
     <button mat-raised-button color="primary" (click)="validateDate()" class="confirm-button">Potwierdź</button>
   </div>
-  <app-seq [displayControl]="finished" [componentType]="'dateMasked'" (finish)="submitTest($event)"></app-seq>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
 </div>
 

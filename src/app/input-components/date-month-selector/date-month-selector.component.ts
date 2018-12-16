@@ -8,7 +8,7 @@ import {tryCatch} from 'rxjs/internal-compatibility';
 @Component({
   selector: 'app-date-month-selector',
   templateUrl: './date-month-selector.component.html',
-  styleUrls: ['./date-month-selector.component.css']
+  styleUrls: ['./date-month-selector.component.css', '../../usability/usability.component.css']
 })
 export class DateMonthSelectorComponent implements OnInit {
   @Output() finish = new EventEmitter<void>();
@@ -17,30 +17,24 @@ export class DateMonthSelectorComponent implements OnInit {
   @Input() requiredMonth: number;
   @Input() requiredDay: number;
   @Input() title: string;
+  @Input() startTime: number;
 
-  private startTimestamp: number;
-  private endTimestamp: number;
+  private endTime: number;
   private duration: number;
   private incorrectCounter: number;
   public finished: boolean;
   public incorrectDate: boolean;
 
-  dateMonthSelectorDayFormControl = new FormControl('', [
-    Validators.required
-  ]);
-  dateMonthSelectorMonthFormControl = new FormControl('', [
-    Validators.required
-  ]);
-  dateMonthSelectorYearFormControl = new FormControl('', [
-    Validators.required
-  ]);
+  dateMonthSelectorDayFormControl = new FormControl('', [ ]);
+  dateMonthSelectorMonthFormControl = new FormControl('', [ ]);
+  dateMonthSelectorYearFormControl = new FormControl('', [ ]);
 
   constructor(private userService: UserService,
               private loggingService: LoggingService) {
   }
 
   ngOnInit() {
-    this.startTimestamp = Date.now();
+    this.startTime = Date.now();
     this.finished = false;
     this.incorrectCounter = 0;
     this.incorrectDate = false;
@@ -68,11 +62,11 @@ export class DateMonthSelectorComponent implements OnInit {
     }
 
     if (validated) {
-      this.endTimestamp = Date.now();
+      this.endTime = Date.now();
       this.finished = true;
       this.incorrectDate = false;
       this.disableDates();
-      this.duration = this.endTimestamp - this.startTimestamp;
+      this.duration = this.endTime - this.startTime;
     } else {
       this.incorrectDate = true;
       this.incorrectCounter++;
@@ -119,11 +113,13 @@ export class DateMonthSelectorComponent implements OnInit {
 
   NumberOnly(event: any): boolean {
     const charCode = event.which;
-    if (charCode !== 46 && charCode > 31
-      && (charCode < 48 || charCode > 57)) {
-      return false;
+    if (charCode >= 48 && charCode <= 57) {
+      return true;
     }
-    return true;
+    if (charCode >= 96 && charCode <= 105) {
+      return true;
+    }
+    return false;
   }
 
   validateYear() {

@@ -24,7 +24,9 @@ export class LoggingService {
 
   SendData(data): Observable<{}> {
     const testID = this.userService.testID === null ? 1 : this.userService.testID;
+    const variant = this.userService.variant === null ? 0 : this.userService.variant;
     const testData = {'testID': testID,
+                      'variant': variant,
                       'lastUpdate': Date()};
     data = Object.assign(testData, data);
     console.log('sending: ' + JSON.stringify(data));

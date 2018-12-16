@@ -3,7 +3,7 @@
     <mat-form-field class="input-day">
       <mat-select [formControl]="dateFullSelectorDayFormControl"
                   [placeholder]="'Dzień'"
-                  (valueChange)="clearError($event)">
+                  (valueChange)="clearError()">
         <mat-option *ngFor="let day of days" [value]="day">{{day}}</mat-option>
       </mat-select>
       <mat-error *ngIf="dateFullSelectorDayFormControl.hasError('incorrectDate')"></mat-error>
@@ -13,7 +13,7 @@
       <mat-select #month
                   [formControl]="dateFullSelectorMonthFormControl"
                   [placeholder]="'Miesiąc'"
-                  (valueChange)="clearError($event)">
+                  (valueChange)="clearError()">
         <mat-option value="1">Styczeń</mat-option>
         <mat-option value="2">Luty</mat-option>
         <mat-option value="3">Marzec</mat-option>
@@ -33,7 +33,7 @@
 
       <mat-select [formControl]="dateFullSelectorYearFormControl"
                   [placeholder]="'Rok'"
-                  (valueChange)="clearError($event)">
+                  (valueChange)="clearError()">
         <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
       </mat-select>
 
@@ -47,6 +47,6 @@
   <div *ngIf="!finished">
     <button mat-raised-button color="primary" (click)="validateDate()" class="confirm-button">Potwierdź</button>
   </div>
-  <app-seq [displayControl]="finished" [componentType]="'dateMasked'" (finish)="submitTest($event)"></app-seq>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
 </div>
 

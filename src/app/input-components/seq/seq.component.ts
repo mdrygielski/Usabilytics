@@ -8,7 +8,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class SeqComponent implements OnInit {
   @Output() finish = new EventEmitter<object>();
   @Input() public displayControl: string;
-  @Input() public componentType: string;
   rate: number;
   comment: string;
 

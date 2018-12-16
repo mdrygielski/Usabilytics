@@ -23,17 +23,16 @@ export class DatePickerComponent implements OnInit {
   @Input() requiredMonth: number;
   @Input() requiredDay: number;
   @Input() title: string;
+  @Input() startTime: number;
 
-  datePickerFormControl = new FormControl('', [
-    Validators.required
-  ]);
+  datePickerFormControl = new FormControl('', [ ]);
 
   matcher = new MyErrorStateMatcher();
 
-  private startTimestamp: number;
-  private endTimestamp: number;
+  private endTime: number;
   private duration: number;
   private incorrectCounter: number;
+  private modificationCounter: number;
   public finished: boolean;
 
   constructor(private adapter: DateAdapter<any>,
@@ -41,13 +40,14 @@ export class DatePickerComponent implements OnInit {
               private loggingService: LoggingService) { }
 
   ngOnInit() {
-    this.startTimestamp = Date.now();
     this.finished = false;
     this.incorrectCounter = 0;
+    this.modificationCounter = 0;
   }
 
   showPicker(datePickerComponent) {
-    if (!this.finished) {
+    if (!this.finished && !datePickerComponent.opened) {
+      this.modificationCounter++;
       datePickerComponent.open();
     }
   }
@@ -56,10 +56,11 @@ export class DatePickerComponent implements OnInit {
       if (this.adapter.getYear(this.datePickerFormControl.value) === this.requiredYear
          && this.adapter.getMonth(this.datePickerFormControl.value) === (this.requiredMonth - 1)
          && this.adapter.getDate(this.datePickerFormControl.value) === this.requiredDay) {
-        this.endTimestamp = Date.now();
+        this.endTime = Date.now();
         this.finished = true;
         this.datePickerFormControl.setErrors(null);
-        this.duration = this.endTimestamp - this.startTimestamp;
+        this.datePickerFormControl.disable();
+        this.duration = this.endTime - this.startTime;
       } else {
         this.datePickerFormControl.setErrors({'incorrectDate': true});
         this.incorrectCounter++;
@@ -72,6 +73,7 @@ export class DatePickerComponent implements OnInit {
         const soonData = {
           'datePickerSoonTitle': this.title,
           'datePickerSoonDuration': this.duration,
+          'datePickerSoonModificationCounter': this.modificationCounter,
           'datePickerSoonIncorrectCounter': this.incorrectCounter,
           'datePickerSoonSEQRate': obj.rate,
           'datePickerSoonComment': obj.comment
@@ -82,6 +84,7 @@ export class DatePickerComponent implements OnInit {
       const distantData = {
         'datePickerDistantTitle': this.title,
         'datePickerDistantDuration': this.duration,
+        'datePickerDistantModificationCounter': this.modificationCounter,
         'datePickerDistantIncorrectCounter': this.incorrectCounter,
         'datePickerDistantSEQRate': obj.rate,
         'datePickerDistantComment': obj.comment

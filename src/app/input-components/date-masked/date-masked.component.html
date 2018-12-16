@@ -4,8 +4,7 @@
            [formControl]="dateMaskedFormControl"
            [errorStateMatcher]="matcher"
            max="2999-12-31"
-           (keydown)="NumberOnly($event)"
-           required>
+           (keydown)="NumberOnly($event)">
     <mat-hint>{{title}}</mat-hint>
     <mat-error *ngIf="dateMaskedFormControl.hasError('required')">Wprowadź datę</mat-error>
     <mat-error *ngIf="dateMaskedFormControl.hasError('incorrectDate')">Niepoprawna data</mat-error>
@@ -13,6 +12,6 @@
   <div *ngIf="!finished">
     <button mat-raised-button color="primary" (click)="validateDate()" class="confirm-button">Potwierdź</button>
   </div>
-  <app-seq [displayControl]="finished" [componentType]="'dateMasked'" (finish)="submitTest($event)"></app-seq>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
 </div>
 

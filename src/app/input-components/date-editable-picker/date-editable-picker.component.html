@@ -1,0 +1,19 @@
+<div>
+  <mat-form-field>
+    <input matInput #dateEditablePicker
+           [matDatepicker]="dateEditablePickerComponent"
+           placeholder="Wprowadź datę"
+           [formControl]="dateEditablePickerFormControl"
+           [errorStateMatcher]="matcher"
+           autocomplete="off">
+    <mat-hint>{{title}}</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="dateEditablePickerComponent" ></mat-datepicker-toggle>
+    <mat-datepicker #dateEditablePickerComponent (opened)="calendarOpened()"></mat-datepicker>
+    <mat-error *ngIf="dateEditablePickerFormControl.hasError('required')">Wprowadź datę</mat-error>
+    <mat-error *ngIf="dateEditablePickerFormControl.hasError('incorrectDate')">Niepoprawna data</mat-error>
+  </mat-form-field>
+  <div *ngIf="!finished">
+    <button mat-raised-button color="primary" (click)="validateDate()" class="confirm-button">Potwierdź</button>
+  </div>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
+</div>

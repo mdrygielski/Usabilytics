@@ -3,13 +3,13 @@
     <input matInput #dateSpinner type="date"
            [formControl]="dateSpinnerFormControl"
            [errorStateMatcher]="matcher"
-           max="2999-12-31"
-           required>
+           (keydown)="keyCounter($event)"
+           max="2999-12-31">
     <mat-hint>{{title}}</mat-hint>
     <mat-error *ngIf="dateSpinnerFormControl.getError('incorrectDate')">Niepoprawna data</mat-error>
   </mat-form-field>
   <div *ngIf="!finished">
     <button mat-raised-button color="primary" (click)="validateDate()" class="confirm-button">Potwierdź</button>
   </div>
-  <app-seq [displayControl]="finished" [componentType]="'dateSpinner'" (finish)="submitTest($event)"></app-seq>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
 </div>

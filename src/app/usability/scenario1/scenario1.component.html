@@ -1,103 +1,183 @@
 <div fxLayout="row wrap" fxFlex="100">
-  <mat-card class="instruction">
-    <h2><span translate>scenario</span> 1</h2>
-    <span translate>test1.description</span>
+  <mat-card class="instruction" oncopy="return false" oncut="return false">
+    <h2>Scenariusz 1</h2>
+    <span>Właśnie zamówiłeś nową książkę.<br/></span>
+    <span>Proszę podać preferowaną datę odbioru zamówienia oraz datę urodzenia w celu weryfikacji.</span>
     <br/>
     <br/>
-    <b><span translate>data</span>:</b>
+    <span><b>DANE:</b></span>
     <br/>
-    <b><span translate>receiptDate</span>: </b>
-    <span class="usability-data" translate>test1.data1</span>
+    <span>Data odbioru: </span>
+    <span class="usability-data">
+      <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
+        <b>31 Grudzień 2018</b>
+      </div>
+    </span>
     <br/>
-    <b><span translate>birthDate</span>: </b>
-    <span class="usability-data" translate>test1.data2</span>
+    <span>Data urodzenia: </span>
+    <span class="usability-data">
+      <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
+        <b>26 Czerwiec 1991</b>
+      </div>
+    </span>
     <br/>
     <br/>
     <div class="warning-message">
-      <span translate>warning</span>:
+      <span>Uwaga:</span>
       <br/>
-      <span translate>goBackWarning</span>
+      <div matTooltip="Kopiowanie jest zablokowane">
+        <span>Nie można kopiować danych!</span>
+      </div>
     </div>
   </mat-card>
   <mat-card class="usability-content">
 
     <mat-vertical-stepper linear #stepper>
-      <mat-step [editable]="false" label="{{'intro' | translate}}" state="infoIcon">
+      <mat-step [editable]="false" label="Wprowadzenie" state="infoIcon">
         <form>
-          <span translate>test1.intro</span>
+          <span>Każdym etap składa się z dwóch kroków.</span><br/>
+          <span>Należy podać datę zgodnie z tytułem używając danych podanych w scenariuszu.</span>
           <div>
-            <button mat-raised-button color="primary" matStepperNext (click)="introConfirmation()"
+            <button mat-raised-button color="primary" (click)="stepConfirm()"
                     class="next-step-button"><span translate>next</span></button>
           </div>
+
+          <!--<app-number-input-->
+          <!--[dataType]="'small'"-->
+          <!--[requiredNumber]="2018"-->
+          <!--[title]="'numer'"-->
+          <!--[startTime]="stepStartTime"-->
+          <!--(finish)="stepConfirm()"></app-number-input>-->
+
         </form>
-        <!--<app-date-month-selector [dataType]="'soon'"-->
-                                 <!--[requiredYear]="2018"-->
-                                 <!--[requiredMonth]="12"-->
-                                 <!--[requiredDay]="10"-->
-                                 <!--[title]="'Data odbioru zamówienia'"-->
-                                 <!--(finish)="dateConfirm()"></app-date-month-selector>-->
       </mat-step>
 
       <ng-template matStepperIcon="number" let-index="index">{{Math.ceil(index/2)}}</ng-template>
 
       <mat-step [editable]="false" label="Data odbioru zamówienia">
-        <app-date-masked [dataType]="'soon'"
-        [requiredYear]="2018"
-        [requiredMonth]="12"
-        [requiredDay]="12"
-        [title]="'Data odbioru zamówienia'"
-        (finish)="dateConfirm()"></app-date-masked>
-        <!--<app-date-picker [dataType]="'soon'"-->
-        <!--[requiredYear]="2018"-->
-        <!--[requiredMonth]="12"-->
-        <!--[requiredDay]="10"-->
-        <!--[title]="'Data odbioru zamówienia'"-->
-        <!--(finish)="dateConfirm()"></app-date-picker>-->
-        <!--<app-date-month-selector [dataType]="'soon'"-->
-        <!--[requiredYear]="2018"-->
-        <!--[requiredMonth]="12"-->
-        <!--[requiredDay]="10"-->
-        <!--[title]="'Data odbioru zamówienia'"-->
-        <!--(finish)="dateConfirm()"></app-date-month-selector>-->
-        <!--<app-date-full-selector [dataType]="'soon'"-->
-        <!--[requiredYear]="2018"-->
-        <!--[requiredMonth]="12"-->
-        <!--[requiredDay]="10"-->
-        <!--[title]="'Data odbioru zamówienia'"-->
-        <!--(finish)="dateConfirm()"></app-date-full-selector>-->
-        <!--<app-date-spinner [dataType]="'soon'"-->
-                                <!--[requiredYear]="2018"-->
-                                <!--[requiredMonth]="12"-->
-                                <!--[requiredDay]="10"-->
-                                <!--[title]="'Data odbioru zamówienia'"-->
-                                <!--(finish)="dateConfirm()"></app-date-spinner>-->
+        <div *ngIf="this.userService.variant === 1">
+          <app-date-month-selector [dataType]="'soon'"
+                                   [requiredYear]="2018"
+                                   [requiredMonth]="12"
+                                   [requiredDay]="31"
+                                   [title]="'Data odbioru zamówienia'"
+                                   [startTime]="stepStartTime"
+                                   (finish)="stepConfirm()"></app-date-month-selector>
+        </div>
+        <div *ngIf="this.userService.variant !== 1">
+          <app-date-full-selector [dataType]="'soon'"
+                                  [requiredYear]="2018"
+                                  [requiredMonth]="12"
+                                  [requiredDay]="31"
+                                  [title]="'Data odbioru zamówienia'"
+                                  [startTime]="stepStartTime"
+                                  (finish)="stepConfirm()"></app-date-full-selector>
+        </div>
       </mat-step>
-      <mat-step [editable]="false" label="Data Urodzenia">
-        <!--<app-date-picker [dataType]="'distant'"-->
-        <!--[requiredYear]="2018"-->
-        <!--[requiredMonth]="12"-->
-        <!--[requiredDay]="12"-->
-        <!--[title]="'Data Urodzenia'"-->
-        <!--(finish)="dateConfirm()"></app-date-picker>-->
+      <mat-step [editable]="false" label="Data urodzenia">
+        <div *ngIf="this.userService.variant === 1">
+          <app-date-month-selector [dataType]="'distant'"
+                                   [requiredYear]="1991"
+                                   [requiredMonth]="6"
+                                   [requiredDay]="26"
+                                   [title]="'Data urodzenia'"
+                                   [startTime]="stepStartTime"
+                                   (finish)="stepConfirm()"></app-date-month-selector>
+        </div>
+        <div *ngIf="this.userService.variant !== 1">
+          <app-date-full-selector [dataType]="'distant'"
+                                  [requiredYear]="1991"
+                                  [requiredMonth]="6"
+                                  [requiredDay]="26"
+                                  [title]="'Data urodzenia'"
+                                  [startTime]="stepStartTime"
+                                  (finish)="stepConfirm()"></app-date-full-selector>
+        </div>
       </mat-step>
 
 
       <mat-step [editable]="false" label="Data odbioru zamówienia">
-        <!--<app-date-spinner [dataType]="'soon'"-->
-        <!--[requiredYear]="2018"-->
-        <!--[requiredMonth]="12"-->
-        <!--[requiredDay]="12"-->
-        <!--[title]="'Data odbioru zamówienia'"-->
-        <!--(finish)="dateConfirm()"></app-date-spinner>-->
+        <div *ngIf="this.userService.variant === 1">
+          <app-date-masked [dataType]="'soon'"
+                           [requiredYear]="2018"
+                           [requiredMonth]="12"
+                           [requiredDay]="31"
+                           [title]="'Data odbioru zamówienia'"
+                           [startTime]="stepStartTime"
+                           (finish)="stepConfirm()"></app-date-masked>
+        </div>
+        <div *ngIf="this.userService.variant !== 1">
+          <app-date-spinner [dataType]="'soon'"
+                            [requiredYear]="2018"
+                            [requiredMonth]="12"
+                            [requiredDay]="31"
+                            [title]="'Data odbioru zamówienia'"
+                            [startTime]="stepStartTime"
+                            (finish)="stepConfirm()"></app-date-spinner>
+        </div>
       </mat-step>
 
-      <mat-step [editable]="false" label="Data Urodzenia">
-        <!--<app-date-spinner [dataType]="'distant'"-->
-        <!--[requiredYear]="2018"-->
-        <!--[requiredMonth]="12"-->
-        <!--[requiredDay]="10"-->
-        <!--[title]="'Data Urodzenia'"-->
-        <!--(finish)="dateConfirm()"></app-date-spinner>-->
+      <mat-step [editable]="false" label="Data urodzenia">
+        <div *ngIf="this.userService.variant === 1">
+          <app-date-masked [dataType]="'distant'"
+                           [requiredYear]="1991"
+                           [requiredMonth]="6"
+                           [requiredDay]="26"
+                           [title]="'Data urodzenia'"
+                           [startTime]="stepStartTime"
+                           (finish)="stepConfirm()"></app-date-masked>
+        </div>
+        <div *ngIf="this.userService.variant !== 1">
+          <app-date-spinner [dataType]="'distant'"
+                            [requiredYear]="1991"
+                            [requiredMonth]="6"
+                            [requiredDay]="26"
+                            [title]="'Data urodzenia'"
+                            [startTime]="stepStartTime"
+                            (finish)="stepConfirm()"></app-date-spinner>
+        </div>
+      </mat-step>
+
+      <mat-step [editable]="false" label="Data odbioru zamówienia">
+        <div *ngIf="this.userService.variant === 1">
+          <app-date-editable-picker [dataType]="'soon'"
+                                    [requiredYear]="2018"
+                                    [requiredMonth]="12"
+                                    [requiredDay]="31"
+                                    [title]="'Data odbioru zamówienia'"
+                                    [startTime]="stepStartTime"
+                                    (finish)="stepConfirm()"></app-date-editable-picker>
+        </div>
+        <div *ngIf="this.userService.variant !== 1">
+          <app-date-picker [dataType]="'soon'"
+                           [requiredYear]="2018"
+                           [requiredMonth]="12"
+                           [requiredDay]="31"
+                           [title]="'Data odbioru zamówienia'"
+                           [startTime]="stepStartTime"
+                           (finish)="stepConfirm()"></app-date-picker>
+        </div>
+      </mat-step>
+
+      <mat-step [editable]="false" label="Data urodzenia">
+        <div *ngIf="this.userService.variant === 1">
+          <app-date-editable-picker [dataType]="'distant'"
+                                    [requiredYear]="1991"
+                                    [requiredMonth]="6"
+                                    [requiredDay]="26"
+                                    [title]="'Data urodzenia'"
+                                    [startTime]="stepStartTime"
+                                    (finish)="stepConfirm()"></app-date-editable-picker>
+        </div>
+        <div *ngIf="this.userService.variant !== 1">
+          <app-date-picker [dataType]="'distant'"
+                           [requiredYear]="1991"
+                           [requiredMonth]="6"
+                           [requiredDay]="26"
+                           [title]="'Data urodzenia'"
+                           [startTime]="stepStartTime"
+                           (finish)="stepConfirm()"></app-date-picker>
+        </div>
       </mat-step>
 
       <mat-step [stepControl]="summaryFormGroupScenario1" [editable]="false" label="{{'summary' | translate}}"

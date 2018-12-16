@@ -1,7 +1,7 @@
 .instruction {
   min-width: 200px;
-  max-width: 400px;
-  background-color: #ebe7fd;
+  max-width: 350px;
+  background-color: #f9f9fd;
   margin-bottom: 10px;
   margin-right: 10px;
 }
@@ -16,6 +16,7 @@
 
 .usability-data {
   white-space:nowrap;
+
 }
 
 .next-button {
@@ -23,9 +24,10 @@
 }
 
 .warning-message {
-  color: coral;
+  color: #ff473b;
+  position: relative;
+  display: inline-block;
 }
-
 .next-step-button {
   margin-top: 15px;
   margin-left: 15px;

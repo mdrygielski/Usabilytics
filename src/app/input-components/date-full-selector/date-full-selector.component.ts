@@ -6,7 +6,7 @@ import {LoggingService} from '../../logging.service';
 @Component({
   selector: 'app-date-full-selector',
   templateUrl: './date-full-selector.component.html',
-  styleUrls: ['./date-full-selector.component.css']
+  styleUrls: ['./date-full-selector.component.css', '../../usability/usability.component.css']
 })
 export class DateFullSelectorComponent implements OnInit {
   @Output() finish = new EventEmitter<void>();
@@ -15,9 +15,9 @@ export class DateFullSelectorComponent implements OnInit {
   @Input() requiredMonth: number;
   @Input() requiredDay: number;
   @Input() title: string;
+  @Input() startTime: number;
 
-  private startTimestamp: number;
-  private endTimestamp: number;
+  private endTime: number;
   private duration: number;
   private incorrectCounter: number;
   public finished: boolean;
@@ -25,15 +25,9 @@ export class DateFullSelectorComponent implements OnInit {
   public days = [];
   public years = [];
 
-  dateFullSelectorDayFormControl = new FormControl('', [
-    Validators.required
-  ]);
-  dateFullSelectorMonthFormControl = new FormControl('', [
-    Validators.required
-  ]);
-  dateFullSelectorYearFormControl = new FormControl('', [
-    Validators.required
-  ]);
+  dateFullSelectorDayFormControl = new FormControl('', [ ]);
+  dateFullSelectorMonthFormControl = new FormControl('', [ ]);
+  dateFullSelectorYearFormControl = new FormControl('', [ ]);
 
   constructor(private userService: UserService,
               private loggingService: LoggingService) {
@@ -46,7 +40,6 @@ export class DateFullSelectorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.startTimestamp = Date.now();
     this.finished = false;
     this.incorrectCounter = 0;
     this.incorrectDate = false;
@@ -74,11 +67,11 @@ export class DateFullSelectorComponent implements OnInit {
     }
 
     if (validated) {
-      this.endTimestamp = Date.now();
+      this.endTime = Date.now();
       this.finished = true;
       this.incorrectDate = false;
       this.disableDates();
-      this.duration = this.endTimestamp - this.startTimestamp;
+      this.duration = this.endTime - this.startTime;
     } else {
       this.incorrectDate = true;
       this.incorrectCounter++;
@@ -115,32 +108,7 @@ export class DateFullSelectorComponent implements OnInit {
     this.finish.emit();
   }
 
-  validateDay() {
-    if (this.dateFullSelectorDayFormControl.value > 31) {
-      this.dateFullSelectorDayFormControl.setErrors({'incorrectDate': true});
-    } else {
-      this.dateFullSelectorDayFormControl.setErrors(null);
-    }
-  }
-
-  NumberOnly(event: any): boolean {
-    const charCode = event.which;
-    if (charCode !== 46 && charCode > 31
-      && (charCode < 48 || charCode > 57)) {
-      return false;
-    }
-    return true;
-  }
-
-  validateYear() {
-    if (this.dateFullSelectorYearFormControl.value > 3000) {
-      this.dateFullSelectorYearFormControl.setErrors({'incorrectDate': true});
-    } else {
-      this.dateFullSelectorYearFormControl.setErrors(null);
-    }
-  }
-
-  clearError($event) {
+  clearError() {
     this.incorrectDate = false;
     this.dateFullSelectorDayFormControl.setErrors(null);
     this.dateFullSelectorMonthFormControl.setErrors(null);

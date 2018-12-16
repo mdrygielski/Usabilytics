@@ -5,8 +5,7 @@
            placeholder="{{'chooseDate' | translate}}"
            [formControl]="datePickerFormControl"
            [errorStateMatcher]="matcher"
-           (focus)="showPicker(datePickerComponent)"
-           required>
+           (focus)="showPicker(datePickerComponent)">
     <mat-hint>{{title}}</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="datePickerComponent"></mat-datepicker-toggle>
     <mat-datepicker #datePickerComponent (closed)="datePicker.blur()"></mat-datepicker>
@@ -16,5 +15,5 @@
   <div *ngIf="!finished">
     <button mat-raised-button color="primary" (click)="validateDate()" class="confirm-button">Potwierdź</button>
   </div>
-  <app-seq [displayControl]="finished" [componentType]="'datePicker'" (finish)="submitTest($event)"></app-seq>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
 </div>

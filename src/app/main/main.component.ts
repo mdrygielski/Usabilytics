@@ -10,7 +10,6 @@ declare function StartTest(): any;
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  private data: any;
 
   constructor(private loggingService: LoggingService,
               private userService: UserService) {
@@ -26,6 +25,7 @@ export class MainComponent implements OnInit {
   // }
 
   StartTest() {
+    this.userService.variant = Math.floor(Math.random() * Math.floor(2)) + 1;
     this.userService.testID = Date.now();
     this.userService.testStartTimestamp = Date();
     this.loggingService.SendAvailableData().subscribe();
