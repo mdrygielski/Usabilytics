@@ -34,7 +34,6 @@ export class DateMonthSelectorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.startTime = Date.now();
     this.finished = false;
     this.incorrectCounter = 0;
     this.incorrectDate = false;
@@ -113,10 +112,21 @@ export class DateMonthSelectorComponent implements OnInit {
 
   NumberOnly(event: any): boolean {
     const charCode = event.which;
-    if (charCode >= 48 && charCode <= 57) {
+    // Allow number
+    if ((charCode >= 48 && charCode <= 57) ||
+      (charCode >= 96 && charCode <= 105)) {
       return true;
     }
-    if (charCode >= 96 && charCode <= 105) {
+    // Allow arrow keys
+    if (charCode >= 37 && charCode <= 40) {
+      return true;
+    }
+    // Allow select all
+    if (charCode === 65 && event.ctrlKey) {
+      return true;
+    }
+    // Allow contol characters
+    if (charCode === 8 || charCode === 46) {
       return true;
     }
     return false;
@@ -130,7 +140,7 @@ export class DateMonthSelectorComponent implements OnInit {
     }
   }
 
-  clearFormErrors($event) {
+  clearFormErrors() {
     this.incorrectDate = false;
     this.dateMonthSelectorDayFormControl.setErrors(null);
     this.dateMonthSelectorMonthFormControl.setErrors(null);
@@ -138,6 +148,6 @@ export class DateMonthSelectorComponent implements OnInit {
   }
   clearError($event) {
     $event.target.select();
-    this.clearFormErrors($event);
+    this.clearFormErrors();
   }
 }

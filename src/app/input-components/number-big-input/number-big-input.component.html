@@ -1,0 +1,17 @@
+<div>
+  <mat-form-field>
+    <input matInput #numberBigInput
+           type="text"
+           autocomplete="off"
+           [errorStateMatcher]="matcher"
+           (keydown)="NumberAndSeparatorOnly($event)"
+           [formControl]="numberBigInputFormControl">
+    <mat-hint>{{title}}</mat-hint>
+    <mat-error *ngIf="numberBigInputFormControl.hasError('incorrectBigInput')">Niepoprawna wartość</mat-error>
+  </mat-form-field>
+  <div *ngIf="!finished">
+    <button mat-raised-button color="primary" (click)="validateBigInput()" class="confirm-button">Potwierdź</button>
+  </div>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
+</div>
+

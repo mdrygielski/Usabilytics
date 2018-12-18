@@ -1,5 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatStepper} from '@angular/material';
 
 @Component({
   selector: 'app-scenario2',
@@ -8,7 +9,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class Scenario2Component implements OnInit {
   @Output() finished = new EventEmitter<void>();
+  @ViewChild('stepper') stepper: MatStepper;
   Math: any;
+  stepStartTime: number;
 
   firstFormGroupScenario2: FormGroup;
   secondFormGroupScenario2: FormGroup;
@@ -31,8 +34,10 @@ export class Scenario2Component implements OnInit {
     });
   }
 
-  introConfirmation() {
-    console.log('intro done. Starting first step');
+  stepConfirm() {
+    this.stepper.next();
+    this.stepStartTime = Date.now();
+    console.log('statt time set!');
   }
 
   firstConfirmation() {

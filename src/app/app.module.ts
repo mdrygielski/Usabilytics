@@ -36,7 +36,7 @@ import { Scenario1Component } from './usability/scenario1/scenario1.component';
 import {MAT_STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { Scenario2Component } from './usability/scenario2/scenario2.component';
 import { Scenario3Component } from './usability/scenario3/scenario3.component';
-import { WebSpeechComponent } from './usability/scenario3/web-speech/web-speech.component';
+// import { WebSpeechComponent } from './usability/scenario3/web-speech/web-speech.component';
 import {CommonModule} from '@angular/common';
 import {SpeechRecognizerService} from './usability/scenario3/web-speech/shared/services/speech-recognizer.service';
 import {UserService} from './user.service';
@@ -50,6 +50,9 @@ import { DateFullSelectorComponent } from './input-components/date-full-selector
 import { NumberInputComponent } from './input-components/number-input/number-input.component';
 import { DateEditablePickerComponent } from './input-components/date-editable-picker/date-editable-picker.component';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+import { NumberSpinnerComponent } from './input-components/number-spinner/number-spinner.component';
+import { NumberBigInputComponent } from './input-components/number-big-input/number-big-input.component';
+import { NumberVoiceComponent } from './input-components/number-voice/number-voice.component';
 
 
 @NgModule({
@@ -69,7 +72,10 @@ import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-mome
     DateMonthSelectorComponent,
     DateFullSelectorComponent,
     NumberInputComponent,
-    DateEditablePickerComponent
+    DateEditablePickerComponent,
+    NumberSpinnerComponent,
+    NumberBigInputComponent,
+    NumberVoiceComponent
   ],
   imports: [
     BrowserModule,

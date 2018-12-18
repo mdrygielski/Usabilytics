@@ -1,15 +1,35 @@
 <div>
-  <mat-form-field>
-    <input matInput #numberInput type="number"
-           [formControl]="numberInputFormControl"
-           [errorStateMatcher]="matcher"
-           autocomplete="off">
-    <mat-hint>{{title}}</mat-hint>
-    <mat-error *ngIf="numberInputFormControl.hasError('required')">Wprowadź datę</mat-error>
-    <mat-error *ngIf="numberInputFormControl.hasError('incorrectDate')">Niepoprawna data</mat-error>
-  </mat-form-field>
+  <ng-form>
+    <mat-form-field style="width: 40px">
+      <input matInput #integerValue
+             type="text"
+             maxlength="4"
+             autocomplete="off"
+             (click)="clearError($event)"
+             (keydown)="NumberOnly($event)"
+             [formControl]="numberIntegerInputFormControl">
+      <mat-error *ngIf="numberIntegerInputFormControl.hasError('incorrectPrice')"></mat-error>
+    </mat-form-field>
+    ,
+    <mat-form-field style="width: 20px">
+      <input matInput #decimalValue
+             type="text"
+             maxlength="2"
+             autocomplete="off"
+             (click)="clearError($event)"
+             (keydown)="NumberOnly($event)"
+             [formControl]="numberDecimalInputFormControl">
+      <mat-error *ngIf="numberDecimalInputFormControl.hasError('incorrectPrice')"></mat-error>
+    </mat-form-field>
+    zł
+    <div class="number-footer">
+      <mat-error *ngIf="incorrectPrice">Niepoprawna cena</mat-error>
+      <mat-hint *ngIf="!incorrectPrice">{{title}}</mat-hint>
+    </div>
+  </ng-form>
   <div *ngIf="!finished">
-    <button mat-raised-button color="primary" (click)="validateNumber()" class="confirm-button">Potwierdź</button>
+    <button mat-raised-button color="primary" (click)="validatePrice()" class="confirm-button">Potwierdź</button>
   </div>
   <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
 </div>
+

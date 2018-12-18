@@ -1,0 +1,17 @@
+<div>
+  <mat-form-field>
+    <input matInput #numberSpinner
+           type="number"
+           autocomplete="off"
+           step="0.01"
+           (keydown)="keyCounter($event)"
+           [formControl]="numberSpinnerInputFormControl">
+    <mat-hint>{{title}}</mat-hint>
+    <mat-error *ngIf="numberSpinnerInputFormControl.hasError('incorrectPrice')">Niepoprawna cena</mat-error>
+  </mat-form-field>
+  <div *ngIf="!finished">
+    <button mat-raised-button color="primary" (click)="validatePrice()" class="confirm-button">Potwierdź</button>
+  </div>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
+</div>
+

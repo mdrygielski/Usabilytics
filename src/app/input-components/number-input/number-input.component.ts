@@ -1,15 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import {UserService} from '../../user.service';
 import {LoggingService} from '../../logging.service';
-import {ErrorStateMatcher} from '@angular/material';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
   selector: 'app-number-input',
@@ -19,7 +11,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class NumberInputComponent implements OnInit {
   @Output() finish = new EventEmitter<void>();
   @Input() dataType: string;
-  @Input() requiredNumber: number;
+  @Input() requiredInteger: number;
+  @Input() requiredDecimal: number;
   @Input() title: string;
   @Input() startTime: number;
 
@@ -27,66 +20,91 @@ export class NumberInputComponent implements OnInit {
   private duration: number;
   private incorrectCounter: number;
   public finished: boolean;
+  public incorrectPrice: boolean;
 
-  numberInputFormControl = new FormControl('', [ ]);
-
-  matcher = new MyErrorStateMatcher();
+  numberIntegerInputFormControl = new FormControl('', []);
+  numberDecimalInputFormControl = new FormControl('', []);
 
   constructor(private userService: UserService,
-              private loggingService: LoggingService) { }
+              private loggingService: LoggingService) {
+  }
 
   ngOnInit() {
     this.finished = false;
     this.incorrectCounter = 0;
+    this.incorrectPrice = false;
   }
 
-  validateNumber() {
-    if (this.numberInputFormControl.value === this.requiredNumber) {
+  validatePrice() {
+    let validated = true;
+    if (this.numberIntegerInputFormControl.value !== this.requiredInteger) {
+      this.numberIntegerInputFormControl.setErrors({'incorrectPrice': true});
+      validated = false;
+    } else {
+      this.numberIntegerInputFormControl.setErrors(null);
+    }
+
+    if (this.numberDecimalInputFormControl.value !== this.requiredDecimal) {
+      this.numberDecimalInputFormControl.setErrors({'incorrectPrice': true});
+      validated = false;
+    } else {
+      this.numberDecimalInputFormControl.setErrors(null);
+    }
+
+    if (validated) {
       this.endTime = Date.now();
       this.finished = true;
-      this.numberInputFormControl.setErrors(null);
-      this.numberInputFormControl.disable();
+      this.incorrectPrice = false;
+      this.numberIntegerInputFormControl.disable();
+      this.numberDecimalInputFormControl.disable();
       this.duration = this.endTime - this.startTime;
     } else {
-      this.numberInputFormControl.setErrors({'incorrectDate': true});
+      this.incorrectPrice = true;
       this.incorrectCounter++;
     }
-    console.log('validating number, duration: ' + this.duration);
   }
 
 
   submitTest(obj) {
-    if (this.dataType === 'decimal') {
-      const decimalNumber = {
-        'numberInputDecimalTitle': this.title,
-        'numberInputDecimalDuration': this.duration,
-        'numberInputDecimalIncorrectCounter': this.incorrectCounter,
-        'numberInputDecimalSEQRate': obj.rate,
-        'numberInputDecimalComment': obj.comment
+    if (this.dataType === 'price') {
+      const numberInput = {
+        'numberInputPriceTitle': this.title,
+        'numberInputPriceDuration': this.duration,
+        'numberInputPriceIncorrectCounter': this.incorrectCounter,
+        'numberInputPriceSEQRate': obj.rate,
+        'numberInputPriceComment': obj.comment
       };
-      this.loggingService.SendData(decimalNumber).subscribe();
-    }
-    if (this.dataType === 'small') {
-      const smallNumber = {
-        'numberInputSmallTitle': this.title,
-        'numberInputSmallDuration': this.duration,
-        'numberInputSmallIncorrectCounter': this.incorrectCounter,
-        'numberInputSmallSEQRate': obj.rate,
-        'numberInputSmallComment': obj.comment
-      };
-      this.loggingService.SendData(smallNumber).subscribe();
-    }
-    if (this.dataType === 'big') {
-      const bigNumber = {
-        'numberInputBigTitle': this.title,
-        'numberInputBigDuration': this.duration,
-        'numberInputBigIncorrectCounter': this.incorrectCounter,
-        'numberInputBigSEQRate': obj.rate,
-        'numberInputBigComment': obj.comment
-      };
-      this.loggingService.SendData(bigNumber).subscribe();
+      this.loggingService.SendData(numberInput).subscribe();
     }
     this.finish.emit();
   }
 
+  NumberOnly(event: any): boolean {
+    const charCode = event.which;
+    // Allow number
+    if ((charCode >= 48 && charCode <= 57) ||
+      (charCode >= 96 && charCode <= 105)) {
+      return true;
+    }
+    // Allow arrow keys
+    if (charCode >= 37 && charCode <= 40) {
+      return true;
+    }
+    // Allow select all
+    if (charCode === 65 && event.ctrlKey) {
+      return true;
+    }
+    // Allow contol characters
+    if (charCode === 8 || charCode === 46) {
+      return true;
+    }
+    return false;
+  }
+
+  clearError($event) {
+    $event.target.select();
+    this.incorrectPrice = false;
+    this.numberIntegerInputFormControl.setErrors(null);
+    this.numberDecimalInputFormControl.setErrors(null);
+  }
 }

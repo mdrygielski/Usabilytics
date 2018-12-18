@@ -1,0 +1,9 @@
+.speech-result-width {
+  width: 90%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.speech-recognition-button {
+  display: inline;
+}

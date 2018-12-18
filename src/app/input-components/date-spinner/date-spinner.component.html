@@ -3,6 +3,7 @@
     <input matInput #dateSpinner type="date"
            [formControl]="dateSpinnerFormControl"
            [errorStateMatcher]="matcher"
+           autocomplete="off"
            (keydown)="keyCounter($event)"
            max="2999-12-31">
     <mat-hint>{{title}}</mat-hint>

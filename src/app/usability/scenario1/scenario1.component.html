@@ -1,4 +1,5 @@
-<div fxLayout="row wrap" fxFlex="100">
+<!--<div fxLayout="row wrap" fxFlex="100">-->
+<div fxLayout="row" fxFlex="100">
   <mat-card class="instruction" oncopy="return false" oncut="return false">
     <h2>Scenariusz 1</h2>
     <span>Właśnie zamówiłeś nową książkę.<br/></span>
@@ -39,17 +40,43 @@
           <span>Należy podać datę zgodnie z tytułem używając danych podanych w scenariuszu.</span>
           <div>
             <button mat-raised-button color="primary" (click)="stepConfirm()"
-                    class="next-step-button"><span translate>next</span></button>
+                    class="next-step-button"><span>Dalej</span></button>
           </div>
 
-          <!--<app-number-input-->
-          <!--[dataType]="'small'"-->
-          <!--[requiredNumber]="2018"-->
-          <!--[title]="'numer'"-->
+        </form>
+
+        <app-number-voice
+          [dataType]="'barcode'"
+          [requiredValue]="'9788375780635'"
+          [title]="'Kod kreskowy'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-number-voice>
+
+
+        <!--<app-number-big-input-->
+          <!--[dataType]="'barcode'"-->
+          <!--[requiredValue]="'9788375780635'"-->
+          <!--[title]="'Kod kreskowy'"-->
+          <!--[startTime]="stepStartTime"-->
+          <!--(finish)="stepConfirm()"></app-number-big-input>-->
+
+
+        <!--<app-number-spinner-->
+        <!--[dataType]="'price'"-->
+        <!--[requiredPrice]="59.99"-->
+        <!--[title]="'cena'"-->
+        <!--[startTime]="stepStartTime"-->
+        <!--(finish)="stepConfirm()"></app-number-spinner>-->
+
+        <!--<app-number-input-->
+          <!--[dataType]="'price'"-->
+          <!--[requiredInteger]="'59'"-->
+          <!--[requiredDecimal]="'99'"-->
+          <!--[title]="'cena'"-->
           <!--[startTime]="stepStartTime"-->
           <!--(finish)="stepConfirm()"></app-number-input>-->
 
-        </form>
+
       </mat-step>
 
       <ng-template matStepperIcon="number" let-index="index">{{Math.ceil(index/2)}}</ng-template>
@@ -180,14 +207,15 @@
         </div>
       </mat-step>
 
-      <mat-step [stepControl]="summaryFormGroupScenario1" [editable]="false" label="{{'summary' | translate}}"
+      <mat-step [stepControl]="summaryFormGroupScenario1" [editable]="false" label="Podsumowanie"
                 state="summaryIcon">
         <form [formGroup]="summaryFormGroupScenario1">
           todo: summary survey for dates
         </form>
         <div>
-          <button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button"><span
-            translate>next</span></button>
+          <button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button">
+            <span>Dalej</span>
+          </button>
         </div>
       </mat-step>
 

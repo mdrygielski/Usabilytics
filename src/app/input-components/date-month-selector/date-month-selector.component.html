@@ -5,8 +5,8 @@
              type="text"
              maxlength="2"
              autocomplete="off"
-             (click)="$event.target.select()"
-             (keypress)="NumberOnly($event)"
+             (click)="clearError($event)"
+             (keydown)="NumberOnly($event)"
              (change)="validateDay()"
              [placeholder]="'Dzień'"
              [formControl]="dateMonthSelectorDayFormControl">
@@ -38,7 +38,7 @@
              maxlength="4"
              autocomplete="off"
              (click)="clearError($event)"
-             (keypress)="NumberOnly($event)"
+             (keydown)="NumberOnly($event)"
              (change)="validateYear()"
              [placeholder]="'Rok'"
              [formControl]="dateMonthSelectorYearFormControl">
