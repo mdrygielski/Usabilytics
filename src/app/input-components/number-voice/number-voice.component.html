@@ -1,4 +1,5 @@
 <div>
+  <br/>
   <div *ngIf="!recognizing" class="speech-recognition-button">
     <button mat-raised-button (click)="startButton($event)" color="primary">
       <mat-icon>mic</mat-icon>
@@ -9,8 +10,10 @@
       <mat-icon>mic_off</mat-icon>
       <span translate>stop</span></button>
   </div>
-
-
+  <div *ngIf="interimTranscript !==''" class="loading-animation"><img src="./../../../assets/img/working.svg"
+  width="84"></div>
+  <br/>
+  <br/>
   <mat-form-field>
     <input matInput #numberVoice
            type="text"
@@ -20,7 +23,7 @@
            (keydown)="NumberAndSeparatorOnly($event)"
            [formControl]="numberBigInputFormControl">
     <mat-hint>{{title}}</mat-hint>
-    <mat-error *ngIf="numberBigInputFormControl.hasError('incorrectBigInput')">Niepoprawna wartość</mat-error>
+    <mat-error *ngIf="numberBigInputFormControl.hasError('incorrectNumberVoice')">Niepoprawna wartość</mat-error>
   </mat-form-field>
   <div *ngIf="!finished">
     <button mat-raised-button color="primary" (click)="validateNumberVoice()" class="confirm-button">Potwierdź</button>

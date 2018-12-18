@@ -9,7 +9,7 @@ import {SpeechError} from '../../usability/scenario3/web-speech/shared/model/spe
 @Component({
   selector: 'app-number-voice',
   templateUrl: './number-voice.component.html',
-  styleUrls: ['./number-voice.component.css']
+  styleUrls: ['./number-voice.component.css', '../../usability/usability.component.css']
 })
 export class NumberVoiceComponent implements OnInit {
   @Output() finish = new EventEmitter<void>();
@@ -22,7 +22,6 @@ export class NumberVoiceComponent implements OnInit {
   interimTranscript = '';
   recognizing = false;
   notification: string;
-  currentLanguage: string;
 
   private endTime: number;
   private duration: number;
@@ -40,13 +39,14 @@ export class NumberVoiceComponent implements OnInit {
   ngOnInit() {
     this.finished = false;
     this.incorrectCounter = 0;
+    this.speechRecognizer.initialize('pl');
     this.initRecognition();
+    this.notification = null;
   }
 
 
   validateNumberVoice() {
-    const cleanValue = this.numberBigInputFormControl.value.replace(/[- ]/g, '');
-    console.log(cleanValue);
+    const cleanValue = +this.finalTranscript.replace(/[^0-9]+/g, '');
     if (cleanValue === this.requiredValue) {
       this.endTime = Date.now();
       this.finished = true;
@@ -54,7 +54,7 @@ export class NumberVoiceComponent implements OnInit {
       this.numberBigInputFormControl.disable();
       this.duration = this.endTime - this.startTime;
     } else {
-      this.numberBigInputFormControl.setErrors({'incorrectBigInput': true});
+      this.numberBigInputFormControl.setErrors({'incorrectNumberVoice': true});
       this.incorrectCounter++;
     }
   }
@@ -99,7 +99,8 @@ export class NumberVoiceComponent implements OnInit {
 
     this.speechRecognizer.onResult()
       .subscribe((data: SpeechNotification) => {
-        const message = data.content.trim();
+        let message = data.content.trim();
+        message = message.replace(/[^0-9]+/g, '');
         if (data.info === 'final_transcript' && message.length > 0) {
           this.interimTranscript = '';
           if (this.finalTranscript === '') {

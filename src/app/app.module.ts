@@ -64,7 +64,7 @@ import { NumberVoiceComponent } from './input-components/number-voice/number-voi
     Scenario1Component,
     Scenario2Component,
     Scenario3Component,
-    WebSpeechComponent,
+    // WebSpeechComponent,
     DatePickerComponent,
     SeqComponent,
     DateSpinnerComponent,

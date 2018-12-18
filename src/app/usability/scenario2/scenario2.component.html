@@ -2,7 +2,7 @@
 <div fxLayout="row" fxFlex="100">
   <mat-card class="instruction" oncopy="return false" oncut="return false">
     <h2>Scenariusz 2</h2>
-    <span>Aby potwierdzić zakup proszę podać<br/>cenę książki oraz numer telefonu</span>
+    <span>Aby potwierdzić zakup proszę podać<br/>cenę książki oraz oraz kod produktu</span>
     <br/>
     <br/>
     <span><b>DANE:</b></span>
@@ -14,10 +14,10 @@
       </div>
     </span>
     <br/>
-    <span>Numer telefonu: </span>
+    <span>Kod produktu: </span>
     <span class="usability-data">
       <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
-        <b>605 859 620</b>
+        <b>9 788375 780635</b>
       </div>
     </span>
     <br/>
@@ -47,74 +47,41 @@
       <ng-template matStepperIcon="number" let-index="index">{{Math.ceil(index/2)}}</ng-template>
 
       <mat-step [editable]="false" label="Cena">
-
-        <!--<app-number-big-input-->
-        <!--[dataType]="'barcode'"-->
-        <!--[requiredValue]="'9788375780635'"-->
-        <!--[title]="'Kod kreskowy'"-->
-        <!--[startTime]="stepStartTime"-->
-        <!--(finish)="stepConfirm()"></app-number-big-input>-->
-
-        <!--<app-number-big-input-->
-          <!--[dataType]="'barcode'"-->
-          <!--[requiredValue]="'9788375780635'"-->
-          <!--[title]="'Kod kreskowy'"-->
-          <!--[startTime]="stepStartTime"-->
-          <!--(finish)="stepConfirm()"></app-number-big-input>-->
-
-        <!--<app-number-input-->
-        <!--[dataType]="'price'"-->
-        <!--[requiredInteger]="59"-->
-        <!--[requiredDecimal]="99"-->
-        <!--[title]="'cena'"-->
-        <!--[startTime]="stepStartTime"-->
-        <!--(finish)="stepConfirm()"></app-number-input>-->
-
-
-        <!--<app-number-spinner-->
-          <!--[dataType]="'price'"-->
-          <!--[requiredPrice]="59.99"-->
-          <!--[title]="'cena'"-->
-          <!--[startTime]="stepStartTime"-->
-          <!--(finish)="stepConfirm()"></app-number-spinner>-->
-
+        <app-number-input
+          [dataType]="'price'"
+          [requiredInteger]="'59'"
+          [requiredDecimal]="'99'"
+          [title]="'cena'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-number-input>
       </mat-step>
-      <mat-step [stepControl]="secondFormGroupScenario2" [editable]="false" label="{{'currentExpenses' | translate}}">
-        <form [formGroup]="secondFormGroupScenario2">
-          <mat-form-field>
-            <input matInput type="number" formControlName="secondCtrlScenario2" placeholder="{{'amount' | translate}}"
-                   required>
-            <span matSuffix translate>currency</span>
-          </mat-form-field>
-          <div>
-            <button mat-raised-button color="primary" matStepperNext (click)="secondConfirmation()"
-                    class="next-step-button"><span translate>next</span></button>
-          </div>
-        </form>
+      <mat-step [editable]="false" label="Kod produktu">
+        <app-number-big-input
+          [dataType]="'barcode'"
+          [requiredValue]="'9788375780635'"
+          [title]="'Kod kreskowy'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-number-big-input>
       </mat-step>
 
-
-      <mat-step [editable]="false" label="{{'entertainment' | translate}}">
-        <mat-slider thumbLabel [(ngModel)]="slider1"
-                    step="10"
-                    min="0"
-                    max="1000"></mat-slider>
-        <form>
-          <button mat-raised-button color="primary" matStepperNext (click)="thirdConfirmation()"
-                  class="next-step-button"><span translate>next</span></button>
-        </form>
+      <mat-step [editable]="false" label="Cena">
+        <app-number-spinner
+          [dataType]="'price'"
+          [requiredPrice]="59.99"
+          [title]="'cena'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-number-spinner>
       </mat-step>
 
-      <mat-step [editable]="false" label="{{'currentExpenses' | translate}}">
-        <mat-slider thumbLabel [(ngModel)]="slider1"
-                    step="50"
-                    min="0"
-                    max="10000"></mat-slider>
-        <form>
-          <button mat-raised-button color="primary" matStepperNext (click)="fourthConfirmation()"
-                  class="next-step-button"><span translate>next</span></button>
-        </form>
+      <mat-step [editable]="false" label="Kod produktu">
+        <app-number-voice
+          [dataType]="'barcode'"
+          [requiredValue]="9788375780635"
+          [title]="'Kod kreskowy'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-number-voice>
       </mat-step>
+
 
       <mat-step [stepControl]="summaryFormGroupScenario2" [editable]="false" label="{{'summary' | translate}}"
                 state="summaryIcon">

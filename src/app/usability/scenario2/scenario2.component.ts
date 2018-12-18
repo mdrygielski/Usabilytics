@@ -13,8 +13,6 @@ export class Scenario2Component implements OnInit {
   Math: any;
   stepStartTime: number;
 
-  firstFormGroupScenario2: FormGroup;
-  secondFormGroupScenario2: FormGroup;
   summaryFormGroupScenario2: FormGroup;
   slider1 = 0;
 
@@ -23,12 +21,6 @@ export class Scenario2Component implements OnInit {
   }
 
   ngOnInit() {
-    this.firstFormGroupScenario2 = this._formBuilder.group({
-      firstCtrlScenario2: ['', Validators.required]
-    });
-    this.secondFormGroupScenario2 = this._formBuilder.group({
-      secondCtrlScenario2: ['', Validators.required]
-    });
     this.summaryFormGroupScenario2 = this._formBuilder.group({
       summaryCtrlScenario2: ['', Validators.required]
     });
@@ -37,23 +29,6 @@ export class Scenario2Component implements OnInit {
   stepConfirm() {
     this.stepper.next();
     this.stepStartTime = Date.now();
-    console.log('statt time set!');
-  }
-
-  firstConfirmation() {
-    console.log('step 1 - next');
-  }
-
-  secondConfirmation() {
-    console.log('step 2 - next');
-  }
-
-  thirdConfirmation() {
-    console.log(this.slider1 + ' step 3 - next');
-  }
-
-  fourthConfirmation() {
-    console.log('step 4 - next');
   }
 
   summaryConfirmation() {

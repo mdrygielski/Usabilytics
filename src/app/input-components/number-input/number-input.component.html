@@ -1,5 +1,5 @@
 <div>
-  <ng-form>
+  <form>
     <mat-form-field style="width: 40px">
       <input matInput #integerValue
              type="text"
@@ -26,7 +26,7 @@
       <mat-error *ngIf="incorrectPrice">Niepoprawna cena</mat-error>
       <mat-hint *ngIf="!incorrectPrice">{{title}}</mat-hint>
     </div>
-  </ng-form>
+  </form>
   <div *ngIf="!finished">
     <button mat-raised-button color="primary" (click)="validatePrice()" class="confirm-button">Potwierdź</button>
   </div>
