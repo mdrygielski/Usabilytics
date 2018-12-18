@@ -15,7 +15,7 @@ export class UsabilityComponent implements OnInit {
   thirdFormGroup: FormGroup;
 
   constructor(private _formBuilder: FormBuilder,
-              private userService: UserService) {}
+              public userService: UserService) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
