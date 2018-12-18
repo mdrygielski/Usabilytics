@@ -16,7 +16,7 @@
       <mat-select matSelect #month
                   [formControl]="dateMonthSelectorMonthFormControl"
                   [placeholder]="'Miesiąc'"
-                  (valueChange)="clearFormErrors($event)">
+                  (valueChange)="clearFormErrors()">
         <mat-option value="1">Styczeń</mat-option>
         <mat-option value="2">Luty</mat-option>
         <mat-option value="3">Marzec</mat-option>
