@@ -14,7 +14,6 @@ export class Scenario2Component implements OnInit {
   stepStartTime: number;
 
   summaryFormGroupScenario2: FormGroup;
-  slider1 = 0;
 
   constructor(private _formBuilder: FormBuilder) {
     this.Math = Math;

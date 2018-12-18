@@ -24,7 +24,7 @@ export class Scenario1Component implements OnInit {
   summaryFormGroupScenario1: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private userService: UserService) {
+              public userService: UserService) {
     this.Math = Math;
   }
 
