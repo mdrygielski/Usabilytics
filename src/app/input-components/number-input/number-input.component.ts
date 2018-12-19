@@ -71,7 +71,7 @@ export class NumberInputComponent implements OnInit {
         'numberInputPriceTitle': this.title,
         'numberInputPriceDuration': this.duration,
         'numberInputPriceIncorrectCounter': this.incorrectCounter,
-        'numberInputPriceSEQRate': obj.rate,
+        'numberInputPriceSEQRate': obj.rating,
         'numberInputPriceComment': obj.comment
       };
       this.loggingService.SendData(numberInput).subscribe();

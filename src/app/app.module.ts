@@ -38,7 +38,7 @@ import { Scenario2Component } from './usability/scenario2/scenario2.component';
 import { Scenario3Component } from './usability/scenario3/scenario3.component';
 // import { WebSpeechComponent } from './usability/scenario3/web-speech/web-speech.component';
 import {CommonModule} from '@angular/common';
-import {SpeechRecognizerService} from './usability/scenario3/web-speech/shared/services/speech-recognizer.service';
+import {SpeechRecognizerService} from './input-components/shared/services/speech-recognizer.service';
 import {UserService} from './user.service';
 import {LoggingService} from './logging.service';
 import {DatePickerComponent} from './input-components/date-picker/date-picker.component';
@@ -53,6 +53,11 @@ import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-mome
 import { NumberSpinnerComponent } from './input-components/number-spinner/number-spinner.component';
 import { NumberBigInputComponent } from './input-components/number-big-input/number-big-input.component';
 import { NumberVoiceComponent } from './input-components/number-voice/number-voice.component';
+import { Scenario4Component } from './usability/scenario4/scenario4.component';
+import { NumberStarRatingComponent } from './input-components/number-star-rating/number-star-rating.component';
+import { NumberRadioRatingComponent } from './input-components/number-radio-rating/number-radio-rating.component';
+import { NumberSpinnerRatingComponent } from './input-components/number-spinner-rating/number-spinner-rating.component';
+import { NumberSliderRatingComponent } from './input-components/number-slider-rating/number-slider-rating.component';
 
 
 @NgModule({
@@ -75,7 +80,12 @@ import { NumberVoiceComponent } from './input-components/number-voice/number-voi
     DateEditablePickerComponent,
     NumberSpinnerComponent,
     NumberBigInputComponent,
-    NumberVoiceComponent
+    NumberVoiceComponent,
+    Scenario4Component,
+    NumberStarRatingComponent,
+    NumberRadioRatingComponent,
+    NumberSpinnerRatingComponent,
+    NumberSliderRatingComponent
   ],
   imports: [
     BrowserModule,

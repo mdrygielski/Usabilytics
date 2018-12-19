@@ -1,0 +1,20 @@
+.rate-footer {
+  font-size: 12px;
+  margin-top: -20px;
+  margin-bottom: 10px;
+}
+
+.seq-radio {
+  margin-left: -10px;
+  width: 250px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+:host /deep/ .mat-radio-label {
+  flex-direction: column-reverse;
+  display: flex;
+}
+
+:host /deep/ .mat-radio-label-content {
+  padding-left: 0px;
+}

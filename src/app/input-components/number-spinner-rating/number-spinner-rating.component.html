@@ -1,0 +1,19 @@
+<div>
+  <mat-form-field style="width: 120px">
+    <input matInput #numberSpinnerRating
+           type="number"
+           min="0"
+           max="10"
+           autocomplete="off"
+           step="1"
+           (keydown)="keyValidatorAndCounter($event)"
+           [formControl]="numberSpinnerRatingInputFormControl">
+    <mat-hint>{{title}}</mat-hint>
+    <mat-error *ngIf="numberSpinnerRatingInputFormControl.hasError('incorrectRate')">Niepoprawna ocena</mat-error>
+  </mat-form-field>
+  <div *ngIf="!finished">
+    <button mat-raised-button color="primary" (click)="validateRate()" class="confirm-button">Potwierdź</button>
+  </div>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
+</div>
+

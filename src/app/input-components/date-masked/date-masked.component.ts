@@ -68,7 +68,7 @@ export class DateMaskedComponent implements OnInit {
         'dateMaskedSoonTitle': this.title,
         'dateMaskedSoonDuration': this.duration,
         'dateMaskedSoonIncorrectCounter': this.incorrectCounter,
-        'dateMaskedSoonSEQRate': obj.rate,
+        'dateMaskedSoonSEQRate': obj.rating,
         'dateMaskedSoonComment': obj.comment
       };
       this.loggingService.SendData(soonData).subscribe();
@@ -78,7 +78,7 @@ export class DateMaskedComponent implements OnInit {
         'dateMaskedDistantTitle': this.title,
         'dateMaskedDistantDuration': this.duration,
         'dateMaskedDistantIncorrectCounter': this.incorrectCounter,
-        'dateMaskedDistantSEQRate': obj.rate,
+        'dateMaskedDistantSEQRate': obj.rating,
         'dateMaskedDistantComment': obj.comment
       };
       this.loggingService.SendData(distantData).subscribe();

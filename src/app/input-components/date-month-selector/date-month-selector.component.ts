@@ -84,7 +84,7 @@ export class DateMonthSelectorComponent implements OnInit {
         'dateMonthSelectorSoonTitle': this.title,
         'dateMonthSelectorSoonDuration': this.duration,
         'dateMonthSelectorSoonIncorrectCounter': this.incorrectCounter,
-        'dateMonthSelectorSoonSEQRate': obj.rate,
+        'dateMonthSelectorSoonSEQRate': obj.rating,
         'dateMonthSelectorSoonComment': obj.comment
       };
       this.loggingService.SendData(soonData).subscribe();
@@ -94,7 +94,7 @@ export class DateMonthSelectorComponent implements OnInit {
         'dateMonthSelectorDistantTitle': this.title,
         'dateMonthSelectorDistantDuration': this.duration,
         'dateMonthSelectorDistantIncorrectCounter': this.incorrectCounter,
-        'dateMonthSelectorDistantSEQRate': obj.rate,
+        'dateMonthSelectorDistantSEQRate': obj.rating,
         'dateMonthSelectorDistantComment': obj.comment
       };
       this.loggingService.SendData(distantData).subscribe();

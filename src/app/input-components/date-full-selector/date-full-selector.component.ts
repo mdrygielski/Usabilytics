@@ -90,7 +90,7 @@ export class DateFullSelectorComponent implements OnInit {
         'dateFullSelectorSoonTitle': this.title,
         'dateFullSelectorSoonDuration': this.duration,
         'dateFullSelectorSoonIncorrectCounter': this.incorrectCounter,
-        'dateFullSelectorSoonSEQRate': obj.rate,
+        'dateFullSelectorSoonSEQRate': obj.rating,
         'dateFullSelectorSoonComment': obj.comment
       };
       this.loggingService.SendData(soonData).subscribe();
@@ -100,7 +100,7 @@ export class DateFullSelectorComponent implements OnInit {
         'dateFullSelectorDistantTitle': this.title,
         'dateFullSelectorDistantDuration': this.duration,
         'dateFullSelectorDistantIncorrectCounter': this.incorrectCounter,
-        'dateFullSelectorDistantSEQRate': obj.rate,
+        'dateFullSelectorDistantSEQRate': obj.rating,
         'dateFullSelectorDistantComment': obj.comment
       };
       this.loggingService.SendData(distantData).subscribe();

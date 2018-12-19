@@ -77,7 +77,7 @@ export class DateEditablePickerComponent implements OnInit {
         'dateEditablePickerSoonDuration': this.duration,
         'dateEditablePickerSoonOpenCalendarCounter': this.openCalendarCounter,
         'dateEditablePickerSoonIncorrectCounter': this.incorrectCounter,
-        'dateEditablePickerSoonSEQRate': obj.rate,
+        'dateEditablePickerSoonSEQRate': obj.rating,
         'dateEditablePickerSoonComment': obj.comment
       };
       this.loggingService.SendData(soonData).subscribe();
@@ -88,7 +88,7 @@ export class DateEditablePickerComponent implements OnInit {
         'dateEditablePickerDistantDuration': this.duration,
         'dateEditablePickerDistantOpenCalendarCounter': this.openCalendarCounter,
         'dateEditablePickerDistantIncorrectCounter': this.incorrectCounter,
-        'dateEditablePickerDistantSEQRate': obj.rate,
+        'dateEditablePickerDistantSEQRate': obj.rating,
         'dateEditablePickerDistantComment': obj.comment
       };
       this.loggingService.SendData(distantData).subscribe();

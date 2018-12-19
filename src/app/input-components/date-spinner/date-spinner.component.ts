@@ -70,7 +70,7 @@ export class DateSpinnerComponent implements OnInit {
         'dateSpinnerSoonDuration': this.duration,
         'dateSpinnerSoonIncorrectCounter': this.incorrectCounter,
         'dateSpinnerSoonArrowKeyCounter': this.arrowKeyCounter,
-        'dateSpinnerSoonSEQRate': obj.rate,
+        'dateSpinnerSoonSEQRate': obj.rating,
         'dateSpinnerSoonComment': obj.comment
       };
       this.loggingService.SendData(soonData).subscribe();
@@ -81,7 +81,7 @@ export class DateSpinnerComponent implements OnInit {
         'dateSpinnerDistantDuration': this.duration,
         'dateSpinnerDistantIncorrectCounter': this.incorrectCounter,
         'dateSpinnerDistantArrowKeyCounter': this.arrowKeyCounter,
-        'dateSpinnerDistantSEQRate': obj.rate,
+        'dateSpinnerDistantSEQRate': obj.rating,
         'dateSpinnerDistantComment': obj.comment
       };
       this.loggingService.SendData(distantData).subscribe();

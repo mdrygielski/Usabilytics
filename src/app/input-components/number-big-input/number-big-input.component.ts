@@ -53,7 +53,7 @@ export class NumberBigInputComponent implements OnInit {
         'numberBigInputBarcodeTitle': this.title,
         'numberBigInputBarcodeDuration': this.duration,
         'numberBigInputBarcodeIncorrectCounter': this.incorrectCounter,
-        'numberBigInputBarcodeSEQRate': obj.rate,
+        'numberBigInputBarcodeSEQRate': obj.rating,
         'numberBigInputBarcodeComment': obj.comment
       };
       this.loggingService.SendData(numberBigInput).subscribe();

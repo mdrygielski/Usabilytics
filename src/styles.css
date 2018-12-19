@@ -9,3 +9,9 @@ body, html, app-root {
 span {
   white-space: pre-wrap;
 }
+
+.horizontalStepper .mat-horizontal-content-container {
+  padding-left: 5px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+}

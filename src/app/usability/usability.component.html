@@ -1,25 +1,32 @@
-<p>Wariant: {{this.userService.variant}}</p>
-<mat-horizontal-stepper id="horizontalStepper" #mainStepper>
-  <mat-step [stepControl]="firstFormGroup" [editable]="false">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel><span >Wprowadzanie daty</span></ng-template>
-      <app-scenario1 (finished)="scenario1Done()"></app-scenario1>
-    </form>
-  </mat-step>
+<div style="padding-top: 40px; padding-left: 10px">
+  <p>Wariant: {{this.userService.variant}}</p>
+  <mat-horizontal-stepper class="horizontalStepper" id="horizontalStepper" #mainStepper>
+    <mat-step [stepControl]="firstFormGroup" [editable]="false">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel><span>Wprowadzanie daty</span></ng-template>
+        <app-scenario1 (finished)="scenario1Done()"></app-scenario1>
+      </form>
+    </mat-step>
 
-  <mat-step [stepControl]="secondFormGroup" [editable]="false">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel><span>Wprowadzanie liczb</span></ng-template>
-      <app-scenario2 (finished)="scenario2Done()"></app-scenario2>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="thirdFormGroup" [editable]="false">
-    <form [formGroup]="thirdFormGroup">
-      <ng-template matStepLabel><span>Wprowadzanie tekstu</span></ng-template>
-      <app-scenario3 (finished)="scenario3Done()"></app-scenario3>
-    </form>
-  </mat-step>
+    <mat-step [stepControl]="secondFormGroup" [editable]="false">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel><span>Wprowadzanie liczb</span></ng-template>
+        <app-scenario2 (finished)="scenario2Done()"></app-scenario2>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup" [editable]="false">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel><span>Wprowadzanie tekstu</span></ng-template>
+        <app-scenario3 (finished)="scenario3Done()"></app-scenario3>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="fourthFormGroup" [editable]="false">
+      <form [formGroup]="fourthFormGroup">
+        <ng-template matStepLabel><span>Wprowadzanie tekstu</span></ng-template>
+        <app-scenario3 (finished)="scenario4Done()"></app-scenario3>
+      </form>
+    </mat-step>
 
-</mat-horizontal-stepper>
-
+  </mat-horizontal-stepper>
+</div>
 

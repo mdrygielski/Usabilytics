@@ -1,53 +1,90 @@
-<div fxLayout="row wrap" fxFlex="100">
+<!--<div fxLayout="row wrap" fxFlex="100">-->
+<div fxLayout="row" fxFlex="100">
   <mat-card class="instruction" oncopy="return false" oncut="return false">
-    <h2><span translate>scenario</span> 2</h2>
-    <span translate>test3.description</span>
+    <h2>Scenariusz 3</h2>
+    <span>Proszę ocenić książkę oraz sprzedawcę.</span>
     <br/>
     <br/>
-    <b><span translate>data</span>:</b>
+    <span><b>DANE:</b></span>
     <br/>
-    <b><span translate>message</span>: </b>
+    <span>Ocena książki: </span>
+    <span class="usability-data">
+      <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
+        <b>4/6</b>
+      </div>
+    </span>
     <br/>
-    <span translate>test3.data1</span>
+    <span>Ocena sprzedawcy: </span>
+    <span class="usability-data">
+      <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
+        <b>8/10</b>
+      </div>
+    </span>
     <br/>
     <br/>
-    <span translate class="warning-message">goBackWarning</span>
+    <div class="warning-message">
+      <span>Uwaga:</span>
+      <br/>
+      <div matTooltip="Kopiowanie jest zablokowane">
+        <span>Nie można kopiować danych!</span>
+      </div>
+    </div>
   </mat-card>
   <mat-card class="usability-content">
 
     <mat-vertical-stepper [linear]="true" #stepper>
-      <mat-step [editable]="false" label="{{'intro' | translate}}" state="infoIcon">
+      <mat-step [editable]="false" label="Wprowadzenie" state="infoIcon">
         <form>
-          <span translate>test3.intro</span>
+          <span>Każdym etap składa się z dwóch kroków.</span><br/>
+          <span>Należy podać ocenę książki oraz sprzedawcy używając danych podanych w scenariuszu.</span>
           <div>
-            <button mat-raised-button color="primary" matStepperNext (click)="introConfirmation()"
-                    class="next-step-button"><span translate>next</span></button>
+            <button mat-raised-button color="primary" (click)="stepConfirm()"
+                    class="next-step-button"><span>Dalej</span></button>
           </div>
+
         </form>
+      </mat-step>
+      <ng-template matStepperIcon="number" let-index="index">{{Math.ceil(index/2)}}</ng-template>
+
+
+      <mat-step [editable]="false" label="Ocena książki">
+
+        <app-number-star-rating
+          [dataType]="'rating'"
+          [requiredRate]="4"
+          [title]="'Ocena książki'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-number-star-rating>
       </mat-step>
 
-      <ng-template matStepperIcon="number" let-index="index">{{index}}</ng-template>
 
-      <mat-step [stepControl]="firstFormGroupScenario3" [editable]="false" label="{{'typing' | translate}}">
-        <form [formGroup]="firstFormGroupScenario3">
-          <mat-form-field class="full-width">
-            <textarea matInput class="text-area" placeholder="{{'message' | translate }}" formControlName="firstCtrlScenario3" rows="6" required></textarea>
-          </mat-form-field>
-          <div>
-            <button mat-raised-button color="primary" matStepperNext (click)="firstConfirmation()"
-                    class="next-step-button"><span translate>next</span></button>
-          </div>
-        </form>
+      <mat-step [editable]="false" label="Ocena sprzedawcy">
+        <app-number-spinner-rating
+          [dataType]="'rating'"
+          [requiredRate]="8"
+          [title]="'Ocena sprzedawcy [0-10]'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-number-spinner-rating>
       </mat-step>
-      <mat-step [stepControl]="secondFormGroupScenario3" [editable]="false" label="{{'speechRecognition' | translate}}">
-        <form [formGroup]="secondFormGroupScenario3">
-          <!--<app-web-speech></app-web-speech>-->
-          <div>
-            <button mat-raised-button color="primary" matStepperNext (click)="secondConfirmation()"
-                    class="next-step-button"><span translate>next</span></button>
-          </div>
-        </form>
+
+      <mat-step [editable]="false" label="Ocena książki">
+        <app-number-radio-rating
+          [dataType]="'rating'"
+          [requiredRate]="4"
+          [title]="'Ocena książki'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-number-radio-rating>
       </mat-step>
+
+      <mat-step [editable]="false" label="Ocena sprzedawcy">
+        <app-number-slider-rating
+          [dataType]="'rating'"
+          [requiredRate]="8"
+          [title]="'Ocena sprzedawcy [0-10]'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-number-slider-rating>
+      </mat-step>
+
 
       <mat-step [stepControl]="summaryFormGroupScenario3" [editable]="false" label="{{'summary' | translate}}"
                 state="summaryIcon">

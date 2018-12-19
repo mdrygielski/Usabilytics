@@ -2,9 +2,9 @@ import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from 
 import {FormControl} from '@angular/forms';
 import {UserService} from '../../user.service';
 import {LoggingService} from '../../logging.service';
-import {SpeechRecognizerService} from '../../usability/scenario3/web-speech/shared/services/speech-recognizer.service';
-import {SpeechNotification} from '../../usability/scenario3/web-speech/shared/model/speech-notification';
-import {SpeechError} from '../../usability/scenario3/web-speech/shared/model/speech-error';
+import {SpeechRecognizerService} from '../shared/services/speech-recognizer.service';
+import {SpeechNotification} from '../shared/model/speech-notification';
+import {SpeechError} from '../shared/model/speech-error';
 
 @Component({
   selector: 'app-number-voice',
@@ -65,7 +65,7 @@ export class NumberVoiceComponent implements OnInit {
         'numberVoiceInputBarcodeTitle': this.title,
         'numberVoiceInputBarcodeDuration': this.duration,
         'numberVoiceInputBarcodeIncorrectCounter': this.incorrectCounter,
-        'numberVoiceInputBarcodeSEQRate': obj.rate,
+        'numberVoiceInputBarcodeSEQRate': obj.rating,
         'numberVoiceInputBarcodeComment': obj.comment
       };
       this.loggingService.SendData(numberVoiceInput).subscribe();

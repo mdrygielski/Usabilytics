@@ -1,0 +1,32 @@
+<div>
+  <div class="rating">
+    <input type="radio" value="6" [checked]="rating===6"/>
+    <label (click)='onClick(6)'></label>
+
+    <input type="radio" value="5" [checked]="rating===5"/>
+    <label (click)='onClick(5)'></label>
+
+    <input type="radio" value="4" [checked]="rating===4"/>
+    <label (click)='onClick(4)'></label>
+
+    <input type="radio" value="3" [checked]="rating===3"/>
+    <label (click)='onClick(3)'></label>
+
+    <input type="radio" value="2" [checked]="rating===2"/>
+    <label (click)='onClick(2)'></label>
+
+    <input type="radio" value="1" [checked]="rating===1"/>
+    <label (click)='onClick(1)'></label>
+
+  </div>
+  <br/>
+  <div class="rate-footer">
+    <mat-hint *ngIf="!incorrectRate">{{title}}</mat-hint>
+    <mat-error *ngIf="incorrectRate">Niepoprawna ocena</mat-error>
+  </div>
+  <div *ngIf="!finished">
+    <button mat-raised-button color="primary" (click)="validateRate()" class="confirm-button">Potwierdź</button>
+  </div>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
+</div>
+

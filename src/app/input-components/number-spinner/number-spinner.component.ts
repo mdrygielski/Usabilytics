@@ -54,7 +54,7 @@ export class NumberSpinnerComponent implements OnInit {
         'spinnerInputPriceDuration': this.duration,
         'spinnerInputPriceIncorrectCounter': this.incorrectCounter,
         'spinnerInputPriceArrowKeyCounter': this.arrowKeyCounter,
-        'spinnerInputPriceSEQRate': obj.rate,
+        'spinnerInputPriceSEQRate': obj.rating,
         'spinnerInputPriceComment': obj.comment
       };
       this.loggingService.SendData(numberInput).subscribe();

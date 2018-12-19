@@ -1,0 +1,24 @@
+<div>
+  <div class="seq-radio">
+    <mat-radio-group [(ngModel)]="rating" [labelPosition]="before">
+      <div fxLayout="row" fxLayoutAlign="space-around center">
+        <mat-radio-button [value]="1">1</mat-radio-button>
+        <mat-radio-button [value]="2">2</mat-radio-button>
+        <mat-radio-button [value]="3">3</mat-radio-button>
+        <mat-radio-button [value]="4">4</mat-radio-button>
+        <mat-radio-button [value]="5">5</mat-radio-button>
+        <mat-radio-button [value]="6">6</mat-radio-button>
+      </div>
+    </mat-radio-group>
+  </div>
+
+  <div class="rate-footer">
+    <mat-hint *ngIf="!incorrectRate">{{title}}</mat-hint>
+    <mat-error *ngIf="incorrectRate">Niepoprawna ocena</mat-error>
+  </div>
+  <div *ngIf="!finished">
+    <button mat-raised-button color="primary" (click)="validateRate()" class="confirm-button">Potwierdź</button>
+  </div>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
+</div>
+

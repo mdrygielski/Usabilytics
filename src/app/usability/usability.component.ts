@@ -13,6 +13,7 @@ export class UsabilityComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+  fourthFormGroup: FormGroup;
 
   constructor(private _formBuilder: FormBuilder,
               public userService: UserService) {}
@@ -26,6 +27,9 @@ export class UsabilityComponent implements OnInit {
     });
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required]
+    });
+    this.fourthFormGroup = this._formBuilder.group({
+      fourthCtrl: ['', Validators.required]
     });
   }
 
@@ -41,6 +45,10 @@ export class UsabilityComponent implements OnInit {
 
   scenario3Done() {
     console.log('scenario 3 finished!');
+    this.stepper.next();
+  }
+  scenario4Done() {
+    console.log('scenario 4 finished!');
     this.stepper.next();
   }
 }

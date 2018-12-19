@@ -75,7 +75,7 @@ export class DatePickerComponent implements OnInit {
           'datePickerSoonDuration': this.duration,
           'datePickerSoonModificationCounter': this.modificationCounter,
           'datePickerSoonIncorrectCounter': this.incorrectCounter,
-          'datePickerSoonSEQRate': obj.rate,
+          'datePickerSoonSEQRate': obj.rating,
           'datePickerSoonComment': obj.comment
         };
       this.loggingService.SendData(soonData).subscribe();
@@ -86,7 +86,7 @@ export class DatePickerComponent implements OnInit {
         'datePickerDistantDuration': this.duration,
         'datePickerDistantModificationCounter': this.modificationCounter,
         'datePickerDistantIncorrectCounter': this.incorrectCounter,
-        'datePickerDistantSEQRate': obj.rate,
+        'datePickerDistantSEQRate': obj.rating,
         'datePickerDistantComment': obj.comment
       };
       this.loggingService.SendData(distantData).subscribe();
