@@ -71,6 +71,17 @@ export class TextVoiceComponent implements OnInit {
       };
       this.loggingService.SendData(textVoiceInput).subscribe();
     }
+    if (this.dataType === 'complexText') {
+      const textVoiceInput = {
+        'textVoiceComplexTitle': this.title,
+        'textVoiceComplexDuration': this.duration,
+        'textVoiceComplexIncorrectCounter': this.incorrectCounter,
+        'textVoiceComplexArrowKeyCounter': this.arrowKeyCounter,
+        'textVoiceComplexSEQRate': obj.rating,
+        'textVoiceComplexComment': obj.comment
+      };
+      this.loggingService.SendData(textVoiceInput).subscribe();
+    }
     this.finish.emit();
   }
 

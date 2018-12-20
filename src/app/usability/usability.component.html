@@ -16,14 +16,20 @@
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup" [editable]="false">
       <form [formGroup]="thirdFormGroup">
-        <ng-template matStepLabel><span>Wprowadzanie tekstu</span></ng-template>
+        <ng-template matStepLabel><span>Ocena</span></ng-template>
         <app-scenario3 (finished)="scenario3Done()"></app-scenario3>
       </form>
     </mat-step>
     <mat-step [stepControl]="fourthFormGroup" [editable]="false">
       <form [formGroup]="fourthFormGroup">
         <ng-template matStepLabel><span>Wprowadzanie tekstu</span></ng-template>
-        <app-scenario3 (finished)="scenario4Done()"></app-scenario3>
+        <app-scenario4 (finished)="scenario4Done()"></app-scenario4>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="fifthFormGroup" [editable]="false">
+      <form [formGroup]="fifthFormGroup">
+        <ng-template matStepLabel><span>Ustawienia powiadomień</span></ng-template>
+        <app-scenario5 (finished)="scenario5Done()"></app-scenario5>
       </form>
     </mat-step>
 

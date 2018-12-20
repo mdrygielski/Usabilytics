@@ -45,13 +45,15 @@
 
         </form>
 
+        <app-slide-toggle-option [startTime]="stepStartTime"
+        (finish)="stepConfirm()"></app-slide-toggle-option>
 
-        <app-text-voice
-          [dataType]="'simpleText'"
-          [requiredText]="'test'"
-          [title]="'Wiadomość'"
-          [startTime]="stepStartTime"
-          (finish)="stepConfirm()"></app-text-voice>
+        <!--<app-text-voice-->
+        <!--[dataType]="'simpleText'"-->
+        <!--[requiredText]="'test'"-->
+        <!--[title]="'Wiadomość'"-->
+        <!--[startTime]="stepStartTime"-->
+        <!--(finish)="stepConfirm()"></app-text-voice>-->
 
         <!--<app-text-input-->
         <!--[dataType]="'simpleText'"-->
@@ -61,18 +63,18 @@
         <!--(finish)="stepConfirm()"></app-text-input>-->
 
         <!--<app-number-slider-rating-->
-          <!--[dataType]="'rating'"-->
-          <!--[requiredRate]="6"-->
-          <!--[title]="'Ocena sprzedawcy [0-10]'"-->
-          <!--[startTime]="stepStartTime"-->
-          <!--(finish)="stepConfirm()"></app-number-slider-rating>-->
+        <!--[dataType]="'rating'"-->
+        <!--[requiredRate]="6"-->
+        <!--[title]="'Ocena sprzedawcy [0-10]'"-->
+        <!--[startTime]="stepStartTime"-->
+        <!--(finish)="stepConfirm()"></app-number-slider-rating>-->
 
         <!--<app-number-spinner-rating-->
-          <!--[dataType]="'rating'"-->
-          <!--[requiredRate]="6"-->
-          <!--[title]="'Ocena sprzedawcy [0-10]'"-->
-          <!--[startTime]="stepStartTime"-->
-          <!--(finish)="stepConfirm()"></app-number-spinner-rating>-->
+        <!--[dataType]="'rating'"-->
+        <!--[requiredRate]="6"-->
+        <!--[title]="'Ocena sprzedawcy [0-10]'"-->
+        <!--[startTime]="stepStartTime"-->
+        <!--(finish)="stepConfirm()"></app-number-spinner-rating>-->
 
 
         <!--<app-number-radio-rating-->
@@ -83,31 +85,12 @@
         <!--(finish)="stepConfirm()"></app-number-radio-rating>-->
 
 
-
-
-
-
         <!--<app-number-star-rating-->
-          <!--[dataType]="'rating'"-->
-          <!--[requiredRate]="4"-->
-          <!--[title]="'Ocena książki'"-->
-          <!--[startTime]="stepStartTime"-->
-          <!--(finish)="stepConfirm()"></app-number-star-rating>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <!--[dataType]="'rating'"-->
+        <!--[requiredRate]="4"-->
+        <!--[title]="'Ocena książki'"-->
+        <!--[startTime]="stepStartTime"-->
+        <!--(finish)="stepConfirm()"></app-number-star-rating>-->
 
 
       </mat-step>
@@ -116,22 +99,22 @@
 
       <mat-step [editable]="false" label="Data odbioru zamówienia">
         <!--<div *ngIf="this.userService.variant === 1">-->
-          <!--<app-date-month-selector [dataType]="'soon'"-->
-                                   <!--[requiredYear]="2018"-->
-                                   <!--[requiredMonth]="12"-->
-                                   <!--[requiredDay]="31"-->
-                                   <!--[title]="'Data odbioru zamówienia'"-->
-                                   <!--[startTime]="stepStartTime"-->
-                                   <!--(finish)="stepConfirm()"></app-date-month-selector>-->
+        <!--<app-date-month-selector [dataType]="'soon'"-->
+        <!--[requiredYear]="2018"-->
+        <!--[requiredMonth]="12"-->
+        <!--[requiredDay]="31"-->
+        <!--[title]="'Data odbioru zamówienia'"-->
+        <!--[startTime]="stepStartTime"-->
+        <!--(finish)="stepConfirm()"></app-date-month-selector>-->
         <!--</div>-->
         <!--<div *ngIf="this.userService.variant !== 1">-->
-          <!--<app-date-full-selector [dataType]="'soon'"-->
-                                  <!--[requiredYear]="2018"-->
-                                  <!--[requiredMonth]="12"-->
-                                  <!--[requiredDay]="31"-->
-                                  <!--[title]="'Data odbioru zamówienia'"-->
-                                  <!--[startTime]="stepStartTime"-->
-                                  <!--(finish)="stepConfirm()"></app-date-full-selector>-->
+        <!--<app-date-full-selector [dataType]="'soon'"-->
+        <!--[requiredYear]="2018"-->
+        <!--[requiredMonth]="12"-->
+        <!--[requiredDay]="31"-->
+        <!--[title]="'Data odbioru zamówienia'"-->
+        <!--[startTime]="stepStartTime"-->
+        <!--(finish)="stepConfirm()"></app-date-full-selector>-->
         <!--</div>-->
 
         <app-number-voice

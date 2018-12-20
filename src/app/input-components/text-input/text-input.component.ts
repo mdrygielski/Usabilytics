@@ -59,6 +59,17 @@ export class TextInputComponent implements OnInit {
       };
       this.loggingService.SendData(textInput).subscribe();
     }
+    if (this.dataType === 'complexText') {
+      const textInput = {
+        'textInputComplexTitle': this.title,
+        'textInputComplexDuration': this.duration,
+        'textInputComplexIncorrectCounter': this.incorrectCounter,
+        'textInputComplexArrowKeyCounter': this.arrowKeyCounter,
+        'textInputComplexSEQRate': obj.rating,
+        'textInputComplexComment': obj.comment
+      };
+      this.loggingService.SendData(textInput).subscribe();
+    }
     this.finish.emit();
   }
 

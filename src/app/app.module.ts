@@ -12,7 +12,7 @@ import {
   MatDatepickerModule,
   MatIconModule,
   MatInputModule, MatListModule,
-  MatNativeDateModule, MatRadioButton, MatRadioModule, MatSliderModule,
+  MatNativeDateModule, MatRadioButton, MatRadioModule, MatSliderModule, MatSlideToggleModule,
   MatStepperModule,
   MatToolbarModule, MatTooltipModule, NativeDateModule
 } from '@angular/material';
@@ -36,7 +36,6 @@ import { Scenario1Component } from './usability/scenario1/scenario1.component';
 import {MAT_STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { Scenario2Component } from './usability/scenario2/scenario2.component';
 import { Scenario3Component } from './usability/scenario3/scenario3.component';
-// import { WebSpeechComponent } from './usability/scenario3/web-speech/web-speech.component';
 import {CommonModule} from '@angular/common';
 import {SpeechRecognizerService} from './input-components/shared/services/speech-recognizer.service';
 import {UserService} from './user.service';
@@ -60,6 +59,8 @@ import { NumberSpinnerRatingComponent } from './input-components/number-spinner-
 import { NumberSliderRatingComponent } from './input-components/number-slider-rating/number-slider-rating.component';
 import { TextInputComponent } from './input-components/text-input/text-input.component';
 import { TextVoiceComponent } from './input-components/text-voice/text-voice.component';
+import { Scenario5Component } from './usability/scenario5/scenario5.component';
+import { SlideToggleOptionComponent } from './input-components/slide-toggle-option/slide-toggle-option.component';
 
 
 @NgModule({
@@ -71,7 +72,6 @@ import { TextVoiceComponent } from './input-components/text-voice/text-voice.com
     Scenario1Component,
     Scenario2Component,
     Scenario3Component,
-    // WebSpeechComponent,
     DatePickerComponent,
     SeqComponent,
     DateSpinnerComponent,
@@ -90,6 +90,8 @@ import { TextVoiceComponent } from './input-components/text-voice/text-voice.com
     NumberSliderRatingComponent,
     TextInputComponent,
     TextVoiceComponent,
+    Scenario5Component,
+    SlideToggleOptionComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,6 +116,7 @@ import { TextVoiceComponent } from './input-components/text-voice/text-voice.com
     MatListModule,
     MatRadioModule,
     MatTooltipModule,
+    MatSlideToggleModule,
 
     AppRoutingModule,
     HttpClientModule,

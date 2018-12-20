@@ -15,6 +15,7 @@ export class UsabilityComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
+  fifthFormGroup: FormGroup;
 
   constructor(private _formBuilder: FormBuilder,
               public userService: UserService,
@@ -32,6 +33,9 @@ export class UsabilityComponent implements OnInit {
     });
     this.fourthFormGroup = this._formBuilder.group({
       fourthCtrl: ['', Validators.required]
+    });
+    this.fifthFormGroup = this._formBuilder.group({
+      fifthCtrl: ['', Validators.required]
     });
     this.speechRecognizer.initialize('pl');
   }
@@ -52,6 +56,10 @@ export class UsabilityComponent implements OnInit {
   }
   scenario4Done() {
     console.log('scenario 4 finished!');
+    this.stepper.next();
+  }
+  scenario5Done() {
+    console.log('scenario 5 finished!');
     this.stepper.next();
   }
 }

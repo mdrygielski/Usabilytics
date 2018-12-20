@@ -1,0 +1,14 @@
+.options-footer {
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.options-panel {
+  width: 500px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.options-element {
+  padding-top: 10px;
+}

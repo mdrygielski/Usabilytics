@@ -1,13 +1,13 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatStepper} from '@angular/material';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-scenario4',
-  templateUrl: './scenario4.component.html',
-  styleUrls: ['./scenario4.component.css', '../usability.component.css']
+  selector: 'app-scenario5',
+  templateUrl: './scenario5.component.html',
+  styleUrls: ['./scenario5.component.css', '../usability.component.css']
 })
-export class Scenario4Component implements OnInit {
+export class Scenario5Component implements OnInit {
   @Output() finished = new EventEmitter<void>();
   @ViewChild('stepper') stepper: MatStepper;
 
@@ -37,4 +37,5 @@ export class Scenario4Component implements OnInit {
     this.finished.emit();
     console.log('step 2 - done');
   }
+
 }

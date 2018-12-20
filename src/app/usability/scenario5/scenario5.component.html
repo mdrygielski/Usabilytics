@@ -1,22 +1,28 @@
 <div fxLayout="row wrap" fxFlex="100">
   <mat-card class="instruction" oncopy="return false" oncut="return false">
-    <h2>Scenariusz 4</h2>
-    <span>Prosze uzupełnić ocenę ksiażki o komentarz<br/>oraz maila.</span>
+    <h2>Scenariusz 5</h2>
+    <span>W ostatnim etapie proszę podać jakie informację są dla Ciebie interesujące</span>
     <br/>
     <br/>
     <span><b>DANE:</b></span>
     <br/>
-    <span>opinia: </span>
+    <span>Chcesz otrzymywać powiadomienia o:</span><br/>
     <span class="usability-data">
       <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
-        <b>polecam</b>
+        <ul>
+          <li><b>Promocjach</b></li>
+          <li><b>Zmianie statusu zamówienia</b></li>
+        </ul>
       </div>
     </span>
     <br/>
-    <span>mail: </span>
+    <span>Nie chcesz otrzymywać powiadomień o: </span>
     <span class="usability-data">
       <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
-        <b>polecam</b>
+        <ul>
+          <li><b>Nowościach</b></li>
+          <li><b>Niedokończonych transakcjach</b></li>
+        </ul>
       </div>
     </span>
     <br/>
@@ -32,7 +38,7 @@
   <mat-card class="usability-content">
 
     <mat-vertical-stepper [linear]="true" #stepper>
-      <mat-step [editable]="false" label="{{'intro' | translate}}" state="infoIcon">
+      <mat-step [editable]="false" label="Wprowadzenie" state="infoIcon">
         <form>
           <span>W tym etapie ...</span>
           <div>
@@ -46,42 +52,18 @@
 
       <mat-step [editable]="false" label="Opinia">
 
-        <app-text-input
-        [dataType]="'simpleText'"
-        [requiredText]="'test'"
-        [title]="'Opinia'"
-        [startTime]="stepStartTime"
-        (finish)="stepConfirm()"></app-text-input>
       </mat-step>
 
       <mat-step [editable]="false" label="Wiadomość">
 
-        <app-text-input
-          [dataType]="'complexText'"
-          [requiredText]="'test'"
-          [title]="'Wiadomość'"
-          [startTime]="stepStartTime"
-          (finish)="stepConfirm()"></app-text-input>
       </mat-step>
 
       <mat-step [editable]="false" label="Opinia">
 
-        <app-text-voice
-          [dataType]="'simpleText'"
-          [requiredText]="'test'"
-          [title]="'Opinia'"
-          [startTime]="stepStartTime"
-          (finish)="stepConfirm()"></app-text-voice>
       </mat-step>
 
       <mat-step [editable]="false" label="Wiadomość">
 
-        <app-text-voice
-          [dataType]="'complexText'"
-          [requiredText]="'test'"
-          [title]="'Wiadomość'"
-          [startTime]="stepStartTime"
-          (finish)="stepConfirm()"></app-text-voice>
       </mat-step>
 
 

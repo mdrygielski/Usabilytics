@@ -1,0 +1,26 @@
+<div>
+  <div class="options-panel">
+    <mat-slide-toggle class="options-element"
+      [(ngModel)]="option1"
+      (change)="incorrectOptions = false">Powiadamiaj o promocjach</mat-slide-toggle><br/>
+    <mat-slide-toggle class="options-element"
+      [(ngModel)]="option2"
+      (change)="incorrectOptions = false">Powiadamiaj o nowościach</mat-slide-toggle><br/>
+    <mat-slide-toggle class="options-element"
+      [(ngModel)]="option3"
+      (change)="incorrectOptions = false">Powiadamiaj o zmianie statusu zamówienia</mat-slide-toggle><br/>
+    <mat-slide-toggle class="options-element"
+      [(ngModel)]="option4"
+      (change)="incorrectOptions = false">Powiadamiaj o niedokończonych transakcjach</mat-slide-toggle>
+
+    <div class="options-footer">
+      <mat-error *ngIf="incorrectOptions">Niepoprawna ustawienia</mat-error>
+    </div>
+
+  </div>
+  <div *ngIf="!finished">
+    <button mat-raised-button color="primary" (click)="validateOptions()" class="confirm-button">Potwierdź</button>
+  </div>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
+</div>
+
