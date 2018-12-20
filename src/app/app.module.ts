@@ -58,6 +58,8 @@ import { NumberStarRatingComponent } from './input-components/number-star-rating
 import { NumberRadioRatingComponent } from './input-components/number-radio-rating/number-radio-rating.component';
 import { NumberSpinnerRatingComponent } from './input-components/number-spinner-rating/number-spinner-rating.component';
 import { NumberSliderRatingComponent } from './input-components/number-slider-rating/number-slider-rating.component';
+import { TextInputComponent } from './input-components/text-input/text-input.component';
+import { TextVoiceComponent } from './input-components/text-voice/text-voice.component';
 
 
 @NgModule({
@@ -85,7 +87,9 @@ import { NumberSliderRatingComponent } from './input-components/number-slider-ra
     NumberStarRatingComponent,
     NumberRadioRatingComponent,
     NumberSpinnerRatingComponent,
-    NumberSliderRatingComponent
+    NumberSliderRatingComponent,
+    TextInputComponent,
+    TextVoiceComponent,
   ],
   imports: [
     BrowserModule,

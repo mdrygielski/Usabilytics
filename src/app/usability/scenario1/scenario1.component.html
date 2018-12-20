@@ -46,6 +46,20 @@
         </form>
 
 
+        <app-text-voice
+          [dataType]="'simpleText'"
+          [requiredText]="'test'"
+          [title]="'Wiadomość'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-text-voice>
+
+        <!--<app-text-input-->
+        <!--[dataType]="'simpleText'"-->
+        <!--[requiredText]="'test'"-->
+        <!--[title]="'Wiadomość'"-->
+        <!--[startTime]="stepStartTime"-->
+        <!--(finish)="stepConfirm()"></app-text-input>-->
+
         <!--<app-number-slider-rating-->
           <!--[dataType]="'rating'"-->
           <!--[requiredRate]="6"-->

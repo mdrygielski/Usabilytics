@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatStepper} from '@angular/material';
 import {UserService} from '../user.service';
+import {SpeechRecognizerService} from '../input-components/shared/services/speech-recognizer.service';
 
 @Component({
   selector: 'app-usability',
@@ -16,7 +17,8 @@ export class UsabilityComponent implements OnInit {
   fourthFormGroup: FormGroup;
 
   constructor(private _formBuilder: FormBuilder,
-              public userService: UserService) {}
+              public userService: UserService,
+              private speechRecognizer: SpeechRecognizerService) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -31,6 +33,7 @@ export class UsabilityComponent implements OnInit {
     this.fourthFormGroup = this._formBuilder.group({
       fourthCtrl: ['', Validators.required]
     });
+    this.speechRecognizer.initialize('pl');
   }
 
   scenario1Done() {

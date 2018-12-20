@@ -1,0 +1,18 @@
+<div>
+  <mat-form-field>
+    <textarea matInput
+              class="text-area"
+              placeholder="wiadomość"
+              [formControl]="textInputFormControl"
+              (keydown)="keyCounter()"
+              rows="6"></textarea>
+
+    <mat-hint>{{title}}</mat-hint>
+    <mat-error *ngIf="textInputFormControl.hasError('incorrectText')">Niepoprawna wiadomość</mat-error>
+  </mat-form-field>
+  <div *ngIf="!finished">
+    <button mat-raised-button color="primary" (click)="validateText()" class="confirm-button">Potwierdź</button>
+  </div>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
+</div>
+

@@ -11,23 +11,25 @@
       <span translate>stop</span></button>
   </div>
   <div *ngIf="interimTranscript !==''" class="loading-animation"><img src="./../../../assets/img/working.svg"
-  width="84"></div>
+                                                                      width="84"></div>
   <br/>
   <br/>
   <mat-form-field>
-    <input matInput #numberVoice
-           type="text"
-           autocomplete="off"
-           [value]="interimTranscript ===''?finalTranscript: finalTranscript + ' ' + interimTranscript + '...'"
-           (input)="updateFinalTranscript($event.target.value)"
-           placeholder="Kod kreskowy"
-           (keydown)="NumberAndSeparatorOnly($event)"
-           [formControl]="numberBigInputFormControl">
+    <textarea matInput
+              class="text-area"
+              autocomplete="off"
+              [value]="interimTranscript ===''?finalTranscript: finalTranscript + ' ' + interimTranscript + '...'"
+              (input)="updateFinalTranscript($event.target.value)"
+              placeholder="wiadomość"
+              [formControl]="textVoiceFormControl"
+              (keydown)="keyCounter()"
+              rows="6"></textarea>
+
     <mat-hint>{{title}}</mat-hint>
-    <mat-error *ngIf="numberBigInputFormControl.hasError('incorrectNumberVoice')">Niepoprawna wartość</mat-error>
+    <mat-error *ngIf="textVoiceFormControl.hasError('incorrectText')">Niepoprawna wiadomość</mat-error>
   </mat-form-field>
   <div *ngIf="!finished">
-    <button mat-raised-button color="primary" (click)="validateNumberVoice()" class="confirm-button">Potwierdź</button>
+    <button mat-raised-button color="primary" (click)="validateText()" class="confirm-button">Potwierdź</button>
   </div>
   <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
 </div>
