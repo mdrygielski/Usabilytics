@@ -18,15 +18,13 @@ export class SpeechRecognizerService {
   constructor() {}
 
   initialize(language: string): void {
+    console.log('Initializing service');
     this.recognition = new webkitSpeechRecognition();
     this.recognition.continuous = true;
     this.recognition.interimResults = true;
     this.recognition.lang = language;
   }
 
-  setLanguage(language: string) {
-    this.recognition.lang = language;
-  }
 
   start(timestamp) {
     this.startTimestamp = timestamp;
@@ -34,12 +32,9 @@ export class SpeechRecognizerService {
   }
 
   onStart(): Observable<SpeechNotification> {
-    if (!this.recognition) {
-      this.initialize(this.language);
-    }
-
     return new Observable(observer => {
       this.recognition.onstart = () => {
+        console.log('onStart - service');
         observer.next({
           info: 'info_speak_now'
         });

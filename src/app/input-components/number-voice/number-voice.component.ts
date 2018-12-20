@@ -23,6 +23,7 @@ export class NumberVoiceComponent implements OnInit {
   recognizing = false;
   notification: string;
 
+  private initialized: boolean;
   private endTime: number;
   private duration: number;
   private incorrectCounter: number;
@@ -39,8 +40,6 @@ export class NumberVoiceComponent implements OnInit {
   ngOnInit() {
     this.finished = false;
     this.incorrectCounter = 0;
-    this.speechRecognizer.initialize('pl');
-    this.initRecognition();
     this.notification = null;
   }
 
@@ -75,6 +74,9 @@ export class NumberVoiceComponent implements OnInit {
 
 
   startButton(event) {
+    if (!this.initialized) {
+      this.initRecognition();
+    }
     if (this.recognizing) {
       this.speechRecognizer.stop();
       return;
@@ -85,6 +87,7 @@ export class NumberVoiceComponent implements OnInit {
   private initRecognition() {
     this.speechRecognizer.onStart()
       .subscribe(data => {
+        console.log('onStart - number');
         this.recognizing = true;
         this.notification = 'I\'m listening...';
         this.detectChanges();

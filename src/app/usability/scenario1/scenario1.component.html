@@ -115,24 +115,31 @@
       <ng-template matStepperIcon="number" let-index="index">{{Math.ceil(index/2)}}</ng-template>
 
       <mat-step [editable]="false" label="Data odbioru zamówienia">
-        <div *ngIf="this.userService.variant === 1">
-          <app-date-month-selector [dataType]="'soon'"
-                                   [requiredYear]="2018"
-                                   [requiredMonth]="12"
-                                   [requiredDay]="31"
-                                   [title]="'Data odbioru zamówienia'"
-                                   [startTime]="stepStartTime"
-                                   (finish)="stepConfirm()"></app-date-month-selector>
-        </div>
-        <div *ngIf="this.userService.variant !== 1">
-          <app-date-full-selector [dataType]="'soon'"
-                                  [requiredYear]="2018"
-                                  [requiredMonth]="12"
-                                  [requiredDay]="31"
-                                  [title]="'Data odbioru zamówienia'"
-                                  [startTime]="stepStartTime"
-                                  (finish)="stepConfirm()"></app-date-full-selector>
-        </div>
+        <!--<div *ngIf="this.userService.variant === 1">-->
+          <!--<app-date-month-selector [dataType]="'soon'"-->
+                                   <!--[requiredYear]="2018"-->
+                                   <!--[requiredMonth]="12"-->
+                                   <!--[requiredDay]="31"-->
+                                   <!--[title]="'Data odbioru zamówienia'"-->
+                                   <!--[startTime]="stepStartTime"-->
+                                   <!--(finish)="stepConfirm()"></app-date-month-selector>-->
+        <!--</div>-->
+        <!--<div *ngIf="this.userService.variant !== 1">-->
+          <!--<app-date-full-selector [dataType]="'soon'"-->
+                                  <!--[requiredYear]="2018"-->
+                                  <!--[requiredMonth]="12"-->
+                                  <!--[requiredDay]="31"-->
+                                  <!--[title]="'Data odbioru zamówienia'"-->
+                                  <!--[startTime]="stepStartTime"-->
+                                  <!--(finish)="stepConfirm()"></app-date-full-selector>-->
+        <!--</div>-->
+
+        <app-number-voice
+          [dataType]="'barcode'"
+          [requiredValue]="123"
+          [title]="'Kod kreskowy'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-number-voice>
       </mat-step>
       <mat-step [editable]="false" label="Data urodzenia">
         <div *ngIf="this.userService.variant === 1">

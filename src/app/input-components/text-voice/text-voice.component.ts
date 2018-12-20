@@ -14,10 +14,11 @@ import {SpeechError} from '../shared/model/speech-error';
 export class TextVoiceComponent implements OnInit {
   @Output() finish = new EventEmitter<void>();
   @Input() dataType: string;
-  @Input() requiredText: number;
+  @Input() requiredText: string;
   @Input() title: string;
   @Input() startTime: number;
 
+  private initialized: boolean;
   finalTranscript = '';
   interimTranscript = '';
   recognizing = false;
@@ -42,14 +43,11 @@ export class TextVoiceComponent implements OnInit {
     this.incorrectCounter = 0;
     this.arrowKeyCounter = 0;
     this.notification = null;
-    this.speechRecognizer.initialize('pl');
-    this.initRecognition();
   }
 
 
   validateText() {
-    console.log(this.finalTranscript);
-    if (this.textVoiceFormControl.value === this.requiredText) {
+    if (this.finalTranscript === this.requiredText) {
       this.endTime = Date.now();
       this.finished = true;
       this.textVoiceFormControl.setErrors(null);
@@ -77,6 +75,9 @@ export class TextVoiceComponent implements OnInit {
   }
 
   startButton(event) {
+    if (!this.initialized) {
+      this.initRecognition();
+    }
     if (this.recognizing) {
       this.speechRecognizer.stop();
       return;
@@ -85,8 +86,10 @@ export class TextVoiceComponent implements OnInit {
   }
 
   private initRecognition() {
+    this.initialized = true;
     this.speechRecognizer.onStart()
       .subscribe(data => {
+        console.log('onStart - text');
         this.recognizing = true;
         this.notification = 'I\'m listening...';
         this.detectChanges();
