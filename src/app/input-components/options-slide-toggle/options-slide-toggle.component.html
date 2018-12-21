@@ -1,0 +1,42 @@
+<div>
+  <div class="options-panel">
+    <div class="options-element">
+      <div style="display: inline-block;">Powiadamiaj o promocjach</div>
+      <mat-slide-toggle class="options-component"
+                        [(ngModel)]="option1"
+                        (change)="incorrectOptions = false"></mat-slide-toggle>
+    </div>
+
+
+    <div class="options-element">
+      <div style="display: inline-block;">Powiadamiaj o nowościach</div>
+      <mat-slide-toggle class="options-component"
+                        [(ngModel)]="option2"
+                        (change)="incorrectOptions = false"></mat-slide-toggle>
+    </div>
+
+    <div class="options-element">
+      <div style="display: inline-block;">Powiadamiaj o zmianie statusu zamówienia</div>
+      <mat-slide-toggle class="options-component"
+        [(ngModel)]="option3"
+        (change)="incorrectOptions = false"></mat-slide-toggle>
+    </div>
+
+    <div class="options-element">
+      <div style="display: inline-block;">Powiadamiaj o niedokończonych transakcjach</div>
+      <mat-slide-toggle class="options-component"
+                        [(ngModel)]="option4"
+                        (change)="incorrectOptions = false"></mat-slide-toggle>
+    </div>
+
+    <div class="options-footer">
+      <mat-error *ngIf="incorrectOptions">Niepoprawna ustawienia</mat-error>
+    </div>
+
+  </div>
+  <div *ngIf="!finished">
+    <button mat-raised-button color="primary" (click)="validateOptions()" class="confirm-button">Potwierdź</button>
+  </div>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
+</div>
+

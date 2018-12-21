@@ -60,7 +60,9 @@ import { NumberSliderRatingComponent } from './input-components/number-slider-ra
 import { TextInputComponent } from './input-components/text-input/text-input.component';
 import { TextVoiceComponent } from './input-components/text-voice/text-voice.component';
 import { Scenario5Component } from './usability/scenario5/scenario5.component';
-import { SlideToggleOptionComponent } from './input-components/slide-toggle-option/slide-toggle-option.component';
+import { OptionsSlideToggleComponent } from './input-components/options-slide-toggle/options-slide-toggle.component';
+import { OptionsSelectorComponent } from './input-components/options-selector/options-selector.component';
+import { OptionsCheckboxComponent } from './options-checkbox/options-checkbox.component';
 
 
 @NgModule({
@@ -91,7 +93,9 @@ import { SlideToggleOptionComponent } from './input-components/slide-toggle-opti
     TextInputComponent,
     TextVoiceComponent,
     Scenario5Component,
-    SlideToggleOptionComponent,
+    OptionsSlideToggleComponent,
+    OptionsSelectorComponent,
+    OptionsCheckboxComponent,
   ],
   imports: [
     BrowserModule,

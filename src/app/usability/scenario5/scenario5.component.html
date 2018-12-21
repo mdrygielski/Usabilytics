@@ -42,20 +42,22 @@
         <form>
           <span>W tym etapie ...</span>
           <div>
-            <button mat-raised-button color="primary" matStepperNext (click)="introConfirmation()"
-                    class="next-step-button"><span translate>next</span></button>
+            <button mat-raised-button color="primary" (click)="stepConfirm()"
+                    class="next-step-button"><span>Dalej</span></button>
           </div>
         </form>
       </mat-step>
 
       <ng-template matStepperIcon="number" let-index="index">{{index}}</ng-template>
 
-      <mat-step [editable]="false" label="Opinia">
-
+      <mat-step [editable]="false" label="Opcje">
+        <app-options-slide-toggle [startTime]="stepStartTime"
+                                  (finish)="stepConfirm()"></app-options-slide-toggle>
       </mat-step>
 
       <mat-step [editable]="false" label="Wiadomość">
-
+        <app-options-selector [startTime]="stepStartTime"
+                              (finish)="stepConfirm()"></app-options-selector>
       </mat-step>
 
       <mat-step [editable]="false" label="Opinia">

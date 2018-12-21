@@ -5,10 +5,16 @@
 }
 
 .options-panel {
-  width: 500px;
+  width: 450px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
 .options-element {
-  padding-top: 10px;
+  padding-top: 30px;
+}
+
+.options-component {
+  width: 80px;
+  float: right;
 }
