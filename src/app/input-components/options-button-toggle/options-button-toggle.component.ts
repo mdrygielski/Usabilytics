@@ -3,11 +3,11 @@ import {UserService} from '../../user.service';
 import {LoggingService} from '../../logging.service';
 
 @Component({
-  selector: 'app-options-selector',
-  templateUrl: './options-selector.component.html',
-  styleUrls: ['./options-selector.component.css', '../../usability/usability.component.css']
+  selector: 'app-options-button-toggle',
+  templateUrl: './options-button-toggle.component.html',
+  styleUrls: ['./options-button-toggle.component.css', '../../usability/usability.component.css']
 })
-export class OptionsSelectorComponent implements OnInit {
+export class OptionsButtonToggleComponent implements OnInit {
   @Output() finish = new EventEmitter<void>();
   @Input() startTime: number;
   option1 = false;
@@ -24,7 +24,6 @@ export class OptionsSelectorComponent implements OnInit {
   constructor(private userService: UserService,
               private loggingService: LoggingService) {
   }
-
 
   ngOnInit() {
     this.finished = false;
@@ -45,10 +44,10 @@ export class OptionsSelectorComponent implements OnInit {
 
   submitTest(obj) {
     const starRating = {
-      'optionsSelectorDuration': this.duration,
-      'optionsSelectorIncorrectCounter': this.incorrectCounter,
-      'optionsSelectorSEQRate': obj.rate,
-      'optionsSelectorComment': obj.comment
+      'optionsButtonToggleDuration': this.duration,
+      'optionsButtonToggleIncorrectCounter': this.incorrectCounter,
+      'optionsButtonToggleSEQRate': obj.rate,
+      'optionsButtonToggleComment': obj.comment
     };
     this.loggingService.SendData(starRating).subscribe();
     this.finish.emit();

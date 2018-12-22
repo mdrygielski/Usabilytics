@@ -7,8 +7,8 @@ import {AppbarComponent} from './appbar/appbar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   DateAdapter, MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-  MatCardModule,
+  MAT_DATE_LOCALE, MatButtonToggleModule,
+  MatCardModule, MatCheckboxModule,
   MatDatepickerModule,
   MatIconModule,
   MatInputModule, MatListModule,
@@ -62,7 +62,10 @@ import { TextVoiceComponent } from './input-components/text-voice/text-voice.com
 import { Scenario5Component } from './usability/scenario5/scenario5.component';
 import { OptionsSlideToggleComponent } from './input-components/options-slide-toggle/options-slide-toggle.component';
 import { OptionsSelectorComponent } from './input-components/options-selector/options-selector.component';
-import { OptionsCheckboxComponent } from './options-checkbox/options-checkbox.component';
+import { OptionsCheckboxComponent } from './input-components/options-checkbox/options-checkbox.component';
+import { OptionsRadioButtonComponent } from './input-components/options-radio-button/options-radio-button.component';
+import { OptionsButtonComponent } from './input-components/options-button/options-button.component';
+import { OptionsButtonToggleComponent } from './input-components/options-button-toggle/options-button-toggle.component';
 
 
 @NgModule({
@@ -96,6 +99,9 @@ import { OptionsCheckboxComponent } from './options-checkbox/options-checkbox.co
     OptionsSlideToggleComponent,
     OptionsSelectorComponent,
     OptionsCheckboxComponent,
+    OptionsRadioButtonComponent,
+    OptionsButtonComponent,
+    OptionsButtonToggleComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,6 +127,8 @@ import { OptionsCheckboxComponent } from './options-checkbox/options-checkbox.co
     MatRadioModule,
     MatTooltipModule,
     MatSlideToggleModule,
+    MatCheckboxModule,
+    MatButtonToggleModule,
 
     AppRoutingModule,
     HttpClientModule,

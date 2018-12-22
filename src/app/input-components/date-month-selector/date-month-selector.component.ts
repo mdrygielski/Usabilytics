@@ -1,8 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import {UserService} from '../../user.service';
 import {LoggingService} from '../../logging.service';
-import {tryCatch} from 'rxjs/internal-compatibility';
 
 
 @Component({
@@ -145,9 +144,5 @@ export class DateMonthSelectorComponent implements OnInit {
     this.dateMonthSelectorDayFormControl.setErrors(null);
     this.dateMonthSelectorMonthFormControl.setErrors(null);
     this.dateMonthSelectorYearFormControl.setErrors(null);
-  }
-  clearError($event) {
-    $event.target.select();
-    this.clearFormErrors();
   }
 }

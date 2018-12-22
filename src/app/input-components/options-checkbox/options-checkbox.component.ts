@@ -3,11 +3,11 @@ import {UserService} from '../../user.service';
 import {LoggingService} from '../../logging.service';
 
 @Component({
-  selector: 'app-options-selector',
-  templateUrl: './options-selector.component.html',
-  styleUrls: ['./options-selector.component.css', '../../usability/usability.component.css']
+  selector: 'app-options-checkbox',
+  templateUrl: './options-checkbox.component.html',
+  styleUrls: ['./options-checkbox.component.css', '../../usability/usability.component.css']
 })
-export class OptionsSelectorComponent implements OnInit {
+export class OptionsCheckboxComponent implements OnInit {
   @Output() finish = new EventEmitter<void>();
   @Input() startTime: number;
   option1 = false;
@@ -24,7 +24,6 @@ export class OptionsSelectorComponent implements OnInit {
   constructor(private userService: UserService,
               private loggingService: LoggingService) {
   }
-
 
   ngOnInit() {
     this.finished = false;
@@ -45,14 +44,12 @@ export class OptionsSelectorComponent implements OnInit {
 
   submitTest(obj) {
     const starRating = {
-      'optionsSelectorDuration': this.duration,
-      'optionsSelectorIncorrectCounter': this.incorrectCounter,
-      'optionsSelectorSEQRate': obj.rate,
-      'optionsSelectorComment': obj.comment
+      'optionsCheckboxDuration': this.duration,
+      'optionsCheckboxIncorrectCounter': this.incorrectCounter,
+      'optionsCheckboxSEQRate': obj.rate,
+      'optionsCheckboxComment': obj.comment
     };
     this.loggingService.SendData(starRating).subscribe();
     this.finish.emit();
   }
-
-
 }

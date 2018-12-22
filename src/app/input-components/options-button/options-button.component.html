@@ -1,0 +1,46 @@
+<div>
+  <form class="options-panel">
+    <div class="options-element">
+      <div style="display: inline-block;">Powiadamiaj o promocjach</div>
+      <button mat-button
+              class="options-component"
+              (click)="option1 = !option1"
+              [disabled]="finished">{{option1?'Wyłącz':'Włącz'}}</button>
+    </div>
+
+
+    <div class="options-element">
+      <div style="display: inline-block;">Powiadamiaj o nowościach</div>
+      <button mat-button
+              class="options-component"
+              (click)="option2 = !option2"
+              [disabled]="finished">{{option2?'Wyłącz':'Włącz'}}</button>
+    </div>
+
+    <div class="options-element">
+      <div style="display: inline-block;">Powiadamiaj o zmianie statusu zamówienia</div>
+      <button mat-button
+              class="options-component"
+              (click)="option3 = !option3"
+              [disabled]="finished">{{option3?'Wyłącz':'Włącz'}}</button>
+    </div>
+
+    <div class="options-element">
+      <div style="display: inline-block;">Powiadamiaj o niedokończonych transakcjach</div>
+      <button mat-button
+              class="options-component"
+              (click)="option4 = !option4"
+              [disabled]="finished">{{option4?'Wyłącz':'Włącz'}}</button>
+    </div>
+
+    <div class="options-footer">
+      <mat-error *ngIf="incorrectOptions">Niepoprawne ustawienia</mat-error>
+    </div>
+
+  </form>
+  <div *ngIf="!finished">
+    <button mat-raised-button color="primary" (click)="validateOptions()" class="confirm-button">Potwierdź</button>
+  </div>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
+</div>
+

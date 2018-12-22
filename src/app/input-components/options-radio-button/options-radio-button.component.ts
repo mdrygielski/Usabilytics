@@ -3,11 +3,11 @@ import {UserService} from '../../user.service';
 import {LoggingService} from '../../logging.service';
 
 @Component({
-  selector: 'app-options-selector',
-  templateUrl: './options-selector.component.html',
-  styleUrls: ['./options-selector.component.css', '../../usability/usability.component.css']
+  selector: 'app-options-radio-button',
+  templateUrl: './options-radio-button.component.html',
+  styleUrls: ['./options-radio-button.component.css', '../../usability/usability.component.css']
 })
-export class OptionsSelectorComponent implements OnInit {
+export class OptionsRadioButtonComponent implements OnInit {
   @Output() finish = new EventEmitter<void>();
   @Input() startTime: number;
   option1 = false;
@@ -24,7 +24,6 @@ export class OptionsSelectorComponent implements OnInit {
   constructor(private userService: UserService,
               private loggingService: LoggingService) {
   }
-
 
   ngOnInit() {
     this.finished = false;
@@ -45,14 +44,13 @@ export class OptionsSelectorComponent implements OnInit {
 
   submitTest(obj) {
     const starRating = {
-      'optionsSelectorDuration': this.duration,
-      'optionsSelectorIncorrectCounter': this.incorrectCounter,
-      'optionsSelectorSEQRate': obj.rate,
-      'optionsSelectorComment': obj.comment
+      'optionsRadioButtonDuration': this.duration,
+      'optionsRadioButtonIncorrectCounter': this.incorrectCounter,
+      'optionsRadioButtonSEQRate': obj.rate,
+      'optionsRadioButtonComment': obj.comment
     };
     this.loggingService.SendData(starRating).subscribe();
     this.finish.emit();
   }
-
 
 }

@@ -5,7 +5,8 @@
              type="text"
              maxlength="2"
              autocomplete="off"
-             (click)="clearError($event)"
+             (focus)="$event.target.select()"
+             (click)="clearFormErrors()"
              (keydown)="NumberOnly($event)"
              (change)="validateDay()"
              [placeholder]="'Dzień'"
@@ -37,9 +38,10 @@
              type="text"
              maxlength="4"
              autocomplete="off"
-             (click)="clearError($event)"
+             (click)="clearFormErrors()"
              (keydown)="NumberOnly($event)"
              (change)="validateYear()"
+             (focus)="$event.target.select()"
              [placeholder]="'Rok'"
              [formControl]="dateMonthSelectorYearFormControl">
       <mat-error *ngIf="dateMonthSelectorYearFormControl.hasError('incorrectDate')"></mat-error>

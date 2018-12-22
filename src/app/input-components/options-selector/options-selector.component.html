@@ -4,7 +4,7 @@
     <div class="options-element">
       <div style="display: inline-block;">Powiadamiaj o promocjach</div>
 
-      <mat-select class="options-component" [(value)]="option1" (valueChange)="incorrectOptions = false">
+      <mat-select class="options-component" [(value)]="option1" (valueChange)="incorrectOptions = false" [disabled]="finished">
         <mat-option [value]="true">Włącz</mat-option>
         <mat-option [value]="false">Wyłącz</mat-option>
       </mat-select>
@@ -12,7 +12,7 @@
     <div class="options-element">
       <div style="display: inline-block;">Powiadamiaj o nowościach</div>
 
-      <mat-select class="options-component" [(value)]="option2" (valueChange)="incorrectOptions = false">
+      <mat-select class="options-component" [(value)]="option2" (valueChange)="incorrectOptions = false" [disabled]="finished">
         <mat-option [value]="true">Włącz</mat-option>
         <mat-option [value]="false">Wyłącz</mat-option>
       </mat-select>
@@ -20,7 +20,7 @@
     <div class="options-element">
       <div style="display: inline-block;">Powiadamiaj o zmianie statusu zamówienia</div>
 
-      <mat-select class="options-component" [(value)]="option3" (valueChange)="incorrectOptions = false">
+      <mat-select class="options-component" [(value)]="option3" (valueChange)="incorrectOptions = false" [disabled]="finished">
         <mat-option [value]="true">Włącz</mat-option>
         <mat-option [value]="false">Wyłącz</mat-option>
       </mat-select>
@@ -28,14 +28,14 @@
     <div class="options-element">
       <div style="display: inline-block;">Powiadamiaj o niedokończonych transakcjach</div>
 
-      <mat-select class="options-component" [(value)]="option4" (valueChange)="incorrectOptions = false">
+      <mat-select class="options-component" [(value)]="option4" (valueChange)="incorrectOptions = false" [disabled]="finished">
         <mat-option [value]="true">Włącz</mat-option>
         <mat-option [value]="false">Wyłącz</mat-option>
       </mat-select>
     </div>
 
     <div class="options-footer">
-      <mat-error *ngIf="incorrectOptions">Niepoprawna ustawienia</mat-error>
+      <mat-error *ngIf="incorrectOptions">Niepoprawne ustawienia</mat-error>
     </div>
 
   </div>

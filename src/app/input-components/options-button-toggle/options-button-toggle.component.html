@@ -1,0 +1,47 @@
+<div>
+  <form class="options-panel">
+    <div class="options-element">
+      <div style="display: inline-block;">Powiadamiaj o promocjach</div>
+      <mat-button-toggle-group name="opt1" class="options-component" [(ngModel)]="option1" (change)="incorrectOptions = false" [disabled]="finished">
+        <mat-button-toggle [value]="true">Włącz</mat-button-toggle>
+        <mat-button-toggle [value]="false">Wyłącz</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+
+
+    <div class="options-element">
+      <div style="display: inline-block;">Powiadamiaj o nowościach</div>
+      <mat-button-toggle-group name="opt2" class="options-component" [(ngModel)]="option2" (change)="incorrectOptions = false" [disabled]="finished">
+        <mat-button-toggle [value]="true">Włącz</mat-button-toggle>
+        <mat-button-toggle [value]="false">Wyłącz</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <div class="options-element">
+      <div style="display: inline-block;">Powiadamiaj o zmianie statusu zamówienia</div>
+      <mat-button-toggle-group name="opt3" class="options-component" [(ngModel)]="option3" (change)="incorrectOptions = false" [disabled]="finished">
+        <mat-button-toggle [value]="true">Włącz</mat-button-toggle>
+        <mat-button-toggle [value]="false">Wyłącz</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <div class="options-element">
+      <div style="display: inline-block;">Powiadamiaj o niedokończonych transakcjach</div>
+      <mat-button-toggle-group name="opt4" class="options-component" [(ngModel)]="option4" (change)="incorrectOptions = false" [disabled]="finished">
+        <mat-button-toggle [value]="true">Włącz</mat-button-toggle>
+        <mat-button-toggle [value]="false">Wyłącz</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <div class="options-footer">
+      <mat-error *ngIf="incorrectOptions">Niepoprawne ustawienia</mat-error>
+    </div>
+
+  </form>
+  <div *ngIf="!finished">
+    <button mat-raised-button color="primary" (click)="validateOptions()" class="confirm-button">Potwierdź</button>
+  </div>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
+</div>
+

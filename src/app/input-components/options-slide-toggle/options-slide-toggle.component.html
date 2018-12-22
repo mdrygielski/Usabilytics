@@ -4,7 +4,8 @@
       <div style="display: inline-block;">Powiadamiaj o promocjach</div>
       <mat-slide-toggle class="options-component"
                         [(ngModel)]="option1"
-                        (change)="incorrectOptions = false"></mat-slide-toggle>
+                        (change)="incorrectOptions = false"
+                        [disabled]="finished"></mat-slide-toggle>
     </div>
 
 
@@ -12,25 +13,28 @@
       <div style="display: inline-block;">Powiadamiaj o nowościach</div>
       <mat-slide-toggle class="options-component"
                         [(ngModel)]="option2"
-                        (change)="incorrectOptions = false"></mat-slide-toggle>
+                        (change)="incorrectOptions = false"
+                        [disabled]="finished"></mat-slide-toggle>
     </div>
 
     <div class="options-element">
       <div style="display: inline-block;">Powiadamiaj o zmianie statusu zamówienia</div>
       <mat-slide-toggle class="options-component"
-        [(ngModel)]="option3"
-        (change)="incorrectOptions = false"></mat-slide-toggle>
+                        [(ngModel)]="option3"
+                        (change)="incorrectOptions = false"
+                        [disabled]="finished"></mat-slide-toggle>
     </div>
 
     <div class="options-element">
       <div style="display: inline-block;">Powiadamiaj o niedokończonych transakcjach</div>
       <mat-slide-toggle class="options-component"
                         [(ngModel)]="option4"
-                        (change)="incorrectOptions = false"></mat-slide-toggle>
+                        (change)="incorrectOptions = false"
+                        [disabled]="finished"></mat-slide-toggle>
     </div>
 
     <div class="options-footer">
-      <mat-error *ngIf="incorrectOptions">Niepoprawna ustawienia</mat-error>
+      <mat-error *ngIf="incorrectOptions">Niepoprawne ustawienia</mat-error>
     </div>
 
   </div>

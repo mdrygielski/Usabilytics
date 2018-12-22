@@ -1,0 +1,38 @@
+<div>
+  <div class="options-panel">
+
+    <div class="options-element">
+      <mat-checkbox [(ngModel)]="option1" [disabled]="finished"
+        (change)="incorrectOptions = false">Powiadamiaj o promocjach
+      </mat-checkbox>
+    </div>
+
+    <div class="options-element">
+      <mat-checkbox [(ngModel)]="option2" [disabled]="finished"
+        (change)="incorrectOptions = false">Powiadamiaj o nowościach
+      </mat-checkbox>
+    </div>
+
+    <div class="options-element">
+      <mat-checkbox [(ngModel)]="option3" [disabled]="finished"
+        (change)="incorrectOptions = false">Powiadamiaj o zmianie statusu zamówienia
+      </mat-checkbox>
+    </div>
+
+    <div class="options-element">
+      <mat-checkbox [(ngModel)]="option4" [disabled]="finished"
+        (change)="incorrectOptions = false">Powiadamiaj o niedokończonych transakcjach
+      </mat-checkbox>
+    </div>
+
+    <div class="options-footer">
+      <mat-error *ngIf="incorrectOptions">Niepoprawne ustawienia</mat-error>
+    </div>
+
+  </div>
+  <div *ngIf="!finished">
+    <button mat-raised-button color="primary" (click)="validateOptions()" class="confirm-button">Potwierdź</button>
+  </div>
+  <app-seq [displayControl]="finished" (finish)="submitTest($event)"></app-seq>
+</div>
+
