@@ -3,15 +3,15 @@
   <mat-horizontal-stepper class="horizontalStepper" id="horizontalStepper" #mainStepper>
     <mat-step [stepControl]="firstFormGroup" [editable]="false">
       <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel><span>Wprowadzanie daty</span></ng-template>
-        <!--<app-scenario1 (finished)="scenario1Done()"></app-scenario1>-->
-        <app-test-summary (finished)="scenario6Done()"></app-test-summary>
+        <ng-template matStepLabel><span>Data</span></ng-template>
+        <app-scenario1 (finished)="scenario1Done()"></app-scenario1>
+        <!--<app-test-summary (finished)="scenario6Done()"></app-test-summary>-->
       </form>
     </mat-step>
 
     <mat-step [stepControl]="secondFormGroup" [editable]="false">
       <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel><span>Wprowadzanie liczb</span></ng-template>
+        <ng-template matStepLabel><span>Liczba</span></ng-template>
         <app-scenario2 (finished)="scenario2Done()"></app-scenario2>
       </form>
     </mat-step>
@@ -23,13 +23,13 @@
     </mat-step>
     <mat-step [stepControl]="fourthFormGroup" [editable]="false">
       <form [formGroup]="fourthFormGroup">
-        <ng-template matStepLabel><span>Wprowadzanie tekstu</span></ng-template>
+        <ng-template matStepLabel><span>Tekst</span></ng-template>
         <app-scenario4 (finished)="scenario4Done()"></app-scenario4>
       </form>
     </mat-step>
     <mat-step [stepControl]="fifthFormGroup" [editable]="false">
       <form [formGroup]="fifthFormGroup">
-        <ng-template matStepLabel><span>Ustawienia powiadomień</span></ng-template>
+        <ng-template matStepLabel><span>Ustawienia</span></ng-template>
         <app-scenario5 (finished)="scenario5Done()"></app-scenario5>
       </form>
     </mat-step>

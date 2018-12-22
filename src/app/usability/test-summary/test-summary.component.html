@@ -40,16 +40,16 @@
   </mat-form-field>
 
   <br/>
-  <mat-form-field style="margin-top: 15px; width: 300px">
-    <mat-select placeholder="Jak często korzystasz z komputera" [(ngModel)]="computerUse" [required]="true">
-      <mat-option *ngFor="let computerUse of computerUses" [value]="computerUse.value">
-        {{computerUse.viewValue}}
+  <mat-form-field style="margin-top: 15px; width: 500px">
+    <mat-select placeholder="Jak często korzystasz z aplikacji webowych (stron internetowych)" [(ngModel)]="webAppUse" [required]="true">
+      <mat-option *ngFor="let webAppUse of webAppUseOption" [value]="webAppUse.value">
+        {{webAppUse.viewValue}}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
   <br/>
-  <button mat-raised-button color="primary" (click)="testConfirmation()" style="margin-left: 60px; margin-top: 20px">
+  <button mat-raised-button color="primary" (click)="openDialog()" style="margin-left: 60px; margin-top: 20px">
     <span>Zakończ</span>
   </button>
 

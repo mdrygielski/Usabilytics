@@ -16,6 +16,9 @@ export class Scenario1Component implements OnInit {
   @ViewChild('stepper') stepper: MatStepper;
   Math: any;
   stepStartTime: number;
+  scenarioUnderstandable: boolean;
+  scenarioIssues: boolean;
+  scenarioComment: string;
 
 
   secondFormGroupScenario1: FormGroup;

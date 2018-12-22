@@ -9,7 +9,7 @@ import {
   DateAdapter, MAT_DATE_FORMATS,
   MAT_DATE_LOCALE, MatButtonToggleModule,
   MatCardModule, MatCheckboxModule,
-  MatDatepickerModule,
+  MatDatepickerModule, MatDialogModule,
   MatIconModule,
   MatInputModule, MatListModule,
   MatNativeDateModule, MatRadioButton, MatRadioModule, MatSliderModule, MatSlideToggleModule,
@@ -103,7 +103,7 @@ import { TestSummaryComponent } from './usability/test-summary/test-summary.comp
     OptionsRadioButtonComponent,
     OptionsButtonComponent,
     OptionsButtonToggleComponent,
-    TestSummaryComponent,
+    TestSummaryComponent
   ],
   imports: [
     BrowserModule,
@@ -131,6 +131,7 @@ import { TestSummaryComponent } from './usability/test-summary/test-summary.comp
     MatSlideToggleModule,
     MatCheckboxModule,
     MatButtonToggleModule,
+    MatDialogModule,
 
     AppRoutingModule,
     HttpClientModule,

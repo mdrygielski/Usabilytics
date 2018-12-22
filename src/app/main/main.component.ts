@@ -18,12 +18,6 @@ export class MainComponent implements OnInit {
   ngOnInit() {
   }
 
-  // sendEmailConfirmation() {
-  //     console.log('sending an email');
-  //     sendMessage();
-  //     console.log('email sent');
-  // }
-
   StartTest() {
     this.userService.variant = Math.floor(Math.random() * Math.floor(2)) + 1;
     this.userService.testID = Date.now();

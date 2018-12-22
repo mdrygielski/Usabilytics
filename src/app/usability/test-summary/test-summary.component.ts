@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {Component, Inject, OnInit} from '@angular/core';
 import {UserService} from '../../user.service';
 import {LoggingService} from '../../logging.service';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 
 export interface SelectOptions {
   value: string;
@@ -18,7 +18,8 @@ export class TestSummaryComponent implements OnInit {
   public gender: string;
   public educationType: string;
   public profession: string;
-  public computerUse: string;
+  public webAppUse: string;
+  private password: string;
 
   ageRanges: SelectOptions[] = [
     {value: '0-10', viewValue: 'Mniej niż 10 lat'},
@@ -49,7 +50,7 @@ export class TestSummaryComponent implements OnInit {
     {value: 'doktor', viewValue: 'Wykształcenie Wyższe III stopnia - doktoranckie'},
   ];
 
-  computerUses: SelectOptions[] = [
+  webAppUseOption: SelectOptions[] = [
     {value: 'moreThan8h', viewValue: 'Codziennie (powyżej 8 godzin)'},
     {value: 'moreThan2h', viewValue: 'Codziennie (powyżej 2 godzin)'},
     {value: 'lessThan2h', viewValue: 'Codziennie (mniej niż 2 godziny)'},
@@ -59,12 +60,10 @@ export class TestSummaryComponent implements OnInit {
   ];
 
 
-
-
-
-
   constructor(private userService: UserService,
-              private loggingService: LoggingService) { }
+              private loggingService: LoggingService,
+              public dialog: MatDialog) {
+  }
 
   ngOnInit() {
   }
@@ -74,12 +73,12 @@ export class TestSummaryComponent implements OnInit {
     console.log(this.gender);
     console.log(this.educationType);
     console.log(this.profession);
-    console.log(this.computerUse);
+    console.log(this.webAppUse);
     if (this.ageRange != null &&
       this.gender != null &&
       this.educationType != null &&
       this.profession != null &&
-      this.computerUse != null) {
+      this.webAppUse != null) {
 
       console.log('done');
 
@@ -91,7 +90,7 @@ export class TestSummaryComponent implements OnInit {
         'gender': this.gender,
         'educationType': this.educationType,
         'profession': this.profession,
-        'computerUse': this.computerUse,
+        'webAppUse': this.webAppUse,
       };
       this.loggingService.SendData(starRating).subscribe();
 
@@ -99,7 +98,35 @@ export class TestSummaryComponent implements OnInit {
       console.log('test finished');
 
     }
-
-
   }
+
+  openDialog(): void {
+    this.dialog.open(ConfirmationDialogComponent);
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '250px',
+      data: {password: this.password}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.password = result;
+    });
+  }
+
+}
+
+@Component({
+  selector: 'app-confirmation-dialog',
+  templateUrl: 'confirmation-dialog.html',
+})
+export class ConfirmationDialogComponent {
+  constructor(
+    public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) data) {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }

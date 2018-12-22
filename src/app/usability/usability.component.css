@@ -24,6 +24,7 @@
 }
 
 .warning-message {
+  margin-top: 30px;
   color: #ff473b;
   position: relative;
   display: inline-block;
