@@ -2,12 +2,19 @@
 <div fxLayout="row" fxFlex="100">
   <mat-card class="instruction" oncopy="return false" oncut="return false">
     <h2>Scenariusz 2</h2>
-    <span>Aby potwierdzić zakup proszę podać<br/>cenę książki oraz oraz kod produktu.</span>
+    <span>Aby potwierdzić zakup proszę podać<br/>koszt przesyłki, cenę książki<br/>oraz kod produktu.</span>
     <br/>
     <br/>
     <span><b>DANE:</b></span>
     <br/>
-    <span>Cena: </span>
+    <span>Koszt przesyłki: </span>
+    <span class="usability-data">
+      <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
+        <b>8</b> zł
+      </div>
+    </span>
+    <br/>
+    <span>Cena ksiązki: </span>
     <span class="usability-data">
       <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
         <b>59,99</b> zł
@@ -44,53 +51,77 @@
 
         </form>
       </mat-step>
-      <ng-template matStepperIcon="number" let-index="index">{{Math.ceil(index/2)}}</ng-template>
+      <ng-template matStepperIcon="number" let-index="index">{{index}}</ng-template>
 
-      <mat-step [editable]="false" label="Cena">
-        <app-number-input
-          [dataType]="'price'"
-          [requiredInteger]="'59'"
-          [requiredDecimal]="'99'"
-          [title]="'cena'"
-          [startTime]="stepStartTime"
-          (finish)="stepConfirm()"></app-number-input>
+      <mat-step [editable]="false" label="Koszt przesyłki">
+        <div *ngIf="this.userService.variant === 1">
+          <app-number-input
+            [dataType]="'smallPrice'"
+            [requiredInteger]="'8'"
+            [requiredDecimal]="''"
+            [title]="'Koszt przesyłki'"
+            [startTime]="stepStartTime"
+            (finish)="stepConfirm()"></app-number-input>
+        </div>
+        <div *ngIf="this.userService.variant !== 1">
+          <app-number-spinner
+            [dataType]="'smallPrice'"
+            [requiredPrice]="8"
+            [title]="'Koszt przesyłki'"
+            [startTime]="stepStartTime"
+            (finish)="stepConfirm()"></app-number-spinner>
+        </div>
+      </mat-step>
+
+      <mat-step [editable]="false" label="Cena książki">
+        <div *ngIf="this.userService.variant === 1">
+          <app-number-input
+            [dataType]="'price'"
+            [requiredInteger]="'59'"
+            [requiredDecimal]="'99'"
+            [title]="'Cena książki'"
+            [startTime]="stepStartTime"
+            (finish)="stepConfirm()"></app-number-input>
+        </div>
+        <div *ngIf="this.userService.variant !== 1">
+          <app-number-spinner
+            [dataType]="'bigPrice'"
+            [requiredPrice]="59.99"
+            [title]="'cena'"
+            [startTime]="stepStartTime"
+            (finish)="stepConfirm()"></app-number-spinner>
+        </div>
+
       </mat-step>
       <mat-step [editable]="false" label="Kod produktu">
-        <app-number-big-input
-          [dataType]="'barcode'"
-          [requiredValue]="'9788375780635'"
-          [title]="'Kod kreskowy'"
-          [startTime]="stepStartTime"
-          (finish)="stepConfirm()"></app-number-big-input>
-      </mat-step>
+        <div *ngIf="this.userService.variant === 1">
+          <app-number-big-input
+            [dataType]="'barcode'"
+            [requiredValue]="'9788375780635'"
+            [title]="'Kod produktu'"
+            [startTime]="stepStartTime"
+            (finish)="stepConfirm()"></app-number-big-input>
+        </div>
+        <div *ngIf="this.userService.variant !== 1">
+          <app-number-voice
+            [dataType]="'barcode'"
+            [requiredValue]="9788375780635"
+            [title]="'Kod produktu'"
+            [startTime]="stepStartTime"
+            (finish)="stepConfirm()"></app-number-voice>
 
-      <mat-step [editable]="false" label="Cena">
-        <app-number-spinner
-          [dataType]="'price'"
-          [requiredPrice]="59.99"
-          [title]="'cena'"
-          [startTime]="stepStartTime"
-          (finish)="stepConfirm()"></app-number-spinner>
-      </mat-step>
-
-      <mat-step [editable]="false" label="Kod produktu">
-        <app-number-voice
-          [dataType]="'barcode'"
-          [requiredValue]="9788375780635"
-          [title]="'Kod kreskowy'"
-          [startTime]="stepStartTime"
-          (finish)="stepConfirm()"></app-number-voice>
+        </div>
       </mat-step>
 
 
-      <mat-step [stepControl]="summaryFormGroupScenario2" [editable]="false" label="{{'summary' | translate}}"
+      <mat-step [stepControl]="summaryFormGroupScenario2" [editable]="false" label="Podsumowanie"
                 state="summaryIcon">
         <form [formGroup]="summaryFormGroupScenario2">
           todo: summary survey for dates
         </form>
         <div>
-          <button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button"><span
-            translate>next</span></button>
+          <button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button">
+            <span>Dalej</span></button>
         </div>
       </mat-step>
 

@@ -51,11 +51,10 @@ export class NumberSliderRatingComponent implements OnInit {
 
   submitTest(obj) {
     const numberSliderRate = {
-      'sliderRateInputTitle': this.title,
       'sliderRateInputDuration': this.duration,
       'sliderRateInputIncorrectCounter': this.incorrectCounter,
       'sliderRateInputArrowKeyCounter': this.arrowKeyCounter,
-      'sliderRateInputSEQRate': obj.rating,
+      'sliderRateInputSEQRate': obj.rate,
       'sliderRateInputComment': obj.comment
     };
     this.loggingService.SendData(numberSliderRate).subscribe();

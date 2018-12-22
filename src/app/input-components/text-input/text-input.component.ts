@@ -18,7 +18,7 @@ export class TextInputComponent implements OnInit {
   private endTime: number;
   private duration: number;
   private incorrectCounter: number;
-  private arrowKeyCounter: number;
+  private keyPressedCounter: number;
   public finished: boolean;
 
   textInputFormControl = new FormControl('', []);
@@ -30,7 +30,7 @@ export class TextInputComponent implements OnInit {
   ngOnInit() {
     this.finished = false;
     this.incorrectCounter = 0;
-    this.arrowKeyCounter = 0;
+    this.keyPressedCounter = 0;
   }
 
 
@@ -50,22 +50,20 @@ export class TextInputComponent implements OnInit {
   submitTest(obj) {
     if (this.dataType === 'simpleText') {
       const textInput = {
-        'textInputSimpleTitle': this.title,
         'textInputSimpleDuration': this.duration,
         'textInputSimpleIncorrectCounter': this.incorrectCounter,
-        'textInputSimpleArrowKeyCounter': this.arrowKeyCounter,
-        'textInputSimpleSEQRate': obj.rating,
+        'textInputSimpleKeyPressedCounter': this.keyPressedCounter,
+        'textInputSimpleSEQRate': obj.rate,
         'textInputSimpleComment': obj.comment
       };
       this.loggingService.SendData(textInput).subscribe();
     }
     if (this.dataType === 'complexText') {
       const textInput = {
-        'textInputComplexTitle': this.title,
         'textInputComplexDuration': this.duration,
         'textInputComplexIncorrectCounter': this.incorrectCounter,
-        'textInputComplexArrowKeyCounter': this.arrowKeyCounter,
-        'textInputComplexSEQRate': obj.rating,
+        'textInputComplexKeyPressedCounter': this.keyPressedCounter,
+        'textInputComplexSEQRate': obj.rate,
         'textInputComplexComment': obj.comment
       };
       this.loggingService.SendData(textInput).subscribe();
@@ -74,6 +72,6 @@ export class TextInputComponent implements OnInit {
   }
 
   keyCounter(): void {
-      this.arrowKeyCounter++;
+      this.keyPressedCounter++;
   }
 }

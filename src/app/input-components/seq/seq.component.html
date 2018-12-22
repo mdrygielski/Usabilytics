@@ -20,5 +20,5 @@
       <textarea matInput #commentArea [(ngModel)]="comment" placeholder="Komentarz (opcjonalny)"></textarea>
     </mat-form-field>
   </div>
-  <button mat-raised-button color="primary" (click)="submitSEQ()" [disabled]="rate == null">Dalej</button>
+  <button mat-raised-button color="primary" (click)="submitSEQ()" [disabled]="rate === null">Dalej</button>
 </div>

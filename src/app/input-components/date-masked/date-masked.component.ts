@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
 import {UserService} from '../../user.service';
 import {LoggingService} from '../../logging.service';
 import {ErrorStateMatcher} from '@angular/material';
@@ -65,20 +65,18 @@ export class DateMaskedComponent implements OnInit {
   submitTest(obj) {
     if (this.dataType === 'soon') {
       const soonData = {
-        'dateMaskedSoonTitle': this.title,
         'dateMaskedSoonDuration': this.duration,
         'dateMaskedSoonIncorrectCounter': this.incorrectCounter,
-        'dateMaskedSoonSEQRate': obj.rating,
+        'dateMaskedSoonSEQRate': obj.rate,
         'dateMaskedSoonComment': obj.comment
       };
       this.loggingService.SendData(soonData).subscribe();
     }
     if (this.dataType === 'distant') {
       const distantData = {
-        'dateMaskedDistantTitle': this.title,
         'dateMaskedDistantDuration': this.duration,
         'dateMaskedDistantIncorrectCounter': this.incorrectCounter,
-        'dateMaskedDistantSEQRate': obj.rating,
+        'dateMaskedDistantSEQRate': obj.rate,
         'dateMaskedDistantComment': obj.comment
       };
       this.loggingService.SendData(distantData).subscribe();
@@ -88,6 +86,12 @@ export class DateMaskedComponent implements OnInit {
 
   NumberOnly(event: any): boolean {
     const charCode = event.which;
+
+    // Enter = validate
+    if (charCode === 13) {
+      this.validateDate();
+    }
+
     // Allow number
     if ((charCode >= 48 && charCode <= 57) ||
       (charCode >= 96 && charCode <= 105)) {

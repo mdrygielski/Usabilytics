@@ -17,7 +17,6 @@ export class SeqComponent implements OnInit {
   }
 
   submitSEQ() {
-    console.log('SEQ finished!');
     this.finish.emit( {rate: this.rate, comment: this.comment} );
   }
 

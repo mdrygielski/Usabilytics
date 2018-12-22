@@ -48,12 +48,11 @@ export class NumberSpinnerRatingComponent implements OnInit {
 
   submitTest(obj) {
       const numberSpinnerRate = {
-        'spinnerRateInputTitle': this.title,
-        'spinnerRateInputDuration': this.duration,
-        'spinnerRateInputIncorrectCounter': this.incorrectCounter,
-        'spinnerRateInputArrowKeyCounter': this.arrowKeyCounter,
-        'spinnerRateInputSEQRate': obj.rating,
-        'spinnerRateInputComment': obj.comment
+        'numberSpinnerRatingDuration': this.duration,
+        'numberSpinnerRatingIncorrectCounter': this.incorrectCounter,
+        'numberSpinnerRatingArrowKeyCounter': this.arrowKeyCounter,
+        'numberSpinnerRatingSEQRate': obj.rate,
+        'numberSpinnerRatingComment': obj.comment
       };
       this.loggingService.SendData(numberSpinnerRate).subscribe();
     this.finish.emit();
@@ -61,6 +60,12 @@ export class NumberSpinnerRatingComponent implements OnInit {
 
   keyValidatorAndCounter(event: any): boolean {
     const charCode = event.which;
+
+    // Enter = validate
+    if (charCode === 13) {
+      this.validateRate();
+      return true;
+    }
 
     // Allow contol characters
     if (charCode === 8 || charCode === 46) {

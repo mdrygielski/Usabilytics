@@ -51,21 +51,36 @@
       <ng-template matStepperIcon="number" let-index="index">{{index}}</ng-template>
 
       <mat-step [editable]="false" label="Opcje">
-        <app-options-slide-toggle [startTime]="stepStartTime"
-                                  (finish)="stepConfirm()"></app-options-slide-toggle>
+        <div *ngIf="this.userService.variant === 1">
+          <app-options-checkbox [startTime]="stepStartTime"
+                                (finish)="stepConfirm()"></app-options-checkbox>
+        </div>
+        <div *ngIf="this.userService.variant !== 1">
+          <app-options-selector [startTime]="stepStartTime"
+                                (finish)="stepConfirm()"></app-options-selector>
+        </div>
       </mat-step>
 
-      <mat-step [editable]="false" label="Wiadomość">
-        <app-options-selector [startTime]="stepStartTime"
-                              (finish)="stepConfirm()"></app-options-selector>
+      <mat-step [editable]="false" label="Opcje">
+        <div *ngIf="this.userService.variant === 1">
+          <app-options-slide-toggle [startTime]="stepStartTime"
+                                    (finish)="stepConfirm()"></app-options-slide-toggle>
+        </div>
+        <div *ngIf="this.userService.variant !== 1">
+          <app-options-radio-button [startTime]="stepStartTime"
+                                    (finish)="stepConfirm()"></app-options-radio-button>
+        </div>
       </mat-step>
 
-      <mat-step [editable]="false" label="Opinia">
-
-      </mat-step>
-
-      <mat-step [editable]="false" label="Wiadomość">
-
+      <mat-step [editable]="false" label="Opcje">
+        <div *ngIf="this.userService.variant === 1">
+          <app-options-button-toggle [startTime]="stepStartTime"
+                                     (finish)="stepConfirm()"></app-options-button-toggle>
+        </div>
+        <div *ngIf="this.userService.variant !== 1">
+          <app-options-button [startTime]="stepStartTime"
+                              (finish)="stepConfirm()"></app-options-button>
+        </div>
       </mat-step>
 
 
@@ -75,8 +90,9 @@
           todo: summary survey
         </form>
         <div>
-          <button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button"><span
-            translate>next</span></button>
+          <button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button">
+            <span>Dalej</span>
+          </button>
         </div>
       </mat-step>
 

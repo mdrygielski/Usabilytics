@@ -45,23 +45,6 @@
 
         </form>
 
-        <!--<app-options-button-toggle [startTime]="stepStartTime"-->
-                                   <!--(finish)="stepConfirm()"></app-options-button-toggle>-->
-
-        <!--<app-options-button [startTime]="stepStartTime"-->
-        <!--(finish)="stepConfirm()"></app-options-button>-->
-
-        <!--<app-options-radio-button [startTime]="stepStartTime"-->
-        <!--(finish)="stepConfirm()"></app-options-radio-button>-->
-
-        <!--<app-options-checkbox [startTime]="stepStartTime"-->
-        <!--(finish)="stepConfirm()"></app-options-checkbox>-->
-
-        <!--<app-options-slide-toggle [startTime]="stepStartTime"-->
-        <!--(finish)="stepConfirm()"></app-options-slide-toggle>-->
-
-        <!--<app-options-selector [startTime]="stepStartTime"-->
-        <!--(finish)="stepConfirm()"></app-options-selector>-->
 
         <!--<app-text-voice-->
         <!--[dataType]="'simpleText'"-->
@@ -114,32 +97,10 @@
 
       <mat-step [editable]="false" label="test">
 
-        <app-date-full-selector [dataType]="'soon'"
-                                [requiredYear]="2018"
-                                [requiredMonth]="12"
-                                [requiredDay]="31"
-                                [title]="'Data odbioru zamówienia'"
-                                [startTime]="stepStartTime"
-                                (finish)="stepConfirm()"></app-date-full-selector>
 
-        <!--<div *ngIf="this.userService.variant === 1">-->
-        <!--<app-date-month-selector [dataType]="'soon'"-->
-        <!--[requiredYear]="2018"-->
-        <!--[requiredMonth]="12"-->
-        <!--[requiredDay]="31"-->
-        <!--[title]="'Data odbioru zamówienia'"-->
-        <!--[startTime]="stepStartTime"-->
-        <!--(finish)="stepConfirm()"></app-date-month-selector>-->
-        <!--</div>-->
-        <!--<div *ngIf="this.userService.variant !== 1">-->
-        <!--<app-date-full-selector [dataType]="'soon'"-->
-        <!--[requiredYear]="2018"-->
-        <!--[requiredMonth]="12"-->
-        <!--[requiredDay]="31"-->
-        <!--[title]="'Data odbioru zamówienia'"-->
-        <!--[startTime]="stepStartTime"-->
-        <!--(finish)="stepConfirm()"></app-date-full-selector>-->
-        <!--</div>-->
+
+
+
       </mat-step>
       <mat-step [editable]="false" label="Data odbioru zamówienia">
         <div *ngIf="this.userService.variant === 1">

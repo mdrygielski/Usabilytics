@@ -11,8 +11,8 @@ import {LoggingService} from '../../logging.service';
 export class NumberInputComponent implements OnInit {
   @Output() finish = new EventEmitter<void>();
   @Input() dataType: string;
-  @Input() requiredInteger: number;
-  @Input() requiredDecimal: number;
+  @Input() requiredInteger: string;
+  @Input() requiredDecimal: string;
   @Input() title: string;
   @Input() startTime: number;
 
@@ -44,11 +44,25 @@ export class NumberInputComponent implements OnInit {
       this.numberIntegerInputFormControl.setErrors(null);
     }
 
-    if (this.numberDecimalInputFormControl.value !== this.requiredDecimal) {
-      this.numberDecimalInputFormControl.setErrors({'incorrectPrice': true});
-      validated = false;
+    if (this.requiredDecimal === '') {
+      if (this.numberDecimalInputFormControl.value === '' ||
+        this.numberDecimalInputFormControl.value === null ||
+        this.numberDecimalInputFormControl.value === '0' ||
+        this.numberDecimalInputFormControl.value === '00') {
+
+        this.numberDecimalInputFormControl.setErrors(null);
+      } else {
+        this.numberDecimalInputFormControl.setErrors({'incorrectPrice': true});
+        validated = false;
+      }
     } else {
-      this.numberDecimalInputFormControl.setErrors(null);
+      if (this.numberDecimalInputFormControl.value !== this.requiredDecimal) {
+        this.numberDecimalInputFormControl.setErrors({'incorrectPrice': true});
+        validated = false;
+      } else {
+        this.numberDecimalInputFormControl.setErrors(null);
+      }
+
     }
 
     if (validated) {
@@ -66,21 +80,38 @@ export class NumberInputComponent implements OnInit {
 
 
   submitTest(obj) {
-    if (this.dataType === 'price') {
+    if (this.dataType === 'smallPrice') {
       const numberInput = {
-        'numberInputPriceTitle': this.title,
-        'numberInputPriceDuration': this.duration,
-        'numberInputPriceIncorrectCounter': this.incorrectCounter,
-        'numberInputPriceSEQRate': obj.rating,
-        'numberInputPriceComment': obj.comment
+        'numberInputSmallPriceDuration': this.duration,
+        'numberInputSmallPriceIncorrectCounter': this.incorrectCounter,
+        'numberInputSmallPriceSEQRate': obj.rate,
+        'numberInputSmallPriceComment': obj.comment
+      };
+      this.loggingService.SendData(numberInput).subscribe();
+    }
+    if (this.dataType === 'bigPrice') {
+      const numberInput = {
+        'numberInputBigPriceDuration': this.duration,
+        'numberInputBigPriceIncorrectCounter': this.incorrectCounter,
+        'numberInputBigPriceSEQRate': obj.rate,
+        'numberInputBigPriceComment': obj.comment
       };
       this.loggingService.SendData(numberInput).subscribe();
     }
     this.finish.emit();
   }
+  
+  
 
   NumberOnly(event: any): boolean {
     const charCode = event.which;
+    // tab
+
+    // Enter = validate
+    if (charCode === 13) {
+      this.validatePrice();
+    }
+
     // Allow number
     if ((charCode >= 48 && charCode <= 57) ||
       (charCode >= 96 && charCode <= 105)) {
@@ -106,5 +137,11 @@ export class NumberInputComponent implements OnInit {
     this.incorrectPrice = false;
     this.numberIntegerInputFormControl.setErrors(null);
     this.numberDecimalInputFormControl.setErrors(null);
+  }
+
+  changeFocus(charCode: any, element: HTMLInputElement) {
+    if (charCode === 9) {
+      element.focus();
+    }
   }
 }

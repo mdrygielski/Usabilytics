@@ -32,6 +32,12 @@
         <app-scenario5 (finished)="scenario5Done()"></app-scenario5>
       </form>
     </mat-step>
+    <mat-step [stepControl]="sixthFormGroup" [editable]="false">
+      <form [formGroup]="sixthFormGroup">
+        <ng-template matStepLabel><span>Ustawienia powiadomień</span></ng-template>
+        <app-scenario5 (finished)="scenario6Done()"></app-scenario5>
+      </form>
+    </mat-step>
 
   </mat-horizontal-stepper>
 </div>

@@ -32,7 +32,7 @@
   <mat-card class="usability-content">
 
     <mat-vertical-stepper [linear]="true" #stepper>
-      <mat-step [editable]="false" label="{{'intro' | translate}}" state="infoIcon">
+      <mat-step [editable]="false" label="Wprowadzenie" state="infoIcon">
         <form>
           <span>W tym etapie ...</span>
           <div>
@@ -91,8 +91,8 @@
           todo: summary survey
         </form>
         <div>
-          <button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button"><span
-            translate>next</span></button>
+          <button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button">
+            <span>Dalej</span></button>
         </div>
       </mat-step>
 

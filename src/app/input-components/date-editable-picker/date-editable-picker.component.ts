@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DateAdapter, ErrorStateMatcher} from '@angular/material';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
 import {UserService} from '../../user.service';
 import {LoggingService} from '../../logging.service';
 
@@ -26,8 +26,6 @@ export class DateEditablePickerComponent implements OnInit {
   @Input() startTime: number;
 
   dateEditablePickerFormControl = new FormControl('', [ ]);
-
-  matcher = new MyErrorStateMatcher();
 
   private endTime: number;
   private duration: number;
@@ -73,26 +71,32 @@ export class DateEditablePickerComponent implements OnInit {
   submitTest(obj) {
     if (this.dataType === 'soon') {
       const soonData = {
-        'dateEditablePickerSoonTitle': this.title,
         'dateEditablePickerSoonDuration': this.duration,
         'dateEditablePickerSoonOpenCalendarCounter': this.openCalendarCounter,
         'dateEditablePickerSoonIncorrectCounter': this.incorrectCounter,
-        'dateEditablePickerSoonSEQRate': obj.rating,
+        'dateEditablePickerSoonSEQRate': obj.rate,
         'dateEditablePickerSoonComment': obj.comment
       };
       this.loggingService.SendData(soonData).subscribe();
     }
     if (this.dataType === 'distant') {
       const distantData = {
-        'dateEditablePickerDistantTitle': this.title,
         'dateEditablePickerDistantDuration': this.duration,
         'dateEditablePickerDistantOpenCalendarCounter': this.openCalendarCounter,
         'dateEditablePickerDistantIncorrectCounter': this.incorrectCounter,
-        'dateEditablePickerDistantSEQRate': obj.rating,
+        'dateEditablePickerDistantSEQRate': obj.rate,
         'dateEditablePickerDistantComment': obj.comment
       };
       this.loggingService.SendData(distantData).subscribe();
     }
     this.finish.emit();
+  }
+
+  Validate(event: any) {
+    const charCode = event.which;
+    // Enter = validate
+    if (charCode === 13) {
+      this.validateDate();
+    }
   }
 }

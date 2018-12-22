@@ -29,7 +29,7 @@ export class LoggingService {
                       'variant': variant,
                       'lastUpdate': Date()};
     data = Object.assign(testData, data);
-    console.log('sending: ' + JSON.stringify(data));
+    console.log('sending: \n' + JSON.stringify(data, null, ' '));
     return this.http.post(this.loggingUrl, data, this.httpOptions).pipe(
       catchError(this.handleError)
     );
@@ -37,7 +37,7 @@ export class LoggingService {
 
 
   SendAvailableData(): Observable<{}> {
-    console.log('sending: ' + JSON.stringify(this.userService));
+    console.log('sending: \n' + JSON.stringify(this.userService, null, ' '));
     this.userService.lastUpdate = Date();
     return this.http.post(this.loggingUrl, this.userService, this.httpOptions).pipe(
       catchError(this.handleError)

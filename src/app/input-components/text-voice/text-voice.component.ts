@@ -27,7 +27,7 @@ export class TextVoiceComponent implements OnInit {
   private endTime: number;
   private duration: number;
   private incorrectCounter: number;
-  private arrowKeyCounter: number;
+  private keyPressedCounter: number;
   public finished: boolean;
 
   textVoiceFormControl = new FormControl('', []);
@@ -41,7 +41,7 @@ export class TextVoiceComponent implements OnInit {
   ngOnInit() {
     this.finished = false;
     this.incorrectCounter = 0;
-    this.arrowKeyCounter = 0;
+    this.keyPressedCounter = 0;
     this.notification = null;
   }
 
@@ -65,8 +65,8 @@ export class TextVoiceComponent implements OnInit {
         'textVoiceSimpleTitle': this.title,
         'textVoiceSimpleDuration': this.duration,
         'textVoiceSimpleIncorrectCounter': this.incorrectCounter,
-        'textVoiceSimpleArrowKeyCounter': this.arrowKeyCounter,
-        'textVoiceSimpleSEQRate': obj.rating,
+        'textVoiceSimpleKeyPressedCounter': this.keyPressedCounter,
+        'textVoiceSimpleSEQRate': obj.rate,
         'textVoiceSimpleComment': obj.comment
       };
       this.loggingService.SendData(textVoiceInput).subscribe();
@@ -76,8 +76,8 @@ export class TextVoiceComponent implements OnInit {
         'textVoiceComplexTitle': this.title,
         'textVoiceComplexDuration': this.duration,
         'textVoiceComplexIncorrectCounter': this.incorrectCounter,
-        'textVoiceComplexArrowKeyCounter': this.arrowKeyCounter,
-        'textVoiceComplexSEQRate': obj.rating,
+        'textVoiceComplexKeyPressedCounter': this.keyPressedCounter,
+        'textVoiceComplexSEQRate': obj.rate,
         'textVoiceComplexComment': obj.comment
       };
       this.loggingService.SendData(textVoiceInput).subscribe();
@@ -91,9 +91,9 @@ export class TextVoiceComponent implements OnInit {
     }
     if (this.recognizing) {
       this.speechRecognizer.stop();
-      return;
+    } else {
+      this.speechRecognizer.start(event.timeStamp);
     }
-    this.speechRecognizer.start(event.timeStamp);
   }
 
   private initRecognition() {
@@ -169,6 +169,6 @@ export class TextVoiceComponent implements OnInit {
   }
 
   keyCounter(): void {
-    this.arrowKeyCounter++;
+    this.keyPressedCounter++;
   }
 }

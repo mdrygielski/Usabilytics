@@ -3,12 +3,13 @@
   <div *ngIf="!recognizing" class="speech-recognition-button">
     <button mat-raised-button (click)="startButton($event)" color="primary">
       <mat-icon>mic</mat-icon>
-      <span translate>start</span></button>
+      <span>Rozpocznij</span>
+    </button>
   </div>
   <div *ngIf="recognizing" class="speech-recognition-button">
     <button mat-raised-button (click)="startButton($event)" color="primary">
       <mat-icon>mic_off</mat-icon>
-      <span translate>stop</span></button>
+      <span>Stop</span></button>
   </div>
   <div *ngIf="interimTranscript !==''" class="loading-animation"><img src="./../../../assets/img/working.svg"
                                                                       width="84"></div>

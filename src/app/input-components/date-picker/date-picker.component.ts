@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
 import {DateAdapter, ErrorStateMatcher} from '@angular/material';
 import {UserService} from '../../user.service';
 import {LoggingService} from '../../logging.service';
@@ -32,7 +32,7 @@ export class DatePickerComponent implements OnInit {
   private endTime: number;
   private duration: number;
   private incorrectCounter: number;
-  private modificationCounter: number;
+  private openCalendarCounter: number;
   public finished: boolean;
 
   constructor(private adapter: DateAdapter<any>,
@@ -42,12 +42,12 @@ export class DatePickerComponent implements OnInit {
   ngOnInit() {
     this.finished = false;
     this.incorrectCounter = 0;
-    this.modificationCounter = 0;
+    this.openCalendarCounter = 0;
   }
 
   showPicker(datePickerComponent) {
     if (!this.finished && !datePickerComponent.opened) {
-      this.modificationCounter++;
+      this.openCalendarCounter++;
       datePickerComponent.open();
     }
   }
@@ -71,27 +71,24 @@ export class DatePickerComponent implements OnInit {
   submitTest(obj) {
     if (this.dataType === 'soon') {
         const soonData = {
-          'datePickerSoonTitle': this.title,
           'datePickerSoonDuration': this.duration,
-          'datePickerSoonModificationCounter': this.modificationCounter,
+          'datePickerSoonOpenCalendarCounter': this.openCalendarCounter,
           'datePickerSoonIncorrectCounter': this.incorrectCounter,
-          'datePickerSoonSEQRate': obj.rating,
+          'datePickerSoonSEQRate': obj.rate,
           'datePickerSoonComment': obj.comment
         };
       this.loggingService.SendData(soonData).subscribe();
     }
     if (this.dataType === 'distant') {
       const distantData = {
-        'datePickerDistantTitle': this.title,
         'datePickerDistantDuration': this.duration,
-        'datePickerDistantModificationCounter': this.modificationCounter,
+        'datePickerDistantOpenCalendarCounter': this.openCalendarCounter,
         'datePickerDistantIncorrectCounter': this.incorrectCounter,
-        'datePickerDistantSEQRate': obj.rating,
+        'datePickerDistantSEQRate': obj.rate,
         'datePickerDistantComment': obj.comment
       };
       this.loggingService.SendData(distantData).subscribe();
     }
     this.finish.emit();
   }
-
 }

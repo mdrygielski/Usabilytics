@@ -46,7 +46,6 @@ export class NumberRadioRatingComponent implements OnInit {
 
   submitTest(obj) {
     const starRating = {
-      'numberRadioRatingTitle': this.title,
       'numberRadioRatingDuration': this.duration,
       'numberRadioRatingIncorrectCounter': this.incorrectCounter,
       'numberRadioRatingSEQRate': obj.rate,

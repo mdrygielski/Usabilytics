@@ -4,6 +4,7 @@
            [matDatepicker]="dateEditablePickerComponent"
            placeholder="Wprowadź datę"
            [formControl]="dateEditablePickerFormControl"
+           (keydown)="Validate($event)"
            autocomplete="off">
     <mat-hint>{{title}}</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="dateEditablePickerComponent" ></mat-datepicker-toggle>

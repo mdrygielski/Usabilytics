@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import {UserService} from '../../user.service';
 import {LoggingService} from '../../logging.service';
 
@@ -87,20 +87,18 @@ export class DateFullSelectorComponent implements OnInit {
   submitTest(obj) {
     if (this.dataType === 'soon') {
       const soonData = {
-        'dateFullSelectorSoonTitle': this.title,
         'dateFullSelectorSoonDuration': this.duration,
         'dateFullSelectorSoonIncorrectCounter': this.incorrectCounter,
-        'dateFullSelectorSoonSEQRate': obj.rating,
+        'dateFullSelectorSoonSEQRate': obj.rate,
         'dateFullSelectorSoonComment': obj.comment
       };
       this.loggingService.SendData(soonData).subscribe();
     }
     if (this.dataType === 'distant') {
       const distantData = {
-        'dateFullSelectorDistantTitle': this.title,
         'dateFullSelectorDistantDuration': this.duration,
         'dateFullSelectorDistantIncorrectCounter': this.incorrectCounter,
-        'dateFullSelectorDistantSEQRate': obj.rating,
+        'dateFullSelectorDistantSEQRate': obj.rate,
         'dateFullSelectorDistantComment': obj.comment
       };
       this.loggingService.SendData(distantData).subscribe();

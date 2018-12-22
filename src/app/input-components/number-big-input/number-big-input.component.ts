@@ -34,7 +34,6 @@ export class NumberBigInputComponent implements OnInit {
 
   validateBigInput() {
     const cleanValue = this.numberBigInputFormControl.value.replace(/[- ]/g, '');
-    console.log(cleanValue);
     if (cleanValue === this.requiredValue) {
       this.endTime = Date.now();
       this.finished = true;
@@ -50,11 +49,10 @@ export class NumberBigInputComponent implements OnInit {
   submitTest(obj) {
     if (this.dataType === 'barcode') {
       const numberBigInput = {
-        'numberBigInputBarcodeTitle': this.title,
-        'numberBigInputBarcodeDuration': this.duration,
-        'numberBigInputBarcodeIncorrectCounter': this.incorrectCounter,
-        'numberBigInputBarcodeSEQRate': obj.rating,
-        'numberBigInputBarcodeComment': obj.comment
+        'numberBigInputDuration': this.duration,
+        'numberBigInputIncorrectCounter': this.incorrectCounter,
+        'numberBigInputSEQRate': obj.rate,
+        'numberBigInputComment': obj.comment
       };
       this.loggingService.SendData(numberBigInput).subscribe();
     }

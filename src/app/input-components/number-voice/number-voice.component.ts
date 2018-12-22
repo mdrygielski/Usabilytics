@@ -61,10 +61,9 @@ export class NumberVoiceComponent implements OnInit {
   submitTest(obj) {
     if (this.dataType === 'barcode') {
       const numberVoiceInput = {
-        'numberVoiceInputBarcodeTitle': this.title,
         'numberVoiceInputBarcodeDuration': this.duration,
         'numberVoiceInputBarcodeIncorrectCounter': this.incorrectCounter,
-        'numberVoiceInputBarcodeSEQRate': obj.rating,
+        'numberVoiceInputBarcodeSEQRate': obj.rate,
         'numberVoiceInputBarcodeComment': obj.comment
       };
       this.loggingService.SendData(numberVoiceInput).subscribe();
@@ -79,15 +78,14 @@ export class NumberVoiceComponent implements OnInit {
     }
     if (this.recognizing) {
       this.speechRecognizer.stop();
-      return;
+    } else {
+      this.speechRecognizer.start(event.timeStamp);
     }
-    this.speechRecognizer.start(event.timeStamp);
   }
 
   private initRecognition() {
     this.speechRecognizer.onStart()
       .subscribe(data => {
-        console.log('onStart - number');
         this.recognizing = true;
         this.notification = 'I\'m listening...';
         this.detectChanges();

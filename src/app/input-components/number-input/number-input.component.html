@@ -7,6 +7,7 @@
              autocomplete="off"
              (click)="clearError($event)"
              (keydown)="NumberOnly($event)"
+             (keyup)="changeFocus($event.which, decimalValue)"
              [formControl]="numberIntegerInputFormControl">
       <mat-error *ngIf="numberIntegerInputFormControl.hasError('incorrectPrice')"></mat-error>
     </mat-form-field>
@@ -18,6 +19,7 @@
              autocomplete="off"
              (click)="clearError($event)"
              (keydown)="NumberOnly($event)"
+             (keyup)="changeFocus($event.which, integerValue)"
              [formControl]="numberDecimalInputFormControl">
       <mat-error *ngIf="numberDecimalInputFormControl.hasError('incorrectPrice')"></mat-error>
     </mat-form-field>

@@ -66,6 +66,7 @@ import { OptionsCheckboxComponent } from './input-components/options-checkbox/op
 import { OptionsRadioButtonComponent } from './input-components/options-radio-button/options-radio-button.component';
 import { OptionsButtonComponent } from './input-components/options-button/options-button.component';
 import { OptionsButtonToggleComponent } from './input-components/options-button-toggle/options-button-toggle.component';
+import { TestSummaryComponent } from './usability/test-summary/test-summary.component';
 
 
 @NgModule({
@@ -102,6 +103,7 @@ import { OptionsButtonToggleComponent } from './input-components/options-button-
     OptionsRadioButtonComponent,
     OptionsButtonComponent,
     OptionsButtonToggleComponent,
+    TestSummaryComponent,
   ],
   imports: [
     BrowserModule,

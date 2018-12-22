@@ -66,22 +66,20 @@ export class DateSpinnerComponent implements OnInit {
   submitTest(obj) {
     if (this.dataType === 'soon') {
       const soonData = {
-        'dateSpinnerSoonTitle': this.title,
         'dateSpinnerSoonDuration': this.duration,
         'dateSpinnerSoonIncorrectCounter': this.incorrectCounter,
         'dateSpinnerSoonArrowKeyCounter': this.arrowKeyCounter,
-        'dateSpinnerSoonSEQRate': obj.rating,
+        'dateSpinnerSoonSEQRate': obj.rate,
         'dateSpinnerSoonComment': obj.comment
       };
       this.loggingService.SendData(soonData).subscribe();
     }
     if (this.dataType === 'distant') {
       const distantData = {
-        'dateSpinnerDistantTitle': this.title,
         'dateSpinnerDistantDuration': this.duration,
         'dateSpinnerDistantIncorrectCounter': this.incorrectCounter,
         'dateSpinnerDistantArrowKeyCounter': this.arrowKeyCounter,
-        'dateSpinnerDistantSEQRate': obj.rating,
+        'dateSpinnerDistantSEQRate': obj.rate,
         'dateSpinnerDistantComment': obj.comment
       };
       this.loggingService.SendData(distantData).subscribe();

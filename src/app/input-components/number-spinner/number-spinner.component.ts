@@ -48,14 +48,23 @@ export class NumberSpinnerComponent implements OnInit {
   }
 
   submitTest(obj) {
-    if (this.dataType === 'price') {
+    if (this.dataType === 'smallPrice') {
       const numberInput = {
-        'spinnerInputPriceTitle': this.title,
-        'spinnerInputPriceDuration': this.duration,
-        'spinnerInputPriceIncorrectCounter': this.incorrectCounter,
-        'spinnerInputPriceArrowKeyCounter': this.arrowKeyCounter,
-        'spinnerInputPriceSEQRate': obj.rating,
-        'spinnerInputPriceComment': obj.comment
+        'numberSpinnerSmallPriceDuration': this.duration,
+        'numberSpinnerSmallPriceIncorrectCounter': this.incorrectCounter,
+        'numberSpinnerSmallPriceArrowKeyCounter': this.arrowKeyCounter,
+        'numberSpinnerSmallPriceSEQRate': obj.rate,
+        'numberSpinnerSmallPriceComment': obj.comment
+      };
+      this.loggingService.SendData(numberInput).subscribe();
+    }
+    if (this.dataType === 'bigPrice') {
+      const numberInput = {
+        'numberSpinnerBigPriceDuration': this.duration,
+        'numberSpinnerBigPriceIncorrectCounter': this.incorrectCounter,
+        'numberSpinnerBigPriceArrowKeyCounter': this.arrowKeyCounter,
+        'numberSpinnerBigPriceSEQRate': obj.rate,
+        'numberSpinnerBigPriceComment': obj.comment
       };
       this.loggingService.SendData(numberInput).subscribe();
     }

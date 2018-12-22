@@ -3,7 +3,6 @@ import {FormControl} from '@angular/forms';
 import {UserService} from '../../user.service';
 import {LoggingService} from '../../logging.service';
 
-
 @Component({
   selector: 'app-date-month-selector',
   templateUrl: './date-month-selector.component.html',
@@ -80,20 +79,18 @@ export class DateMonthSelectorComponent implements OnInit {
   submitTest(obj) {
     if (this.dataType === 'soon') {
       const soonData = {
-        'dateMonthSelectorSoonTitle': this.title,
         'dateMonthSelectorSoonDuration': this.duration,
         'dateMonthSelectorSoonIncorrectCounter': this.incorrectCounter,
-        'dateMonthSelectorSoonSEQRate': obj.rating,
+        'dateMonthSelectorSoonSEQRate': obj.rate,
         'dateMonthSelectorSoonComment': obj.comment
       };
       this.loggingService.SendData(soonData).subscribe();
     }
     if (this.dataType === 'distant') {
       const distantData = {
-        'dateMonthSelectorDistantTitle': this.title,
         'dateMonthSelectorDistantDuration': this.duration,
         'dateMonthSelectorDistantIncorrectCounter': this.incorrectCounter,
-        'dateMonthSelectorDistantSEQRate': obj.rating,
+        'dateMonthSelectorDistantSEQRate': obj.rate,
         'dateMonthSelectorDistantComment': obj.comment
       };
       this.loggingService.SendData(distantData).subscribe();

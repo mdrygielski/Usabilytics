@@ -46,7 +46,6 @@ export class NumberStarRatingComponent implements OnInit {
 
   submitTest(obj) {
     const starRating = {
-      'numberStarRatingTitle': this.title,
       'numberStarRatingDuration': this.duration,
       'numberStarRatingIncorrectCounter': this.incorrectCounter,
       'numberStarRatingSEQRate': obj.rate,

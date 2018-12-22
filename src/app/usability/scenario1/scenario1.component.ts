@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {DateAdapter, MatDatepickerInputEvent, MatStepper} from '@angular/material';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatStepper} from '@angular/material';
 import {UserService} from '../../user.service';
 
 
@@ -47,7 +47,6 @@ export class Scenario1Component implements OnInit {
   stepConfirm() {
     this.stepper.next();
     this.stepStartTime = Date.now();
-    console.log('statt time set!');
   }
 
   summaryConfirmation() {

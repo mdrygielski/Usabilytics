@@ -86,14 +86,14 @@
       </mat-step>
 
 
-      <mat-step [stepControl]="summaryFormGroupScenario3" [editable]="false" label="{{'summary' | translate}}"
+      <mat-step [stepControl]="summaryFormGroupScenario3" [editable]="false" label="Podsumowanie"
                 state="summaryIcon">
         <form [formGroup]="summaryFormGroupScenario3">
           todo: summary survey for dates
         </form>
         <div>
-          <button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button"><span
-            translate>next</span></button>
+          <button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button">
+            <span>Dalej</span></button>
         </div>
       </mat-step>
 

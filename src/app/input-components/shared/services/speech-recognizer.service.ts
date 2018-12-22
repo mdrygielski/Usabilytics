@@ -34,7 +34,6 @@ export class SpeechRecognizerService {
   onStart(): Observable<SpeechNotification> {
     return new Observable(observer => {
       this.recognition.onstart = () => {
-        console.log('onStart - service');
         observer.next({
           info: 'info_speak_now'
         });

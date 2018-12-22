@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatStepper} from '@angular/material';
+import {UserService} from '../../user.service';
 
 @Component({
   selector: 'app-scenario2',
@@ -15,7 +16,8 @@ export class Scenario2Component implements OnInit {
 
   summaryFormGroupScenario2: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder,
+              public userService: UserService) {
     this.Math = Math;
   }
 
