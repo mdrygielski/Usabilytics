@@ -1,3 +1,57 @@
-<p>
-  test-summary works!
-</p>
+<div class="summary-container">
+  <p style="font-size: large">
+    Już prawie koniec!
+  </p>
+  <span>Proszę uzupełnić poniższe informację, a następnie zakończyć badanie przyciskiem zakończ</span>
+  <br/>
+  <mat-form-field style="margin-top: 30px">
+    <mat-select placeholder="Wiek" [(ngModel)]="ageRange" [required]="true">
+      <mat-option *ngFor="let ageRange of ageRanges" [value]="ageRange.value">
+        {{ageRange.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br/>
+  <mat-form-field style="margin-top: 15px">
+    <mat-select placeholder="Płeć" [(ngModel)]="gender" [required]="true">
+      <mat-option *ngFor="let gender of genders" [value]="gender.value">
+        {{gender.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br/>
+  <mat-form-field style="margin-top: 15px; width: 400px">
+    <mat-select placeholder="Wykształcenie" [(ngModel)]="educationType" [required]="true">
+      <mat-option *ngFor="let educationType of educationTypes" [value]="educationType.value">
+        {{educationType.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br/>
+  <mat-form-field style="width: 300px">
+    <input matInput
+           placeholder="Zawód"
+           [(ngModel)]="profession"
+           autocomplete="off"
+           required>
+  </mat-form-field>
+
+  <br/>
+  <mat-form-field style="margin-top: 15px; width: 300px">
+    <mat-select placeholder="Jak często korzystasz z komputera" [(ngModel)]="computerUse" [required]="true">
+      <mat-option *ngFor="let computerUse of computerUses" [value]="computerUse.value">
+        {{computerUse.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br/>
+  <button mat-raised-button color="primary" (click)="testConfirmation()" style="margin-left: 60px; margin-top: 20px">
+    <span>Zakończ</span>
+  </button>
+
+
+</div>
