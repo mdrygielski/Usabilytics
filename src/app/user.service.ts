@@ -5,6 +5,7 @@ export class UserService {
   language: string;
   testID: number;
   variant: number;
+  attempt: number;
   testStartTimestamp: string;
   testEndTimestamp: string;
 
@@ -25,6 +26,7 @@ export class UserService {
   constructor() {
     this.testID = 0;
     this.variant = 0;
+    this.attempt = 0;
   }
 
 }

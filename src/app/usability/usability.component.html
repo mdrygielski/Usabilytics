@@ -1,11 +1,9 @@
 <div style="padding-top: 40px; padding-left: 10px">
-  <p>Wariant: {{this.userService.variant}}</p>
   <mat-horizontal-stepper class="horizontalStepper" id="horizontalStepper" #mainStepper>
     <mat-step [stepControl]="firstFormGroup" [editable]="false">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel><span>Data</span></ng-template>
         <app-scenario1 (finished)="scenario1Done()"></app-scenario1>
-        <!--<app-test-summary (finished)="scenario6Done()"></app-test-summary>-->
       </form>
     </mat-step>
 

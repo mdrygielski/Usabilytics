@@ -1,11 +1,13 @@
-<h1 mat-dialog-title>Już prawie</h1>
+<h1 mat-dialog-title>Potwierdzenie badania</h1>
 <div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.password">
-  </mat-form-field>
+  <p>Aby zakończyć badanie pomyślnie należy wprowadzić hasło</p>
+    <mat-form-field style="display: flex; justify-content: center">
+      <input matInput type="password"
+             placeholder="Hasło"
+             [(ngModel)]="data.secretKey"
+             autocomplete="off">
+    </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="data.secretKey"  routerLink="/main" cdkFocusInitial>Potwierdź</button>
 </div>

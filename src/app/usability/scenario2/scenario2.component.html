@@ -1,37 +1,35 @@
 <!--<div fxLayout="row wrap" fxFlex="100">-->
 <div fxLayout="row" fxFlex="100">
   <mat-card class="instruction" oncopy="return false" oncut="return false">
+
     <h2>Scenariusz 2</h2>
     <span>Aby potwierdzić zakup proszę podać<br/>koszt przesyłki, cenę książki<br/>oraz kod produktu.</span>
-    <br/>
-    <br/>
-    <span><b>DANE:</b></span>
-    <br/>
-    <span>Koszt przesyłki: </span>
-    <span class="usability-data">
+    <p style="margin-top: 30px"><b>DANE DO WPROWADZENIA:</b></p>
+
+    <div style="font-size: 110%">
+      <span>Koszt przesyłki: </span>
+      <span class="usability-data">
       <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
         <b>8</b> zł
       </div>
     </span>
-    <br/>
-    <span>Cena ksiązki: </span>
-    <span class="usability-data">
+      <br/>
+      <span>Cena ksiązki: </span>
+      <span class="usability-data">
       <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
         <b>59,99</b> zł
       </div>
     </span>
-    <br/>
-    <span>Kod produktu: </span>
-    <span class="usability-data">
+      <br/>
+      <span>Kod produktu: </span>
+      <span class="usability-data">
       <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
         <b>9 788375 780635</b>
       </div>
     </span>
-    <br/>
-    <br/>
+    </div>
     <div class="warning-message">
-      <span>Uwaga:</span>
-      <br/>
+      <span>Uwaga!</span>
       <div matTooltip="Kopiowanie jest zablokowane">
         <span>Nie można kopiować danych!</span>
       </div>
@@ -40,88 +38,109 @@
   <mat-card class="usability-content">
 
     <mat-vertical-stepper [linear]="true" #stepper>
-      <mat-step [editable]="false" label="Wprowadzenie" state="infoIcon">
-        <form>
-          <span>Każdym etap składa się z dwóch kroków.</span><br/>
-          <span>Należy podać cenę oraz numer telefonu używając danych podanych w scenariuszu.</span>
-          <div>
-            <button mat-raised-button color="primary" (click)="stepConfirm()"
-                    class="next-step-button"><span>Dalej</span></button>
-          </div>
 
-        </form>
+      <mat-step [editable]="false" label="Wprowadzenie" state="infoIcon">
+        <span
+          style="font-size: 110%"><b>Proszę zapoznać się ze scenariuszem znajdujacym sie po lewej stronie.</b></span><br/>
+        <p>Każdym etap składa się z trzech kroków.<br/>
+          - Koszt przesyłki<br/>
+          - Cena ksiązki<br/>
+          - Kod produktu<br/>
+        </p>
+        <b>Należy podać dane zgodnie z tytułem używając danych podanych w scenariuszu.</b>
+        <div>
+          <button mat-raised-button color="primary" (click)="stepConfirm()"
+                  class="next-step-button"><span>Dalej</span></button>
+        </div>
       </mat-step>
-      <ng-template matStepperIcon="number" let-index="index">{{index}}</ng-template>
+      <ng-template matStepperIcon="number" let-index="index">{{Math.ceil(index/3)}}</ng-template>
 
       <mat-step [editable]="false" label="Koszt przesyłki">
-        <div *ngIf="this.userService.variant === 1">
-          <app-number-input
-            [dataType]="'smallPrice'"
-            [requiredInteger]="'8'"
-            [requiredDecimal]="''"
-            [title]="'Koszt przesyłki'"
-            [startTime]="stepStartTime"
-            (finish)="stepConfirm()"></app-number-input>
-        </div>
-        <div *ngIf="this.userService.variant !== 1">
-          <app-number-spinner
-            [dataType]="'smallPrice'"
-            [requiredPrice]="8"
-            [title]="'Koszt przesyłki'"
-            [startTime]="stepStartTime"
-            (finish)="stepConfirm()"></app-number-spinner>
-        </div>
+        <app-number-input
+          [dataType]="'smallPrice'"
+          [requiredInteger]="'8'"
+          [requiredDecimal]="''"
+          [title]="'Koszt przesyłki'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-number-input>
       </mat-step>
 
       <mat-step [editable]="false" label="Cena książki">
-        <div *ngIf="this.userService.variant === 1">
-          <app-number-input
-            [dataType]="'price'"
-            [requiredInteger]="'59'"
-            [requiredDecimal]="'99'"
-            [title]="'Cena książki'"
-            [startTime]="stepStartTime"
-            (finish)="stepConfirm()"></app-number-input>
-        </div>
-        <div *ngIf="this.userService.variant !== 1">
-          <app-number-spinner
-            [dataType]="'bigPrice'"
-            [requiredPrice]="59.99"
-            [title]="'cena'"
-            [startTime]="stepStartTime"
-            (finish)="stepConfirm()"></app-number-spinner>
-        </div>
-
+        <app-number-input
+          [dataType]="'price'"
+          [requiredInteger]="'59'"
+          [requiredDecimal]="'99'"
+          [title]="'Cena książki'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-number-input>
       </mat-step>
+
       <mat-step [editable]="false" label="Kod produktu">
-        <div *ngIf="this.userService.variant === 1">
           <app-number-big-input
             [dataType]="'barcode'"
             [requiredValue]="'9788375780635'"
             [title]="'Kod produktu'"
             [startTime]="stepStartTime"
             (finish)="stepConfirm()"></app-number-big-input>
-        </div>
-        <div *ngIf="this.userService.variant !== 1">
+      </mat-step>
+
+
+      <mat-step [editable]="false" label="Koszt przesyłki">
+        <app-number-spinner
+          [dataType]="'smallPrice'"
+          [requiredPrice]="8"
+          [title]="'Koszt przesyłki'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-number-spinner>
+      </mat-step>
+
+      <mat-step [editable]="false" label="Cena książki">
+        <app-number-spinner
+          [dataType]="'bigPrice'"
+          [requiredPrice]="59.99"
+          [title]="'cena'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-number-spinner>
+      </mat-step>
+
+      <mat-step [editable]="false" label="Kod produktu">
           <app-number-voice
             [dataType]="'barcode'"
             [requiredValue]="9788375780635"
             [title]="'Kod produktu'"
             [startTime]="stepStartTime"
             (finish)="stepConfirm()"></app-number-voice>
-
-        </div>
       </mat-step>
 
-
-      <mat-step [stepControl]="summaryFormGroupScenario2" [editable]="false" label="Podsumowanie"
+      <mat-step [editable]="false" label="Podsumowanie"
                 state="summaryIcon">
-        <form [formGroup]="summaryFormGroupScenario2">
-          todo: summary survey for dates
-        </form>
+        <p>Czy zadania były jasne i zrozumiałe?</p>
+        <mat-radio-group [(ngModel)]="scenarioUnderstandable" (change)="scenarioUnderstandableRequiredError = false">
+          <mat-radio-button style="margin-right: 20px" value="true">Tak</mat-radio-button>
+          <mat-radio-button value="false">Nie</mat-radio-button>
+        </mat-radio-group>
+        <div style="padding-top: 10px">
+          <mat-error *ngIf="scenarioUnderstandableRequiredError">Wartość jest wymagana!</mat-error>
+        </div>
+        <p>Czy wystąpiły jakieś problemy?</p>
+        <mat-radio-group [(ngModel)]="scenarioIssues" (change)="scenarioIssuesRequiredError = false">
+          <mat-radio-button style="margin-right: 20px" value="true">Tak</mat-radio-button>
+          <mat-radio-button value="false">Nie</mat-radio-button>
+        </mat-radio-group>
+        <div style="padding-top: 10px">
+          <mat-error *ngIf="scenarioIssuesRequiredError">Wartość jest wymagana!</mat-error>
+        </div>
+        <br/>
+        <mat-form-field style="width: 300px; margin-bottom: 10px">
+          <textarea matInput #commentArea
+                    [(ngModel)]="scenarioComment"
+                    rows="3"
+                    placeholder="Komentarz (opcjonalny)"></textarea>
+        </mat-form-field>
         <div>
-          <button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button">
-            <span>Dalej</span></button>
+          <button mat-raised-button color="primary" (click)="summaryConfirmation()">
+            <span>Kolejny scenariusz</span>
+          </button>
         </div>
       </mat-step>
 

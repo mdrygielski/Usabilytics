@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatStepper} from '@angular/material';
 import {UserService} from '../../user.service';
+import {LoggingService} from '../../logging.service';
 
 
 @Component({
@@ -16,34 +16,20 @@ export class Scenario1Component implements OnInit {
   @ViewChild('stepper') stepper: MatStepper;
   Math: any;
   stepStartTime: number;
+
   scenarioUnderstandable: boolean;
+  scenarioUnderstandableRequiredError: boolean;
   scenarioIssues: boolean;
+  scenarioIssuesRequiredError: boolean;
   scenarioComment: string;
 
 
-  secondFormGroupScenario1: FormGroup;
-  thirdFormGroupScenario1: FormGroup;
-  fourthFormGroupScenario1: FormGroup;
-  summaryFormGroupScenario1: FormGroup;
-
-  constructor(private formBuilder: FormBuilder,
-              public userService: UserService) {
+  constructor(public userService: UserService,
+              private loggingService: LoggingService) {
     this.Math = Math;
   }
 
   ngOnInit() {
-    this.secondFormGroupScenario1 = this.formBuilder.group({
-      secondCtrlScenario1: ['', Validators.required]
-    });
-    this.thirdFormGroupScenario1 = this.formBuilder.group({
-      thirdCtrlScenario1: ['', Validators.required]
-    });
-    this.fourthFormGroupScenario1 = this.formBuilder.group({
-      fourthCtrlScenario1: ['', Validators.required]
-    });
-    this.summaryFormGroupScenario1 = this.formBuilder.group({
-      summaryCtrlScenario1: ['', Validators.required]
-    });
   }
 
 
@@ -53,8 +39,26 @@ export class Scenario1Component implements OnInit {
   }
 
   summaryConfirmation() {
-    this.finished.emit();
-    console.log('step 4 - done');
+    if (this.scenarioUnderstandable === undefined) {
+      this.scenarioUnderstandableRequiredError = true;
+    } else {
+      this.scenarioUnderstandableRequiredError = false;
+    }
+    if (this.scenarioIssues === undefined) {
+      this.scenarioIssuesRequiredError = true;
+    } else {
+      this.scenarioIssuesRequiredError = false;
+    }
+
+    if (!this.scenarioIssuesRequiredError && !this.scenarioUnderstandableRequiredError) {
+      const scenarioData = {
+        'scenario1Understandable': this.scenarioUnderstandable,
+        'scenario1Issues': this.scenarioIssues,
+        'scenario1Comment': this.scenarioComment,
+      };
+      this.loggingService.SendData(scenarioData).subscribe();
+      this.finished.emit();
+    }
   }
 
 }

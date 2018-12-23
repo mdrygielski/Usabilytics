@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatStepper} from '@angular/material';
 import {UserService} from '../../user.service';
+import {LoggingService} from '../../logging.service';
 
 @Component({
   selector: 'app-scenario4',
@@ -11,22 +11,22 @@ import {UserService} from '../../user.service';
 export class Scenario4Component implements OnInit {
   @Output() finished = new EventEmitter<void>();
   @ViewChild('stepper') stepper: MatStepper;
-
+  Math: any;
   stepStartTime: number;
 
-  summaryFormGroupScenario3: FormGroup;
+  scenarioUnderstandable: boolean;
+  scenarioUnderstandableRequiredError: boolean;
+  scenarioIssues: boolean;
+  scenarioIssuesRequiredError: boolean;
+  scenarioComment: string;
 
-  constructor(private _formBuilder: FormBuilder,
-              public userService: UserService) { }
 
-  ngOnInit() {
-    this.summaryFormGroupScenario3 = this._formBuilder.group({
-      summaryCtrlScenario3: ['', Validators.required]
-    });
+  constructor(public userService: UserService,
+              private loggingService: LoggingService) {
+    this.Math = Math;
   }
 
-  introConfirmation() {
-    console.log('intro done. Starting first step');
+  ngOnInit() {
   }
 
   stepConfirm() {
@@ -36,7 +36,26 @@ export class Scenario4Component implements OnInit {
 
 
   summaryConfirmation() {
-    this.finished.emit();
-    console.log('step 2 - done');
+    if (this.scenarioUnderstandable === undefined) {
+      this.scenarioUnderstandableRequiredError = true;
+    } else {
+      this.scenarioUnderstandableRequiredError = false;
+    }
+    if (this.scenarioIssues === undefined) {
+      this.scenarioIssuesRequiredError = true;
+    } else {
+      this.scenarioIssuesRequiredError = false;
+    }
+
+    if (!this.scenarioIssuesRequiredError && !this.scenarioUnderstandableRequiredError) {
+      const scenarioData = {
+        'scenario4Understandable': this.scenarioUnderstandable,
+        'scenario4Issues': this.scenarioIssues,
+        'scenario4Comment': this.scenarioComment,
+      };
+      this.loggingService.SendData(scenarioData).subscribe();
+      this.finished.emit();
+    }
   }
+
 }

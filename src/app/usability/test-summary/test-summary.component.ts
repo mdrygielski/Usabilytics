@@ -7,6 +7,9 @@ export interface SelectOptions {
   value: string;
   viewValue: string;
 }
+export interface DialogData {
+  secretKey: string;
+}
 
 @Component({
   selector: 'app-test-summary',
@@ -19,7 +22,7 @@ export class TestSummaryComponent implements OnInit {
   public educationType: string;
   public profession: string;
   public webAppUse: string;
-  private password: string;
+  public secretKey: string;
 
   ageRanges: SelectOptions[] = [
     {value: '0-10', viewValue: 'Mniej niż 10 lat'},
@@ -63,56 +66,47 @@ export class TestSummaryComponent implements OnInit {
   constructor(private userService: UserService,
               private loggingService: LoggingService,
               public dialog: MatDialog) {
+    this.secretKey = '';
   }
 
   ngOnInit() {
   }
 
   testConfirmation() {
-    console.log(this.ageRange);
-    console.log(this.gender);
-    console.log(this.educationType);
-    console.log(this.profession);
-    console.log(this.webAppUse);
     if (this.ageRange != null &&
       this.gender != null &&
       this.educationType != null &&
       this.profession != null &&
       this.webAppUse != null) {
 
-      console.log('done');
+      this.openDialog();
+    }
+  }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      disableClose: true,
+      width: '450px',
+      data: {secretKey: this.secretKey}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.secretKey = result;
       this.userService.testEndTimestamp = Date();
 
-      const starRating = {
+      const testConfirmation = {
         'testEndTimestamp': this.userService.testEndTimestamp,
         'ageRange': this.ageRange,
         'gender': this.gender,
         'educationType': this.educationType,
         'profession': this.profession,
         'webAppUse': this.webAppUse,
+        'confirmationKey': this.secretKey,
       };
-      this.loggingService.SendData(starRating).subscribe();
+      this.loggingService.SendData(testConfirmation).subscribe();
 
-
-      console.log('test finished');
-
-    }
-  }
-
-  openDialog(): void {
-    this.dialog.open(ConfirmationDialogComponent);
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '250px',
-      data: {password: this.password}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.password = result;
     });
   }
-
 }
 
 @Component({
@@ -122,11 +116,5 @@ export class TestSummaryComponent implements OnInit {
 export class ConfirmationDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) data) {
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 }

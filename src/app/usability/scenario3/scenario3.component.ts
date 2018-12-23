@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatStepper} from '@angular/material';
 import {UserService} from '../../user.service';
+import {LoggingService} from '../../logging.service';
 
 @Component({
   selector: 'app-scenario3',
@@ -14,18 +14,19 @@ export class Scenario3Component implements OnInit {
   Math: any;
   stepStartTime: number;
 
-  summaryFormGroupScenario3: FormGroup;
+  scenarioUnderstandable: boolean;
+  scenarioUnderstandableRequiredError: boolean;
+  scenarioIssues: boolean;
+  scenarioIssuesRequiredError: boolean;
+  scenarioComment: string;
 
-  constructor(private _formBuilder: FormBuilder,
-              public userService: UserService) {
+
+  constructor(public userService: UserService,
+              private loggingService: LoggingService) {
     this.Math = Math;
   }
 
-  ngOnInit() {
-    this.summaryFormGroupScenario3 = this._formBuilder.group({
-      summaryCtrlScenario3: ['', Validators.required]
-    });
-  }
+  ngOnInit() { }
 
   stepConfirm() {
     this.stepper.next();
@@ -33,7 +34,25 @@ export class Scenario3Component implements OnInit {
   }
 
   summaryConfirmation() {
-    this.finished.emit();
-    console.log('step 4 - done');
+    if (this.scenarioUnderstandable === undefined) {
+      this.scenarioUnderstandableRequiredError = true;
+    } else {
+      this.scenarioUnderstandableRequiredError = false;
+    }
+    if (this.scenarioIssues === undefined) {
+      this.scenarioIssuesRequiredError = true;
+    } else {
+      this.scenarioIssuesRequiredError = false;
+    }
+
+    if (!this.scenarioIssuesRequiredError && !this.scenarioUnderstandableRequiredError) {
+      const scenarioData = {
+        'scenario3Understandable': this.scenarioUnderstandable,
+        'scenario3Issues': this.scenarioIssues,
+        'scenario3Comment': this.scenarioComment,
+      };
+      this.loggingService.SendData(scenarioData).subscribe();
+      this.finished.emit();
+    }
   }
 }

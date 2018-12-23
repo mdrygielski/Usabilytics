@@ -1,13 +1,12 @@
 <div fxLayout="row wrap" fxFlex="100">
   <mat-card class="instruction" oncopy="return false" oncut="return false">
     <h2>Scenariusz 5</h2>
-    <span>W ostatnim etapie proszę podać jakie informację są dla Ciebie interesujące</span>
-    <br/>
-    <br/>
-    <span><b>DANE:</b></span>
-    <br/>
-    <span>Chcesz otrzymywać powiadomienia o:</span><br/>
-    <span class="usability-data">
+    <span>W ostatnim etapie proszę podać<br/> jakie informację są dla Ciebie interesujące</span>
+    <p style="margin-top: 30px"><b>DANE DO WPROWADZENIA:</b></p>
+
+    <div style="font-size: 110%; width: 300px;">
+      <span>Chcesz otrzymywać powiadomienia o:</span>
+      <span class="usability-data">
       <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
         <ul>
           <li><b>Promocjach</b></li>
@@ -15,9 +14,9 @@
         </ul>
       </div>
     </span>
-    <br/>
-    <span>Nie chcesz otrzymywać powiadomień o: </span>
-    <span class="usability-data">
+      <br/>
+      <span>Nie chcę otrzymywać powiadomień o:</span>
+      <span class="usability-data">
       <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
         <ul>
           <li><b>Nowościach</b></li>
@@ -25,27 +24,19 @@
         </ul>
       </div>
     </span>
-    <br/>
-    <br/>
-    <div class="warning-message">
-      <span>Uwaga:</span>
-      <br/>
-      <div matTooltip="Kopiowanie jest zablokowane">
-        <span>Nie można kopiować danych!</span>
-      </div>
     </div>
   </mat-card>
   <mat-card class="usability-content">
 
     <mat-vertical-stepper [linear]="true" #stepper>
       <mat-step [editable]="false" label="Wprowadzenie" state="infoIcon">
-        <form>
-          <span>W tym etapie ...</span>
-          <div>
-            <button mat-raised-button color="primary" (click)="stepConfirm()"
-                    class="next-step-button"><span>Dalej</span></button>
-          </div>
-        </form>
+        <span style="font-size: 110%"><b>Proszę zapoznać się ze scenariuszem znajdujacym sie po lewej stronie.</b></span><br/>
+        <p>W każdym etapie należy wybrać odpowiednie opcje</p>
+        <b>Należy wybrać opcje używając danych podanych w scenariuszu.</b>
+        <div>
+          <button mat-raised-button color="primary" (click)="stepConfirm()"
+                  class="next-step-button"><span>Dalej</span></button>
+        </div>
       </mat-step>
 
       <ng-template matStepperIcon="number" let-index="index">{{index}}</ng-template>
@@ -83,15 +74,34 @@
         </div>
       </mat-step>
 
-
-      <mat-step [stepControl]="summaryFormGroupScenario3" [editable]="false" label="Podsumowanie"
+      <mat-step [editable]="false" label="Podsumowanie"
                 state="summaryIcon">
-        <form [formGroup]="summaryFormGroupScenario3">
-          todo: summary survey
-        </form>
+        <p>Czy zadania były jasne i zrozumiałe?</p>
+        <mat-radio-group [(ngModel)]="scenarioUnderstandable" (change)="scenarioUnderstandableRequiredError = false">
+          <mat-radio-button style="margin-right: 20px" value="true">Tak</mat-radio-button>
+          <mat-radio-button value="false">Nie</mat-radio-button>
+        </mat-radio-group>
+        <div style="padding-top: 10px">
+          <mat-error *ngIf="scenarioUnderstandableRequiredError">Wartość jest wymagana!</mat-error>
+        </div>
+        <p>Czy wystąpiły jakieś problemy?</p>
+        <mat-radio-group [(ngModel)]="scenarioIssues" (change)="scenarioIssuesRequiredError = false">
+          <mat-radio-button style="margin-right: 20px" value="true">Tak</mat-radio-button>
+          <mat-radio-button value="false">Nie</mat-radio-button>
+        </mat-radio-group>
+        <div style="padding-top: 10px">
+          <mat-error *ngIf="scenarioIssuesRequiredError">Wartość jest wymagana!</mat-error>
+        </div>
+        <br/>
+        <mat-form-field style="width: 300px; margin-bottom: 10px">
+          <textarea matInput #commentArea
+                    [(ngModel)]="scenarioComment"
+                    rows="3"
+                    placeholder="Komentarz (opcjonalny)"></textarea>
+        </mat-form-field>
         <div>
-          <button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button">
-            <span>Dalej</span>
+          <button mat-raised-button color="primary" (click)="summaryConfirmation()">
+            <span>Kolejny scenariusz</span>
           </button>
         </div>
       </mat-step>

@@ -1,31 +1,41 @@
 <div fxLayout="row wrap" fxFlex="100">
   <mat-card class="instruction" oncopy="return false" oncut="return false">
-    <h2>Scenariusz 4</h2>
-    <span>Prosze uzupełnić ocenę ksiażki o komentarz<br/>oraz maila.</span>
-    <br/>
-    <br/>
-    <span><b>DANE:</b></span>
-    <br/>
-    <span>opinia: </span>
-    <span class="usability-data">
-      <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
-        <b>polecam</b>
-      </div>
-    </span>
-    <br/>
-    <span>mail: </span>
-    <span class="usability-data">
-      <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
-        <b>polecam</b>
-      </div>
-    </span>
-    <br/>
-    <br/>
-    <div class="warning-message">
-      <span>Uwaga:</span>
-      <br/>
+
+    <h2>Scenariusz 3</h2>
+    <span>Prosze uzupełnić ocenę ksiażki o komentarz<br/>oraz wiadomość do sprzedawcy.<br/></span>
+    <p style="margin-top: 30px"><b>DANE DO WPROWADZENIA:</b></p>
+
+    <div style="font-size: 110%; width: 400px">
+      <span>Komentarz: </span>
+      <span class="usability-data">
       <div matTooltip="Kopiowanie jest zablokowane">
-        <span>Nie można kopiować danych!</span>
+        <b>pomimo kilku negatywnych opinii<br/>
+          mogę szczerze polecić książkę<br/>
+          wszystkim czytelnikom zwłaszcza<br/>
+          na długie jesienne wieczory</b>
+      </div>
+    </span>
+      <br/>
+      <span>Wiadomość: </span>
+      <span class="usability-data">
+      <div matTooltip="Kopiowanie jest zablokowane">
+        <b>Witam,<br/>
+          Piszę w sprawie zamówienia numer 543 854.<br/>
+          Niestety po otwarciu paczki okazało się,<br/>
+          że w paczce brakuje jednej książki.<br/>
+          Jest to "Sezon burz" Andrzeja Sapkowskiego.<br/>
+          Liczę na szybką odpowiedź i pozdrawiam.<br/>
+        </b>
+      </div>
+    </span>
+    </div>
+    <div class="warning-message">
+      <span>Uwaga!</span>
+      <div matTooltip="Kopiowanie jest zablokowane">
+        <span>Nie można kopiować danych!</span><br/>
+        <span>Znaki interpunkcyjne są sprawdzane!</span><br/>
+        <span>Polskie znaki są sprawdzane!</span><br/>
+        <span>Wielkość liter ma znaczenie!</span>
       </div>
     </div>
   </mat-card>
@@ -33,32 +43,36 @@
 
     <mat-vertical-stepper [linear]="true" #stepper>
       <mat-step [editable]="false" label="Wprowadzenie" state="infoIcon">
-        <form>
-          <span>W tym etapie ...</span>
-          <div>
-            <button mat-raised-button color="primary" (click)="stepConfirm()"
-                    class="next-step-button"><span>Dalej</span></button>
-          </div>
-        </form>
+        <span
+          style="font-size: 110%"><b>Proszę zapoznać się ze scenariuszem znajdujacym sie po lewej stronie.</b></span><br/>
+        <p>Każdym etap składa się z dwóch kroków.<br/>
+          - Komentarza<br/>
+          - Wiadomości do sprzedającego<br/>
+        </p>
+        <b>Należy wpisać tekst zgodnie z tytułem używając danych podanych w scenariuszu.</b>
+        <div>
+          <button mat-raised-button color="primary" (click)="stepConfirm()"
+                  class="next-step-button"><span>Dalej</span></button>
+        </div>
       </mat-step>
 
-      <ng-template matStepperIcon="number" let-index="index">{{index}}</ng-template>
+      <ng-template matStepperIcon="number" let-index="index">{{Math.ceil(index/2)}}</ng-template>
 
       <mat-step [editable]="false" label="Opinia">
 
         <app-text-input
-        [dataType]="'simpleText'"
-        [requiredText]="'test'"
-        [title]="'Opinia'"
-        [startTime]="stepStartTime"
-        (finish)="stepConfirm()"></app-text-input>
+          [dataType]="'simpleText'"
+          [requiredText]="'pomimo kilku negatywnych opinii mogę szczerze polecić książkę wszystkim czytelnikom zwłaszcza na długie jesienne wieczory'"
+          [title]="'Opinia'"
+          [startTime]="stepStartTime"
+          (finish)="stepConfirm()"></app-text-input>
       </mat-step>
 
       <mat-step [editable]="false" label="Wiadomość">
 
         <app-text-input
           [dataType]="'complexText'"
-          [requiredText]="'test'"
+          [requiredText]="'Witam, Piszę w sprawie zamówienia numer 543 854. Niestety po otwarciu paczki okazało się, że w paczce brakuje jednej książki. Jest to &quot;Sezon burz&quot; Andrzeja Sapkowskiego. Liczę na szybką odpowiedź i pozdrawiam.'"
           [title]="'Wiadomość'"
           [startTime]="stepStartTime"
           (finish)="stepConfirm()"></app-text-input>
@@ -68,7 +82,7 @@
 
         <app-text-voice
           [dataType]="'simpleText'"
-          [requiredText]="'test'"
+          [requiredText]="'pomimo kilku negatywnych opinii mogę szczerze polecić książkę wszystkim czytelnikom zwłaszcza na długie jesienne wieczory'"
           [title]="'Opinia'"
           [startTime]="stepStartTime"
           (finish)="stepConfirm()"></app-text-voice>
@@ -78,21 +92,40 @@
 
         <app-text-voice
           [dataType]="'complexText'"
-          [requiredText]="'test'"
+          [requiredText]="'Witam, Piszę w sprawie zamówienia numer 543 854. Niestety po otwarciu paczki okazało się, że w paczce brakuje jednej książki. Jest to &quot;Sezon burz&quot; Andrzeja Sapkowskiego. Liczę na szybką odpowiedź i pozdrawiam.'"
           [title]="'Wiadomość'"
           [startTime]="stepStartTime"
           (finish)="stepConfirm()"></app-text-voice>
       </mat-step>
 
-
-      <mat-step [stepControl]="summaryFormGroupScenario3" [editable]="false" label="Podsumowanie"
-                state="summaryIcon">
-        <form [formGroup]="summaryFormGroupScenario3">
-          todo: summary survey
-        </form>
+      <mat-step [editable]="false" label="Podsumowanie" state="summaryIcon">
+        <p>Czy zadania były jasne i zrozumiałe?</p>
+        <mat-radio-group [(ngModel)]="scenarioUnderstandable" (change)="scenarioUnderstandableRequiredError = false">
+          <mat-radio-button style="margin-right: 20px" value="true">Tak</mat-radio-button>
+          <mat-radio-button value="false">Nie</mat-radio-button>
+        </mat-radio-group>
+        <div style="padding-top: 10px">
+          <mat-error *ngIf="scenarioUnderstandableRequiredError">Wartość jest wymagana!</mat-error>
+        </div>
+        <p>Czy wystąpiły jakieś problemy?</p>
+        <mat-radio-group [(ngModel)]="scenarioIssues" (change)="scenarioIssuesRequiredError = false">
+          <mat-radio-button style="margin-right: 20px" value="true">Tak</mat-radio-button>
+          <mat-radio-button value="false">Nie</mat-radio-button>
+        </mat-radio-group>
+        <div style="padding-top: 10px">
+          <mat-error *ngIf="scenarioIssuesRequiredError">Wartość jest wymagana!</mat-error>
+        </div>
+        <br/>
+        <mat-form-field style="width: 300px; margin-bottom: 10px">
+          <textarea matInput #commentArea
+                    [(ngModel)]="scenarioComment"
+                    rows="3"
+                    placeholder="Komentarz (opcjonalny)"></textarea>
+        </mat-form-field>
         <div>
-          <button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button">
-            <span>Dalej</span></button>
+          <button mat-raised-button color="primary" (click)="summaryConfirmation()">
+            <span>Kolejny scenariusz</span>
+          </button>
         </div>
       </mat-step>
 

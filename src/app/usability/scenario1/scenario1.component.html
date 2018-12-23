@@ -3,7 +3,7 @@
   <mat-card class="instruction" oncopy="return false" oncut="return false">
     <h2>Scenariusz 1</h2>
     <span>Właśnie zamówiłeś nową książkę.<br/></span>
-    <span>Proszę podać datę odbioru zamówienia oraz datę urodzenia w celu weryfikacji.</span>
+    <span>Proszę podać datę odbioru zamówienia<br/>oraz datę urodzenia w celu weryfikacji.</span>
     <p style="margin-top: 30px"><b>DANE DO WPROWADZENIA:</b></p>
 
     <div style="font-size: 110%">
@@ -31,35 +31,9 @@
   <mat-card class="usability-content">
 
     <mat-vertical-stepper linear #stepper>
-      <mat-step [stepControl]="summaryFormGroupScenario1" [editable]="false" label="Podsumowanie"
-                state="summaryIcon">
-        <form [formGroup]="summaryFormGroupScenario1">
-          <p>Czy zadania były jasnę i zrozumiałe?</p>
-          <mat-radio-group [(ngModel)]="scenarioUnderstandable">
-            <mat-radio-button style="margin-right: 20px" value="true">Tak</mat-radio-button>
-            <mat-radio-button value="false">Nie</mat-radio-button>
-          </mat-radio-group>
-          <p>Czy wystąpiły jakieś problemy?</p>
-          <mat-radio-group [(ngModel)]="scenarioIssues">
-            <mat-radio-button style="margin-right: 20px" value="true">Tak</mat-radio-button>
-            <mat-radio-button value="false">Nie</mat-radio-button>
-          </mat-radio-group>
-          <br/>
-          <mat-form-field>
-            <textarea matInput #commentArea [(ngModel)]="scenarioComment" placeholder="Komentarz (opcjonalny)"></textarea>
-          </mat-form-field>
-        </form>
-        <div>
-          <button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button">
-            <span>Kolejny scenariusz</span>
-          </button>
-        </div>
-      </mat-step>
-
 
       <mat-step [editable]="false" label="Wprowadzenie" state="infoIcon">
-        <span
-          style="font-size: 110%"><b>Proszę zapoznać się ze scenariuszem znajdujacym sie po lewej stronie.</b></span><br/>
+        <span style="font-size: 110%"><b>Proszę zapoznać się ze scenariuszem znajdujacym sie po lewej stronie.</b></span><br/>
         <p>Każdym etap składa się z dwóch kroków.<br/>
           - Data odbioru zamówienia<br/>
           - Data urodzenia<br/>
@@ -199,20 +173,37 @@
         </div>
       </mat-step>
 
-      <!--<mat-step [stepControl]="summaryFormGroupScenario1" [editable]="false" label="Podsumowanie"-->
-                <!--state="summaryIcon">-->
-        <!--<form [formGroup]="summaryFormGroupScenario1">-->
-          <!--<mat-radio-group>-->
-            <!--<mat-radio-button value="yes">Tak</mat-radio-button>-->
-            <!--<mat-radio-button value="no">Nie</mat-radio-button>-->
-          <!--</mat-radio-group>-->
-        <!--</form>-->
-        <!--<div>-->
-          <!--<button mat-raised-button color="primary" (click)="summaryConfirmation()" class="next-step-button">-->
-            <!--<span>Kolejny scenariusz</span>-->
-          <!--</button>-->
-        <!--</div>-->
-      <!--</mat-step>-->
+      <mat-step [editable]="false" label="Podsumowanie"
+                state="summaryIcon">
+        <p>Czy zadania były jasne i zrozumiałe?</p>
+        <mat-radio-group [(ngModel)]="scenarioUnderstandable" (change)="scenarioUnderstandableRequiredError = false">
+          <mat-radio-button style="margin-right: 20px" value="true">Tak</mat-radio-button>
+          <mat-radio-button value="false">Nie</mat-radio-button>
+        </mat-radio-group>
+        <div style="padding-top: 10px">
+          <mat-error *ngIf="scenarioUnderstandableRequiredError">Wartość jest wymagana!</mat-error>
+        </div>
+        <p>Czy wystąpiły jakieś problemy?</p>
+        <mat-radio-group [(ngModel)]="scenarioIssues" (change)="scenarioIssuesRequiredError = false">
+          <mat-radio-button style="margin-right: 20px" value="true">Tak</mat-radio-button>
+          <mat-radio-button value="false">Nie</mat-radio-button>
+        </mat-radio-group>
+        <div style="padding-top: 10px">
+          <mat-error *ngIf="scenarioIssuesRequiredError">Wartość jest wymagana!</mat-error>
+        </div>
+        <br/>
+        <mat-form-field style="width: 300px; margin-bottom: 10px">
+          <textarea matInput #commentArea
+                    [(ngModel)]="scenarioComment"
+                    rows="3"
+                    placeholder="Komentarz (opcjonalny)"></textarea>
+        </mat-form-field>
+        <div>
+          <button mat-raised-button color="primary" (click)="summaryConfirmation()">
+            <span>Kolejny scenariusz</span>
+          </button>
+        </div>
+      </mat-step>
 
       <ng-template matStepperIcon="infoIcon">
         <mat-icon>info</mat-icon>

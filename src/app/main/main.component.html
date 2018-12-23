@@ -3,12 +3,16 @@
   <h1>
     <span>Witaj</span>!
   </h1>
-  <span>Badanie polega na wprowadzeniu podanych danych za pomocą wybranych elementów.
-    Aby wykonać test należy wprowadzić dane zgodnie z instrukcją znajdującą się po lewej stronie ekranu lub na górze.
-    Po wykonaniu testy należy ocenić, która z metod wprowadzania była dla Ciebie najlepsza.</span>
-  <br/>
-  <br/>
-  <button mat-raised-button color="primary" routerLink="/usability" (click)="StartTest()"><span>Rozpocznij</span></button>
-  <!--<button mat-button (click)="sendEmailConfirmation()">Send</button>-->
+  <p style="font-size: large; margin-bottom: 40px">Badanie polega na wprowadzeniu danych z wykorzystaniem różnych metod.<br/>
+    W czasie testu należy wprowadzać dane zgodnie z opisem znajdującą się po lewej stronie ekranu.<br/>
+    Należy używać danych dostarczonych w opisie/scenariuszu (inne wartości nie będą akceptowane).</p>
+
+  <div *ngIf="this.userService.testID === 0">
+    <button mat-raised-button color="primary" routerLink="/usability" (click)="StartTest()"><span>Rozpocznij</span></button>
+  </div>
+  <div *ngIf="this.userService.testID !== 0">
+    <button mat-raised-button color="primary" routerLink="/usability" (click)="StartTest()"><span>Powtórz badanie</span></button><br/>
+    <button mat-raised-button color="primary" routerLink="/usability" (click)="StartTest()" style="margin-top: 50px"><span>Rozpocznij jako nowy użytkownik</span></button>
+  </div>
 </div>
 

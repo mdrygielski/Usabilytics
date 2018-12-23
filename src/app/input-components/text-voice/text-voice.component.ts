@@ -47,7 +47,9 @@ export class TextVoiceComponent implements OnInit {
 
 
   validateText() {
-    if (this.finalTranscript === this.requiredText) {
+    let cleanText = this.finalTranscript.replace(/(?:\r\n|\r|\n)/g, ' ');
+    cleanText = cleanText.replace( /\s\s+/g, ' ' ).trim();
+    if (cleanText === this.requiredText) {
       this.endTime = Date.now();
       this.finished = true;
       this.textVoiceFormControl.setErrors(null);
