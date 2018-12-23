@@ -45,29 +45,23 @@ export class UsabilityComponent implements OnInit {
   }
 
   scenario1Done() {
-    console.log('scenario 1 finished!');
     this.stepper.next();
   }
 
   scenario2Done() {
-    console.log('scenario 2 finished!');
     this.stepper.next();
   }
 
   scenario3Done() {
-    console.log('scenario 3 finished!');
     this.stepper.next();
   }
   scenario4Done() {
-    console.log('scenario 4 finished!');
     this.stepper.next();
   }
   scenario5Done() {
-    console.log('scenario 5 finished!');
     this.stepper.next();
   }
   scenario6Done() {
-    console.log('scenario 6 finished!');
     this.stepper.next();
   }
 }

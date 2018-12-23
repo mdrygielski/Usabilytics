@@ -44,13 +44,7 @@ export class AppComponent implements OnInit {
 
   languageChangedHandler(lang: string) {
     this.userService.language = lang;
-    // this.translate.use(lang);
-    // set locale
-    // if (lang === 'pl') {
       this.adapter.setLocale('pl');
-    // } else {
-    //   this.adapter.setLocale('en');
-    // }
   }
 
   private getIPData() {

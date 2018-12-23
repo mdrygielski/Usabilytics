@@ -42,3 +42,7 @@
 mat-vertical-stepper {
   margin-left: -20px;
 }
+
+::ng-deep .mat-horizontal-stepper-header {
+  pointer-events: none !important;
+}

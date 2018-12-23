@@ -12,7 +12,7 @@ declare function StartTest(): any;
 export class MainComponent implements OnInit {
 
   constructor(private loggingService: LoggingService,
-              private userService: UserService) {
+              public userService: UserService) {
   }
 
   ngOnInit() {
@@ -22,17 +22,14 @@ export class MainComponent implements OnInit {
     this.userService.testID = 0;
     this.userService.attempt = 0;
     this.userService.variant = 0;
-
+    this.StartTest();
   }
 
   StartTest() {
-    console.log(this.userService.testID);
     if (this.userService.testID === 0) {
-      console.log('nowe badanie');
       this.userService.testID = Date.now();
       this.userService.variant = Math.floor(Math.random() * Math.floor(2)) + 1;
     } else {
-      console.log('podejście numer: ' + this.userService.attempt + 1);
       this.userService.testID += 100000000000000;
       this.userService.attempt += 1;
     }

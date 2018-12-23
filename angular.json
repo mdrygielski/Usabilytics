@@ -24,7 +24,6 @@
               "src/styles.css"
             ],
             "scripts": [
-              "src/assets/js/sqs_sendMessage.js"
             ]
           },
           "configurations": {

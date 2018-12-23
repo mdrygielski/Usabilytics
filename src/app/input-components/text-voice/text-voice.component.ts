@@ -102,7 +102,6 @@ export class TextVoiceComponent implements OnInit {
     this.initialized = true;
     this.speechRecognizer.onStart()
       .subscribe(data => {
-        console.log('onStart - text');
         this.recognizing = true;
         this.notification = 'I\'m listening...';
         this.detectChanges();
