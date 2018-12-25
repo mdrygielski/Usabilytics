@@ -1,3 +1,6 @@
+::ng-deep .mat-vertical-stepper-header {
+  pointer-events: none !important;
+}
 .summary-container {
   padding: 50px;
 }

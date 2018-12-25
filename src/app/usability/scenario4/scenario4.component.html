@@ -20,11 +20,10 @@
       <span class="usability-data">
       <div matTooltip="Kopiowanie jest zablokowane">
         <b>Witam,<br/>
-          Piszę w sprawie zamówienia numer 543 854.<br/>
-          Niestety po otwarciu paczki okazało się,<br/>
-          że w paczce brakuje jednej książki.<br/>
-          Jest to "Sezon burz" Andrzeja Sapkowskiego.<br/>
-          Liczę na szybką odpowiedź i pozdrawiam.<br/>
+          piszę w sprawie zamówienia numer 543854.<br/>
+          Niestety po odebraniu paczki okazało się,<br/>
+          że brakuje jednej książki.<br/>
+          Liczę na szybką odpowiedź.<br/>
         </b>
       </div>
     </span>
@@ -58,12 +57,12 @@
 
       <ng-template matStepperIcon="number" let-index="index">{{Math.ceil(index/2)}}</ng-template>
 
-      <mat-step [editable]="false" label="Opinia">
+      <mat-step [editable]="false" label="Komentarz">
 
         <app-text-input
           [dataType]="'simpleText'"
           [requiredText]="'pomimo kilku negatywnych opinii mogę szczerze polecić książkę wszystkim czytelnikom zwłaszcza na długie jesienne wieczory'"
-          [title]="'Opinia'"
+          [title]="'Komentarz'"
           [startTime]="stepStartTime"
           (finish)="stepConfirm()"></app-text-input>
       </mat-step>
@@ -72,18 +71,18 @@
 
         <app-text-input
           [dataType]="'complexText'"
-          [requiredText]="'Witam, Piszę w sprawie zamówienia numer 543 854. Niestety po otwarciu paczki okazało się, że w paczce brakuje jednej książki. Jest to &quot;Sezon burz&quot; Andrzeja Sapkowskiego. Liczę na szybką odpowiedź i pozdrawiam.'"
+          [requiredText]="'Witam, piszę w sprawie zamówienia numer 543854. Niestety po odebraniu paczki okazało się, że brakuje jednej książki. Liczę na szybką odpowiedź.'"
           [title]="'Wiadomość'"
           [startTime]="stepStartTime"
           (finish)="stepConfirm()"></app-text-input>
       </mat-step>
 
-      <mat-step [editable]="false" label="Opinia">
+      <mat-step [editable]="false" label="Komentarz">
 
         <app-text-voice
           [dataType]="'simpleText'"
           [requiredText]="'pomimo kilku negatywnych opinii mogę szczerze polecić książkę wszystkim czytelnikom zwłaszcza na długie jesienne wieczory'"
-          [title]="'Opinia'"
+          [title]="'Komentarz'"
           [startTime]="stepStartTime"
           (finish)="stepConfirm()"></app-text-voice>
       </mat-step>
@@ -92,7 +91,7 @@
 
         <app-text-voice
           [dataType]="'complexText'"
-          [requiredText]="'Witam, Piszę w sprawie zamówienia numer 543 854. Niestety po otwarciu paczki okazało się, że w paczce brakuje jednej książki. Jest to &quot;Sezon burz&quot; Andrzeja Sapkowskiego. Liczę na szybką odpowiedź i pozdrawiam.'"
+          [requiredText]="'Witam, piszę w sprawie zamówienia numer 543854. Niestety po odebraniu paczki okazało się, że brakuje jednej książki. Liczę na szybką odpowiedź.'"
           [title]="'Wiadomość'"
           [startTime]="stepStartTime"
           (finish)="stepConfirm()"></app-text-voice>
