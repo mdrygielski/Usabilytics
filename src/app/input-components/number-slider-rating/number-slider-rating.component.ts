@@ -36,7 +36,6 @@ export class NumberSliderRatingComponent implements OnInit {
   }
 
   validateRate() {
-    console.log(this.numberSliderRatingInputFormControl.value);
     if (this.numberSliderRatingInputFormControl.value === this.requiredRate) {
       this.endTime = Date.now();
       this.finished = true;
