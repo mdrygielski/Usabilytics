@@ -181,4 +181,14 @@ export class NumberVoiceComponent implements OnInit {
     }
     return false;
   }
+
+  skipVoiceInput() {
+    if (this.dataType === 'barcode') {
+      const numberVoiceInput = {
+        'numberVoiceInputBarcodeOmmited': true
+      };
+      this.loggingService.SendData(numberVoiceInput).subscribe();
+    }
+    this.finish.emit();
+  }
 }

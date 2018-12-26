@@ -172,4 +172,20 @@ export class TextVoiceComponent implements OnInit {
   keyCounter(): void {
     this.keyPressedCounter++;
   }
+
+  skipVoiceInput() {
+    if (this.dataType === 'simpleText') {
+      const textVoiceInput = {
+        'textVoiceSimpleOmmited': true
+      };
+      this.loggingService.SendData(textVoiceInput).subscribe();
+    }
+    if (this.dataType === 'complexText') {
+      const textVoiceInput = {
+        'textVoiceComplexOmmited': true
+      };
+      this.loggingService.SendData(textVoiceInput).subscribe();
+    }
+    this.finish.emit();
+  }
 }
