@@ -5,7 +5,8 @@
   </h1>
   <p style="font-size: large; margin-bottom: 40px">Badanie polega na wprowadzeniu danych z wykorzystaniem różnych metod.<br/>
     W czasie testu należy wprowadzać dane zgodnie z opisem znajdującą się po lewej stronie ekranu.<br/>
-    Należy używać danych dostarczonych w opisie/scenariuszu (inne wartości nie będą akceptowane).</p>
+    Należy używać danych dostarczonych w opisie/scenariuszu (inne wartości nie będą akceptowane).<br/>
+    W przypadku problemów z mikrofonem, proszę pominąć część dotyczącą wprowadzania głosowego.</p>
 
   <div *ngIf="this.userService.testID === 0">
     <button mat-raised-button color="primary" routerLink="/usability" (click)="StartTest()"><span>Rozpocznij</span></button>

@@ -77,7 +77,7 @@
           (finish)="stepConfirm()"></app-text-input>
       </mat-step>
 
-      <mat-step [editable]="false" label="Komentarz">
+      <mat-step [editable]="false" label="Komentarz (wprowadzanie głosowe)">
 
         <app-text-voice
           [dataType]="'simpleText'"
@@ -87,7 +87,7 @@
           (finish)="stepConfirm()"></app-text-voice>
       </mat-step>
 
-      <mat-step [editable]="false" label="Wiadomość">
+      <mat-step [editable]="false" label="Wiadomość (wprowadzanie głosowe)">
 
         <app-text-voice
           [dataType]="'complexText'"
