@@ -21,7 +21,7 @@
               autocomplete="off"
               [value]="interimTranscript ===''?finalTranscript: finalTranscript + ' ' + interimTranscript + '...'"
               (input)="updateFinalTranscript($event.target.value)"
-              placeholder="wiadomość"
+              placeholder="{{title}}"
               [formControl]="textVoiceFormControl"
               (keydown)="keyCounter()"
               rows="6"></textarea>
