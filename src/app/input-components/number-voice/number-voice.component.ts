@@ -45,6 +45,9 @@ export class NumberVoiceComponent implements OnInit {
 
 
   validateNumberVoice() {
+    if (this.recognizing) {
+      this.speechRecognizer.stop();
+    }
     const cleanValue = +this.finalTranscript.replace(/[^0-9]+/g, '');
     if (cleanValue === this.requiredValue) {
       this.endTime = Date.now();

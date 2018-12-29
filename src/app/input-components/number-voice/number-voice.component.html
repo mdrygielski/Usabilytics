@@ -1,13 +1,13 @@
 <div>
   <br/>
   <div *ngIf="!recognizing" class="speech-recognition-button">
-    <button mat-raised-button (click)="startButton($event)" color="primary">
+    <button mat-raised-button (click)="startButton($event)" color="primary" [disabled]="finished">
       <mat-icon>mic</mat-icon>
       <span>Rozpocznij</span>
     </button>
   </div>
   <div *ngIf="recognizing" class="speech-recognition-button">
-    <button mat-raised-button (click)="startButton($event)" color="primary">
+    <button mat-raised-button (click)="startButton($event)" color="primary" [disabled]="finished">
       <mat-icon>mic_off</mat-icon>
       <span>Stop</span></button>
   </div>
