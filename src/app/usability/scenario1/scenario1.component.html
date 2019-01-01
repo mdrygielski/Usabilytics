@@ -10,7 +10,7 @@
       <span>Data odbioru: </span>
       <span class="usability-data">
       <div style="display: inline-block" matTooltip="Kopiowanie jest zablokowane">
-        <b>31 Grudzień 2018</b>
+        <b>24 Styczeń 2019</b>
       </div>
     </span>
       <br/>
@@ -50,18 +50,18 @@
       <mat-step [editable]="false" label="Data odbioru zamówienia">
         <div *ngIf="this.userService.variant === 1">
           <app-date-month-selector [dataType]="'soon'"
-                                   [requiredYear]="2018"
-                                   [requiredMonth]="12"
-                                   [requiredDay]="31"
+                                   [requiredYear]="2019"
+                                   [requiredMonth]="1"
+                                   [requiredDay]="24"
                                    [title]="'Data odbioru zamówienia'"
                                    [startTime]="stepStartTime"
                                    (finish)="stepConfirm()"></app-date-month-selector>
         </div>
         <div *ngIf="this.userService.variant !== 1">
           <app-date-full-selector [dataType]="'soon'"
-                                  [requiredYear]="2018"
-                                  [requiredMonth]="12"
-                                  [requiredDay]="31"
+                                  [requiredYear]="2019"
+                                  [requiredMonth]="1"
+                                  [requiredDay]="24"
                                   [title]="'Data odbioru zamówienia'"
                                   [startTime]="stepStartTime"
                                   (finish)="stepConfirm()"></app-date-full-selector>
@@ -92,18 +92,18 @@
       <mat-step [editable]="false" label="Data odbioru zamówienia">
         <div *ngIf="this.userService.variant === 1">
           <app-date-masked [dataType]="'soon'"
-                           [requiredYear]="2018"
-                           [requiredMonth]="12"
-                           [requiredDay]="31"
+                           [requiredYear]="2019"
+                           [requiredMonth]="1"
+                           [requiredDay]="24"
                            [title]="'Data odbioru zamówienia'"
                            [startTime]="stepStartTime"
                            (finish)="stepConfirm()"></app-date-masked>
         </div>
         <div *ngIf="this.userService.variant !== 1">
           <app-date-spinner [dataType]="'soon'"
-                            [requiredYear]="2018"
-                            [requiredMonth]="12"
-                            [requiredDay]="31"
+                            [requiredYear]="2019"
+                            [requiredMonth]="1"
+                            [requiredDay]="24"
                             [title]="'Data odbioru zamówienia'"
                             [startTime]="stepStartTime"
                             (finish)="stepConfirm()"></app-date-spinner>
@@ -134,18 +134,18 @@
       <mat-step [editable]="false" label="Data odbioru zamówienia">
         <div *ngIf="this.userService.variant === 1">
           <app-date-editable-picker [dataType]="'soon'"
-                                    [requiredYear]="2018"
-                                    [requiredMonth]="12"
-                                    [requiredDay]="31"
+                                    [requiredYear]="2019"
+                                    [requiredMonth]="1"
+                                    [requiredDay]="24"
                                     [title]="'Data odbioru zamówienia'"
                                     [startTime]="stepStartTime"
                                     (finish)="stepConfirm()"></app-date-editable-picker>
         </div>
         <div *ngIf="this.userService.variant !== 1">
           <app-date-picker [dataType]="'soon'"
-                           [requiredYear]="2018"
-                           [requiredMonth]="12"
-                           [requiredDay]="31"
+                           [requiredYear]="2019"
+                           [requiredMonth]="1"
+                           [requiredDay]="24"
                            [title]="'Data odbioru zamówienia'"
                            [startTime]="stepStartTime"
                            (finish)="stepConfirm()"></app-date-picker>
